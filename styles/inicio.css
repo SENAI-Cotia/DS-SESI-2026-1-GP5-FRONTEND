@@ -5,6 +5,11 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html, body {
+    overflow-x: hidden;
+}
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -146,7 +151,7 @@
 
 
 .banner {
-    background-image: url('img/banner.png');
+    background-image: url('/assets/img/banner.png');
     background-size: cover; 
     background-position: center; 
     height: 500px; 
@@ -167,7 +172,7 @@
     background: #f43170;
     border-radius: 15px;
     padding: 5px 15px;
-    width: 1000px;
+    width: 1150px;
     height: 45px;
     box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
     transition: 0.3s;
@@ -175,7 +180,7 @@
     
     position: absolute;
     top: 62%;
-    left: 50%;
+    left: 47.5%;
     transform: translate(-50%, -50%);
     margin: 50px;
 }

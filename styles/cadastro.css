@@ -1,18 +1,17 @@
-
 * {
     padding: 0;
     margin: 0;
     border: none;
     user-select: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Inter";
 }
- 
+
 input :hover {
     cursor: text;
 }
- 
+
 body {
-    background-image: url(fundo.png);
+    background-image: url(/assets/backgrounds/CADASTRO\ \(1\).png);
     background-position: center;
     height: 97vh;
     Width: 99%;
@@ -21,9 +20,9 @@ body {
     display: flex;
     align-items: center;
     position: relative;
- 
+
 }
- 
+
 .container {
     width: 400px;
     background-color: #fff;
@@ -32,37 +31,37 @@ body {
     padding: 40px;
     margin-left: 500px;
     right: 30px;
- 
+
 }
- 
+
 .login-card h2 {
     margin-bottom: 10px;
     color: #333;
 }
- 
+
 .login-card p {
     margin-bottom: 20px;
     color: #555;
 }
- 
+
 .login-card form {
     display: flex;
     flex-direction: column;
 }
- 
+
 .login-card label {
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
 }
- 
+
 .login-card input {
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
- 
+
 .login-card button {
     background-color: #ff4081;
     color: #fff;
@@ -77,67 +76,44 @@ body {
     align-content: center ;
     font-size: 16px;
 }
- 
+
 .login-card button:hover {
     background-color: #e73370;
 }
- 
+
 h2 {
     user-select: none;
 }
- 
+
 .circulo {
- 
+
     text-align: center;
-    margin-left: 324px;
- 
+    margin-left: 510px;
+
     & p {
         color: #fff;
         font-size: 18px;
     }
- 
+
     & a {
         text-decoration: none;
         color: #99C3FF;
     }
 }
- 
+
 .logoIcon {
     height: 20px;
     margin-left: 5px;
 }
- 
+
 .login-card input {
     border: none;
     border-bottom: 1px solid #00000093;
     border-radius: 0px;
 }
- 
+
 .login-card input:focus {
     border-bottom: 2px solid #00000093 !important;
     border: none;
     outline: none;
-}
-
-/*BARRA DE PORCENTAGEM*/
-
-.container-barra {
-  background-color: #cfcfcf; /* Cor de fundo da barra */
-  border-radius: 10px;       /* Bordas arredondadas */
-  width: 100%;              /* Largura total */
-  height: 25px;             /* Altura da barra */
-  margin: 10px;
-
-}
-
-.preenchimento-barra {
-  background-color: #ff4081; /* Cor do progresso */
-  color: white;              /* Cor do texto */
-  text-align: right;        /* Alinha o texto à direita */
-  padding-right: 10px;       /* Espaçamento do texto */
-  border-radius: 10px;       /* Borda arredondada no preenchimento */
-  height: 100%;             /* Preenche a altura do contêiner */
-  transition: width 0.5s;   /* Suaviza a mudança de tamanho */
-  font-size: 14px;
-  line-height: 25px;        /* Centraliza o texto verticalmente */
 }
