@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etrooc</title>
+    <link rel="stylesheet" href="/styles/cadastro3.css">
+
+
+</head>
+
+<body class="fundo">
+
+    <section class="circulo">
+        <p>Não tem cadastro?</p>
+        <a href="#">Me cadastrar</a>
+    </section>
+
+    <div class="container">
+        <div class="login-card">
+            <i><img class="barraCad" src="/assets/img/barra75.svg" alt=""></i>
+            <h1 class="labelCad">Cadastro</h1>
+            <p>Preencha os dados de cadastro para se cadastrar</p>
+
+            <form>
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+
+                <label for="confirmar-senha">Confirmar Senha</label>
+                <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirme sua senha">
+
+                <ul class="regras-senha">
+                    <li> Mínimo de 8 caracteres</li>
+                    <li> Ao menos uma letra maiúscula</li>
+                    <li> Ao menos um número</li>
+                    <li> Ao menos um caractere especial (!@#$%)</li>
+                </ul>
+
+                <div id="mensagem-senha"></div>
+
+
+                <div class="botoes">
+                    <div class="voltar">
+                        <button type="submit">Voltar</button>
+                    </div>
+
+                    <div class="branco">
+                        <button type="submit">Avançar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+<script src="../script/cadastro3.js"></script>
+</body>
+
+</html>

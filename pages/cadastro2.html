@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etrooc</title>
+    <link rel="stylesheet" href="/styles/cadastro2.css">
+
+
+</head>
+
+<body class="fundo">
+
+    <section class="circulo">
+        <p>Não tem cadastro?</p>
+        <a href="#">Me cadastrar</a>
+    </section>
+
+    <div class="container">
+        <div class="login-card">
+            <i><img class="barraCad" src="/assets/img/barra50.svg" alt=""></i>
+            <h1 class="labelCad">Cadastro</h1>
+            <p>Preencha os dados de cadastro para se cadastrar</p>
+
+            <form>
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
+
+
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+
+
+                <div class="group-cadastro">
+                    <label class="nome" for="curso">Curso</label>
+                    <br>
+                    <select id="curso" name="curso" required>
+                        <option value="" disabled selected>Selecione um curso</option>
+                        <option value="informatica">Informática</option>
+                        <option value="administracao">Administração</option>
+                        <option value="design">Design</option>
+                        <option value="marketing">Marketing</option>
+                    </select>
+                    <hr>
+                </div>
+
+
+                <div class="botoes">
+                    <div class="voltar">
+                        <button type="submit">Voltar</button>
+                    </div>
+
+                    <div class="branco">
+                        <button type="submit">Avançar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
