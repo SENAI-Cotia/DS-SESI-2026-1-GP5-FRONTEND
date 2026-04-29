@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etrooc - Perfil</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="perfil.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo icon etrooc.svg" alt="">
+        </div>
+
+        <nav>
+            <a href="#">Início</a>
+            <a href="#">Comunidade</a>
+        </nav>
+
+        <div class="header-icons">
+            <span class="plus-btn">+</span>
+            <i class="fa-regular fa-user"></i>
+            <i class="fa-solid fa-bell"></i>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+
+        <div class="sidebar">
+            <div class="profile-box">
+                <div class="avatar-container">
+                    M
+                    <i class="fa-solid fa-pen edit-pen-avatar"></i>
+                </div>
+                <div>
+                    <p>Meu perfil</p>
+                    <h3>Mafalda</h3>
+                </div>
+            </div>
+
+            <div class="nav-item active"><i class="fa-solid fa-gear"></i> Configurações da minha conta</div>
+            <div class="nav-item"><i class="fa-solid fa-child"></i> Acessibilidade</div>
+            <div class="nav-item"><i class="fa-solid fa-arrow-rotate-left"></i> Últimos pedidos</div>
+            <div class="nav-item"><i class="fa-solid fa-circle-question"></i> Central de ajuda</div>
+            <div class="nav-item" style="border-bottom:none;"><i class="fa-solid fa-bag-shopping"></i> Itens à venda
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2>Informações da conta</h2>
+
+            <div class="form-grid">
+
+                <div class="field">
+                    <label>Nome</label>
+                    <input type="text" value="mafalda" disabled>
+                    <i class="fa-solid fa-pen edit-icon"></i>
+                </div>
+
+                <div class="field">
+                    <label>Sobrenome</label>
+                    <input type="text" value="Augusto" disabled>
+                    <i class="fa-solid fa-pen edit-icon"></i>
+                </div>
+
+                <div class="field">
+                    <label>Celular</label>
+                    <input type="text" value="(11) *****-1733" disabled>
+                    <i class="fa-solid fa-pen edit-icon"></i>
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input type="text" value="pi************1208@gmail.com" disabled>
+                    <i class="fa-solid fa-pen edit-icon"></i>
+                </div>
+
+                <div class="field">
+                    <label>Número de identidade</label>
+                    <input type="text" value="123-456-789-01" disabled>
+                    <i class="fa-solid fa-pen edit-icon"></i>
+                </div>
+
+                <div class="field">
+                    <label>Data de nascimento</label>
+                    <input type="text" value="05/12/2008" disabled>
+                    <i class="fa-solid fa-pen edit-icon"></i>
+                </div>
+
+                <div class="gender-box">
+                    <label>Gênero</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="g" checked> Masculino</label>
+                        <label><input type="radio" name="g"> Feminino</label>
+                        <label><input type="radio" name="g"> Prefiro não informar</label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>RM</label>
+                    <input type="text" value="112233">
+                    <i class="fa-solid fa-pen edit-icon"></i>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="perfil.js"></script>
+</body>
+
+</html>
