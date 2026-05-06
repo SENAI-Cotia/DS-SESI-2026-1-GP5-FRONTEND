@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>etrooc - Novo Produto</title>
+    <link rel="stylesheet" href="../styles/criarprod.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="#"><img src="../assets/img/etrooc.png" alt="etrooc"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">INÍCIO</a></li>
+                <li><a href="#">COMUNIDADE</a></li>
+            </ul>
+        </nav>
+        <div class="icons">
+            <img src="../assets/img/sinaldemais.png" alt="Adicionar">
+            <img src="../assets/img/sino.png" alt="Notificações">
+            <img src="../assets/img/pessoa.png" alt="Perfil">
+        </div>
+    </header>
+
+    <div class="container">
+     
+        <div>
+            <div class="image-upload" id="uploadArea">
+                <div class="upload-icon">↑</div>
+                <span>ADICIONAR IMAGEM</span>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+
+            <div class="thumbnail-container">
+                <div class="thumbnail"></div>
+                <div class="thumbnail"></div>
+            </div>
+        </div>
+
+  
+        <div class="form-section">
+            <h1 class="form-header">NOVO PRODUTO</h1>
+
+            <div class="input-group">
+                <label>NOME</label>
+                <input type="text" id="nome" placeholder="Nome do produto">
+            </div>
+
+            <div class="input-group">
+                <label>preço (R$)</label>
+                <input type="text" id="preco" placeholder="0,00">
+            </div>
+
+            <div class="input-group">
+                <label>Descrição</label>
+                <textarea class="description" id="descricao" placeholder="Descreva o produto..."></textarea>
+            </div>
+
+            <div class="two-columns">
+
+                <div class="list-box">
+                    <h3>Locais de troca disponíveis</h3>
+                    <div id="locais-list"></div>
+                    <button type="button" class="add-btn" id="add-local-btn">
+                        <strong>+</strong> Adicionar local
+                    </button>
+                </div>
+
+                
+                <div class="list-box">
+                    <h3>Horários de troca disponíveis</h3>
+                    <div id="horarios-list"></div>
+                    <button type="button" class="add-btn" id="add-horario-btn">
+
+                        <strong>+</strong> Adicionar horário
+
+                    </button>
+                </div>
+
+            </div>
+
+            <button class="publish-btn" onclick="publicar()">PUBLICAR</button>
+
+        </div>
+
+    </div>
+
+    <script src="../script/criarprod.js"></script>
+</body>
+
+</html>
