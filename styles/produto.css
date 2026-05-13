@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --pink: #d84374;
+    --light-gray: #f0f0f0;
+    --dark-text: #333;
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: #fff;
+    color: var(--dark-text);
+}
+
+/* Layout Principal */
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.product-main {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+/* Galeria */
+.product-gallery {
+    flex: 1;
+    text-align: center;
+}
+
+.main-img-card {
+    background-color: #ffb366;
+    /* Laranja do fundo na imagem */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.main-img-card img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.thumbnails {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.thumbnails .miniatura {
+    border: 2px solid var(--pink);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Detalhes do Produto */
+.product-details {
+    flex: 1;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dept {
+    color: var(--pink);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.time {
+    color: #888;
+    font-size: 12px;
+}
+
+.product-title {
+    margin: 5px 0;
+    font-size: 22px;
+}
+
+.price {
+    color: var(--pink);
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Grade de Horários */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.column label {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.tag {
+    background: white;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    font-weight: 400;
+
+}
+
+.tag.pink {
+    background-color: var(--pink);
+    color: white;
+    border-color: var(--pink);
+}
+
+.btn-entregue {
+    background-color: var(--pink);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    font-weight: bold;
+    
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+}
+
+/* Seção Inferior */
+.section-title {
+    color: var(--pink);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.similar-products {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.card-desc {
+    font-size: 13px;
+    margin-bottom: 10px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-more {
+    background: var(--pink);
+    color: white;
+    border: none;
+    padding: 8px 0;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilo para as tags clicáveis */
+.tag {
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+    /* Evita selecionar o texto ao clicar rápido */
+}
+
+/* Efeito de hover (passar o mouse) */
+.tag:hover:not(.pink) {
+    background-color: #f0f0f0;
+}
+
+/* Classe de seleção ativa (reutilizando sua cor rosa) */
+.tag.active {
+    background-color: #D6476B !important;
+    /* Cor rosa do seu projeto */
+    color: white !important;
+}
+
+/* Estilo para o botão quando algo for selecionado */
+.btn-entregue.ready {
+    background-color: #b13554;
+    transform: scale(1.02);
+}
+
+.miniatura {
+    width: 90px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.miniatura:hover {
+    transform: scale(1.03);
+}
+
+/* Fundo escuro */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    padding-top: 150px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* Imagem ampliada */
+.modal .img {
+    width: 550px;
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 90%;
+    text-align: center;
+    padding: 0px;
+}
+
+/* Botão fechar */
+.fechar {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.fechar img {
+    width: 30px;
+    height: 30px;
+}
+
+.list-item {
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e91e6265;
+  border-radius: 1px;
+  margin-bottom: 10px;
+}
+
+/* Container principal */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+    gap: 15px;
+    margin: 20px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Os títulos "Local" e "Horário" */
+.schedule-grid label {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* Estilo padrão de cada item da lista */
+.tag.list-item {
+    border: 1px solid #F8A3B9; /* Rosa claro da borda */
+    border-radius: 12px;        /* Deixa arredondado igual à foto */
+    padding: 6px 15px;
+    margin-bottom: 8px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    color: #555;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Estilo para quando tiver a classe 'pink' (o item selecionado) */
+.tag.pink.list-item {
+    background-color: #D14D6D; /* O vinho/rosa escuro da imagem */
+    color: #ffffff;            /* Texto branco para dar contraste */
+    border-color: #D14D6D;     /* Borda da mesma cor do fundo */
+    font-weight: 500;
+}

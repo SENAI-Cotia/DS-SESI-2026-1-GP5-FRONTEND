@@ -10,67 +10,6 @@ html, body {
     overflow-x: hidden;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  padding: 15px 30px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar .logo img {
-  width: 200px; 
-  height: auto;  
-  vertical-align: middle;
-}
-
-.navbar nav ul {
-  list-style: none;
-  display: flex;
-  gap: 60px;
-}
-
-.navbar nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.navbar a::after{
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 0%;
-    height: 2px;
-    background: #050003;
-    transition: 0.3s;
-}
-
-
-.navbar a:hover::after{
-    width: 100%;
-}
-
-
-.icons {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.sinaldemais img {
-  width: 30px; 
-  height: auto;
-  vertical-align: middle;
-}
-
 .cards-container{
   margin: 80px;
   padding: 15px;
