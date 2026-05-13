@@ -5,37 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etrooc - Perfil</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="../styles/perfil.css">
+
 </head>
 
 <body>
 
-    <header>
+    <header class="navbar">
         <div class="logo">
-            <img src="logo icon etrooc.svg" alt="">
+            <a href="#"><img src="/assets/icons/logo icon etrooc.svg" alt="Etrooc"></a>
         </div>
-
         <nav>
-            <a href="#">Início</a>
-            <a href="#">Comunidade</a>
+            <ul>
+                <li><a href="#">INÍCIO</a></li>
+                <li><a href="#">COMUNIDADE</a></li>
+            </ul>
         </nav>
-
-        <div class="header-icons">
-            <span class="plus-btn">+</span>
-            <i class="fa-regular fa-user"></i>
-            <i class="fa-solid fa-bell"></i>
+        <div class="icons">
+            <div class="sinaldemais">
+                <a href="#"><img src="/assets/img/sinaldemais.png" alt="Adicionar"></a>
+            </div>
+            <div class="sinaldemais">
+                <a href="#"><img src="/assets/img/sino.png" alt="Notificações"></a>
+            </div>
+            <div class="sinaldemais">
+                <a href="#"><img src="/assets/img/pessoa.png" alt="Perfil"></a>
+            </div>
         </div>
     </header>
 
     <div class="main-wrapper">
 
+        
         <div class="sidebar">
             <div class="profile-box">
-                <div class="avatar-container">
-                    M
+                <div class="avatar-container" id="avatar">
+                    <span id="avatarLetter">M</span>
                     <i class="fa-solid fa-pen edit-pen-avatar"></i>
                 </div>
                 <div>
@@ -43,20 +49,20 @@
                     <h3>Mafalda</h3>
                 </div>
             </div>
-
-            <div class="nav-item active"><i class="fa-solid fa-gear"></i> Configurações da minha conta</div>
-            <div class="nav-item"><i class="fa-solid fa-child"></i> Acessibilidade</div>
-            <div class="nav-item"><i class="fa-solid fa-arrow-rotate-left"></i> Últimos pedidos</div>
-            <div class="nav-item"><i class="fa-solid fa-circle-question"></i> Central de ajuda</div>
-            <div class="nav-item" style="border-bottom:none;"><i class="fa-solid fa-bag-shopping"></i> Itens à venda
-            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item"><i class="fa-solid fa-gear"></i> Configurações da conta</div>
+                <div class="nav-item"><i class="fa-solid fa-arrow-rotate-left"></i> Últimos pedidos</div>
+                <div class="nav-item"><i class="fa-solid fa-bag-shopping"></i> Itens à venda</div>
+                <div class="nav-item active"><i class="fa-solid fa-child"></i> Acessibilidade</div>
+                <div class="nav-item"><i class="fa-solid fa-circle-question"></i> Central de ajuda</div>
+            </nav>
         </div>
 
+        <!-- Conteúdo Principal -->
         <div class="info-card">
             <h2>Informações da conta</h2>
 
             <div class="form-grid">
-
                 <div class="field">
                     <label>Nome</label>
                     <input type="text" value="mafalda" disabled>
@@ -107,11 +113,15 @@
                     <input type="text" value="112233">
                     <i class="fa-solid fa-pen edit-icon"></i>
                 </div>
-
             </div>
+
         </div>
 
-        <script src="perfil.js"></script>
+
+    </div>
+    </div>]
+
+<script src="../script/perfil.js" defer></script>
 </body>
 
 </html>

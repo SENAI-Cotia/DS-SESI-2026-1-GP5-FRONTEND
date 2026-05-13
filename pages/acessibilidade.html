@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etrooc - Acessibilidade</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/acessibilidade.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="#"><img src="../assets/icons/logo icon etrooc.svg" alt="Logo Etrooc"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">INÍCIO</a></li>
+                <li><a href="#">COMUNIDADE</a></li>
+            </ul>
+        </nav>
+        <div class="icons">
+            <div class="sinaldemais"><a href="#"><img src="../assets/img/sinaldemais.png" alt="Mais"></a></div>
+            <div class="sinaldemais"><a href="#"><img src="../assets/img/sino.png" alt="Sino"></a></div>
+            <div class="sinaldemais"><a href="#"><img src="../assets/img/pessoa.png" alt="Perfil"></a></div>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <aside class="sidebar">
+            <div class="profile-box">
+                <div class="avatar-container">
+                    M
+                    <i class="fa-solid fa-pen edit-pen-avatar"></i>
+                </div>
+                <div>
+                    <p>Meu perfil</p>
+                    <h3>Mafalda</h3>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+
+                <a href="configuracoes.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i> Configurações da conta
+                </a>
+
+                <a href="pedidos.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-rotate-left"></i> Últimos pedidos
+                </a>
+
+                <a href="vendas.html" class="nav-item">
+                    <i class="fa-solid fa-bag-shopping"></i> Itens à venda
+                </a>
+
+                <a href="acessibilidade.html" class="nav-item active">
+                    <i class="fa-solid fa-child"></i> Acessibilidade
+                </a>
+
+                <a href="ajuda.html" class="nav-item">
+                    <i class="fa-solid fa-circle-question"></i> Central de ajuda
+                </a>
+
+            </nav>
+        </aside>
+
+        <main class="info-card">
+            <h2>Acessibilidade</h2>
+            <p class="subtitle">Personalize sua experiência para melhor acessibilidade</p>
+
+            <div class="accessibility-options">
+                <div class="option-group">
+                    <h3><i class="fa-solid fa-text-height"></i> Tamanho do Texto</h3>
+                    <div class="slider-container">
+                        <span>Pequeno</span>
+                        <input type="range" min="1" max="3" value="2" class="text-slider">
+                        <span>Grande</span>
+                    </div>
+                </div>
+
+                <div class="option-item">
+                    <div class="option-info">
+                        <i class="fa-solid fa-adjust"></i>
+                        <div>
+                            <strong>Modo de Alto Contraste</strong>
+                            <p>Melhora a legibilidade</p>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="high-contrast">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="option-item">
+
+                    <div class="option-info">
+
+                        <i class="fa-solid fa-moon"></i>
+
+                        <div>
+
+                            <strong>Modo Escuro</strong>
+
+                            <p>Ativar tema escuro</p>
+
+                        </div>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input type="checkbox" id="dark-mode">
+
+                        <span class="slider round"></span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- Leitor de Tela -->
+
+                <div class="option-item">
+
+                    <div class="option-info">
+
+                        <i class="fa-solid fa-volume-up"></i>
+
+                        <div>
+
+                            <strong>Suporte a Leitor de Tela</strong>
+
+                            <p>Otimizar para screen readers</p>
+
+                        </div>
+
+                    </div>
+
+                    <label class="switch">
+
+                        <input type="checkbox" id="screen-reader">
+
+                        <span class="slider round"></span>
+
+                    </label>
+
+                </div>
+
+                <div class="option-item">
+                    <div class="option-info">
+                        <i class="fa-solid fa-person-walking"></i>
+                        <div>
+                            <strong>Reduzir Movimentos</strong>
+                            <p>Desativa animações</p>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="reduce-motion" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <button class="save-btn">Salvar Preferências</button>
+        </main>
+    </div>
+
+</body>
+
+</html>

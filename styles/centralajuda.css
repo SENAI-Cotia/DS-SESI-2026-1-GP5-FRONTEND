@@ -1,16 +1,24 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+:root{
+    --rosa:#d43768;
+    --rosa-claro:#ffe6ef;
+    --preto:#222;
+    --cinza:#666;
+    --fundo:#f7f7f7;
 }
 
-html, body {
-    overflow-x: hidden;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Navbar */
+body{
+    background: var(--fundo);
+}
+
+/* ================= NAVBAR ================= */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -149,79 +157,83 @@ html, body {
   background-color: #e73370;
 }
 
+/* ================= CATEGORIAS ================= */
 
-
-.banner {
-    background-image: url('/assets/img/banner.png');
-    background-size: cover; 
-    background-position: center; 
-    height: 500px; 
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    color: white; 
-    text-align: center;
+.categorias{
+    padding:60px 80px;
 }
 
-/* BARRA DEE PESQUISA (cODIG PRONTO DO SITE) */
-
-#divBusca{
-    display: flex;
-    align-items: center;
-    background: #f43170;
-    border-radius: 15px;
-    padding: 5px 15px;
-    width: 1150px;
-    height: 45px;
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
-    transition: 0.3s;
-
-    
-    position: absolute;
-    top: 62%;
-    left: 47.5%;
-    transform: translate(-50%, -50%);
-    margin: 50px;
+.categorias h2{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:35px;
+    color:var(--preto);
 }
 
-
-#divBusca:focus-within{
-    box-shadow: 0 0 0 2px rgb(189, 189, 189);
+.grid-categorias{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
 }
 
-
-#txtBusca{
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 16px;
-    padding-left: 10px;
-  
+.card{
+    background:white;
+    padding:30px;
+    border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    transition:.3s;
+    cursor:pointer;
 }
 
-#txtBusca::placeholder{
-    color: white;
+.card:hover{
+    transform:translateY(-6px);
 }
 
-
-.lupa{
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.3s;
+.card h3{
+    color:var(--rosa);
+    margin-bottom:12px;
+    font-size:20px;
 }
 
-
-.lupa:hover{
-    transform: scale(1.2);
+.card p{
+    color:var(--cinza);
+    line-height:1.4;
 }
 
+/* ================= FAQ ================= */
 
+.faq{
+    background:var(--rosa-claro);
+    padding:70px 20px;
+}
 
+.faq h2{
+    text-align:center;
+    font-size:30px;
+    margin-bottom:35px;
+}
 
-/* FOOTER */
+.faq-item{
+    background:white;
+    max-width:750px;
+    margin:18px auto;
+    padding:22px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    transition:.3s;
+}
+
+.faq-item:hover{
+    transform:scale(1.02);
+}
+
+.faq-item h4{
+    color:var(--rosa);
+    margin-bottom:6px;
+}
+
+/* ================= RODAPÉ ================= */
+
 footer {
     background-color: #ff4081;
     color: white;
@@ -255,3 +267,22 @@ footer {
  
 
 
+
+/* ================= RESPONSIVO ================= */
+
+@media(max-width:768px){
+
+    .navbar{
+        padding:0 20px;
+    }
+
+    nav ul{
+        gap:20px;
+        font-size:14px;
+    }
+
+    .categorias{
+        padding:40px 20px;
+    }
+
+}
