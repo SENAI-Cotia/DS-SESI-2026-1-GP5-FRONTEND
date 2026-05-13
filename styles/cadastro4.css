@@ -1,0 +1,193 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+    user-select: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input:hover {
+    cursor: text;
+}
+
+body {
+    background-image: url(/assets/backgrounds/CADASTRO\ \(1\).png);
+    background-position: center;
+    height: 97vh;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    width: 400px;
+    background-color: #fff;
+    box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 60px;
+    padding: 40px;
+    margin-left: 500px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-card h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.login-card p {
+    margin-bottom: 20px;
+    color: #555;
+    text-align: center;
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-card label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.info-resumo {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.info-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.info-mensagem {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.login-card input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #00000093;
+    border-radius: 0px;
+}
+
+.login-card input:focus {
+    border-bottom: 2px solid #00000093 !important;
+    border: none;
+    outline: none;
+}
+
+.login-card button {
+    background-color: #ff4081;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    width: 200px;
+    border-radius: 30px;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    align-content: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-card button:hover {
+    background-color: #e73370;
+}
+
+h2 {
+    user-select: none;
+}
+
+.circulo {
+    text-align: center;
+    margin-left: 510px;
+}
+
+.circulo p {
+    color: #fff;
+    font-size: 18px;
+}
+
+.circulo a {
+    text-decoration: none;
+    color: #99C3FF;
+}
+
+.logoIcon {
+    height: 20px;
+    margin-left: 5px;
+}
+
+.barraCad {
+    width: auto;
+    height: 37px;
+}
+
+.labelCad {
+    align-items: center;
+    text-align: center;
+    color: #e73370;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.voltar {
+    width: auto;
+    height: auto;
+}
+
+.branco {
+    width: auto;
+    height: auto;
+}
+
+.voltar button {
+    background-color: white;
+    color: #e73370;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: 1px solid #e73370;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.voltar button:hover {
+    background-color: #faecf0;
+}
+
+.branco button {
+    background-color: #ff4081;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.branco button:hover {
+    background-color: #e73370;
+}

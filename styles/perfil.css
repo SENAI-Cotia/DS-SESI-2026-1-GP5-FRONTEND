@@ -16,7 +16,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            background-image: url(img-bg-perfil.png);
+            background-image: url(/assets/backgrounds/img-bg-perfil.png);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;

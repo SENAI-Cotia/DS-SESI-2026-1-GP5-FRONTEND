@@ -5,33 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETROOC</title>
-    <link rel="icon" href="/assets/icons/logo-etrooc-infinito.png" type="image/svg+xml">
-    <link rel="stylesheet" href="../styles/cadastro4.css">
-    
+    <link rel="icon" href="/assets/icons/logo-etrooc-infinito.png" type="image/png">
+    <link rel="stylesheet" href="/styles/cadastro4.css">
 
 </head>
 
 <body class="fundo">
+
+    <section class="circulo">
+        <p>Já tem cadastro?</p>
+        <a href="login.html">Fazer login</a>
+    </section>
+
     <div class="container">
         <div class="login-card">
-            <h2>Bem vindo ao <img class="logoIcon" src="logo icon etrooc.svg" alt=""></h2>
-            <p>Preencha os dados de login para acessar</p>
+            <i><img class="barraCad" src="/assets/img/barra100.svg" alt=""></i>
+            <h1 class="labelCad">Cadastro Concluído</h1>
+            <p>Seus dados foram registrados com sucesso</p>
 
-            <form>
-                <label for="email">Email ou CPF</label>
-                <input type="text" id="email" name="email" placeholder="email ou cpf">
+            <div class="info-resumo">
+                <p class="info-label">Bem-vindo à ETROOC!</p>
+                <p class="info-mensagem">Sua conta foi criada com sucesso. Agora você pode acessar a plataforma e começar a vender ou comprar produtos.</p>
+            </div>
 
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" placeholder="senha de acesso">
+            <div class="botoes">
+                <div class="voltar">
+                    <button type="button" onclick="window.history.back()">Voltar</button>
+                </div>
 
-                <button type="submit">Login</button>
-            </form>
+                <div class="branco">
+                    <button type="button" onclick="window.location.href='inicio.html'">Ir para Início</button>
+                </div>
+            </div>
         </div>
     </div>
-    <section class="circulo">
-        <p>Não tem cadastro?</p>
-        <a href="#">Me cadastrar</a>
-    </section>
+
+<script src="/script/cadastro4.js"></script>
 </body>
 
 </html>
