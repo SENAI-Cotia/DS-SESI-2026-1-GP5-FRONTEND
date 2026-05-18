@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETROOC</title>
+    <link rel="icon" href="/assets/icons/logo-etrooc-infinito.png" type="image/png">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/produto.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+    <script src="/script/produto.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="inicio.html"><img src="/assets/img/etrooc.png" alt="etrooc"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="inicio.html">INÍCIO</a></li>
+                <li><a href="#">COMUNIDADE</a></li>
+            </ul>
+        </nav>
+        <div class="icons">
+            <a href="criarprod.html"><img src="/assets/img/sinaldemais.png" alt="Adicionar"></a>
+            <a href="#"><img src="/assets/img/sino.png" alt="Notificações"></a>
+            <a href="perfil.html"><img src="/assets/img/pessoa.png" alt="Perfil"></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="product-main">
+            <div class="product-gallery">
+                <div class="main-img-card">
+                    <img src="/assets/img/caderno (1).png" alt="Caderno Inteligente">
+                </div>
+                <div class="thumbnails">
+                    <img src="/assets/img/caderna-2.png" alt="Thumb-2" class="miniatura" onclick="abrirImagem()">
+
+                    <!-- Modal -->
+                    <div id="modal" class="modal">
+                        <span class="fechar" onclick="fecharImagem()"><img src="/assets/icons/icon-x.svg" alt="x"></span>
+
+                        <img src="/assets/img/caderna-2.png" alt="Imagem ampliada" class="img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-details">
+                <div class="user-info">
+                    <img src="/assets/img/avatar-1.png" alt="Avatar" class="avatar">
+                    <div>
+                        <strong>Daniel Rosa</strong> <span class="time">Há 8 horas</span><br>
+                        <span class="dept">marketing</span>
+                    </div>
+                </div>
+
+                <h1 class="product-title">Caderno Inteligente</h1>
+                <p class="price">R$ 25,00</p>
+                <p class="description">
+                    Pessoal! Comprei um caderno inteligente no início do ano mas acabei não usando e também não pretendo
+                    usar. Interessados, me chamem no chat!
+                </p>
+
+                <div class="schedule-grid">
+                    <div class="column">
+                        <label>Local</label>
+                        <div class="tag list-item">Pátio 1 </div>
+                        <div class="tag list-item">Secretaria </div>
+                        <div class="tag list-item">Laboratório </div>
+                        <div class="tag list-item">Quadra </div>
+                        <div class="tag list-item">Refeitório </div>
+                        <div class="tag list-item">Pátio 2 </div>
+                    </div>
+                    <div class="column">
+                        <label>Horário</label>
+                        <div class="tag list-item">7h15 </div>
+                        <div class="tag list-item">8h00 </div>
+                        <div class="tag list-item">11h30 </div>
+                        <div class="tag list-item">14h20 </div>
+                        <div class="tag list-item">15h15 </div>
+                        
+                    </div>
+                </div>
+
+                <button class="btn-entregue">ENVIAR<span ></span></button>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
