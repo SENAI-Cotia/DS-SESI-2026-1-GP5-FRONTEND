@@ -3,6 +3,7 @@
     margin: 0;
     user-select: none;
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
 input:hover {
@@ -42,19 +43,24 @@ body {
 }
 
 .login-card p {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     color: #555;
+    text-align: center;
 }
 
 .login-card form {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
 }
 
 .login-card label {
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
+    text-align: left;
+    width: 100%;
 }
 
 .login-card input {
@@ -108,11 +114,10 @@ h2 {
 }
 
 .login-card input {
+    width: 100%;
     border: none;
     border-bottom: 1px solid #00000093;
     border-radius: 0px;
-
-
 }
 
 .login-card input:focus {
@@ -122,40 +127,50 @@ h2 {
 }
 
 .barraCad {
-    width: auto;
-    height: 37px;
+    display: block;
+    margin: 0 auto 30px;
+    max-width: 320px;
+    width: 100%;
+    height: auto;
 }
 
 .labelCad {
     align-items: center;
-    display: flex;
     text-align: center;
+    color: #e73370;
 }
 
 
 
 .botoes {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    gap: 15px;
     width: 100%;
     align-items: center;
-
-
+    margin-top: 20px;
 }
 
-.voltar {
-    width: 45%;
-    height: 30px;
-}
-
+.voltar,
 .branco {
-    width: 45%;
-    height: 30px;
+    flex: 1 1 calc(50% - 7.5px);
+    min-width: 140px;
+}
+
+.voltar button,
+.branco button {
+    width: 100%;
 }
 
 .voltar button {
     background-color: white;
     color: #e73370;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: 1px solid #e73370;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .voltar button:hover {

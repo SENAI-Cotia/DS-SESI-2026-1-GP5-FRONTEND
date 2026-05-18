@@ -4,6 +4,7 @@
     border: none;
     user-select: none;
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
 input:hover {
@@ -41,22 +42,34 @@ body {
 }
 
 .login-card p {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     color: #555;
     text-align: center;
+}
+
+.info-resumo {
+    margin: 28px 0;
+    text-align: center;
+}
+
+.info-mensagem {
+    margin-top: 10px;
+    line-height: 1.75;
 }
 
 .login-card form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    width: 100%;
 }
 
 .login-card label {
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
-    text-align: center;
+    text-align: left;
+    width: 100%;
 }
 
 .info-resumo {
@@ -135,8 +148,11 @@ h2 {
 }
 
 .barraCad {
-    width: auto;
-    height: 37px;
+    display: block;
+    margin: 0 auto 30px;
+    max-width: 320px;
+    width: 100%;
+    height: auto;
 }
 
 .labelCad {
@@ -147,21 +163,23 @@ h2 {
 
 .botoes {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 15px;
     width: 100%;
     align-items: center;
     margin-top: 20px;
 }
 
-.voltar {
-    width: auto;
-    height: auto;
+.voltar,
+.branco {
+    flex: 1 1 calc(50% - 7.5px);
+    min-width: 140px;
 }
 
-.branco {
-    width: auto;
-    height: auto;
+.voltar button,
+.branco button {
+    width: 100%;
 }
 
 .voltar button {
