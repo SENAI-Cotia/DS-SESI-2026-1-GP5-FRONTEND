@@ -161,6 +161,7 @@
             border: none;
             outline: none;
             background: transparent;
+            padding-right: 44px;
         }
 
         .field input:disabled {
@@ -169,9 +170,10 @@
 
         .edit-icon {
             position: absolute;
-            right: 0;
+            right: 8px;
             bottom: 8px;
             cursor: pointer;
+            font-size: 14px;
         }
 
         .gender-box {

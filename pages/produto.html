@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETROOC</title>
-    <link rel="icon" href="/assets/icons/logo-etrooc-infinito.png" type="image/png">
-    <link rel="stylesheet" href="/styles/navbar.css">
-    <link rel="stylesheet" href="/styles/produto.css">
+    <link rel="icon" href="../assets/icons/logo-etrooc-infinito.png" type="image/png">
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/produto.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
         rel="stylesheet">
-    <script src="/script/produto.js"></script>
+    <script src="../script/produto.js"></script>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
     <!-- Navbar -->
     <header class="navbar">
         <div class="logo">
-            <a href="inicio.html"><img src="/assets/img/etrooc.png" alt="etrooc"></a>
+            <a href="inicio.html"><img src="../assets/img/etrooc.png" alt="etrooc"></a>
         </div>
         <nav>
             <ul>
@@ -31,9 +31,9 @@
             </ul>
         </nav>
         <div class="icons">
-            <a href="criarprod.html"><img src="/assets/img/sinaldemais.png" alt="Adicionar"></a>
-            <a href="#"><img src="/assets/img/sino.png" alt="Notificações"></a>
-            <a href="perfil.html"><img src="/assets/img/pessoa.png" alt="Perfil"></a>
+            <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
+            <a href="#"><img src="../assets/img/sino.png" alt="Notificações"></a>
+            <a href="perfil.html"><img src="../assets/img/pessoa.png" alt="Perfil"></a>
         </div>
     </header>
 
@@ -41,36 +41,34 @@
         <section class="product-main">
             <div class="product-gallery">
                 <div class="main-img-card">
-                    <img src="/assets/img/caderno (1).png" alt="Caderno Inteligente">
+                    <img id="product-main-image" src="../assets/img/etrooc.png" alt="Produto">
                 </div>
-                <div class="thumbnails">
-                    <img src="/assets/img/caderna-2.png" alt="Thumb-2" class="miniatura" onclick="abrirImagem()">
+                <div class="thumbnails" id="gallery-thumbnails">
+                    <img src="../assets/img/caderna-2.png" alt="Thumb-2" class="miniatura" onclick="abrirImagem()">
 
                     <!-- Modal -->
                     <div id="modal" class="modal">
-                        <span class="fechar" onclick="fecharImagem()"><img src="/assets/icons/icon-x.svg" alt="x"></span>
+                        <span class="fechar" onclick="fecharImagem()"><img src="../assets/icons/icon-x.svg" alt="x"></span>
 
-                        <img src="/assets/img/caderna-2.png" alt="Imagem ampliada" class="img">
+                        <img id="modal-image" src="../assets/img/caderna-2.png" alt="Imagem ampliada" class="img">
                     </div>
                 </div>
             </div>
 
             <div class="product-details">
                 <div class="user-info">
-                    <img src="/assets/img/avatar-1.png" alt="Avatar" class="avatar">
+                    <img src="../assets/img/avatar-1.png" alt="Avatar" class="avatar">
                     <div>
-                        <strong>Daniel Rosa</strong> <span class="time">Há 8 horas</span><br>
-                        <span class="dept">marketing</span>
+                        <strong id="seller-name">Usuário</strong> <span class="time" id="seller-time">Há 1 dia</span><br>
+                        <span class="dept" id="seller-dept">curso</span>
                     </div>
                 </div>
 
-                <h1 class="product-title">Caderno Inteligente</h1>
-                <p class="price">R$ 25,00</p>
-                <p class="description">
-                    Pessoal! Comprei um caderno inteligente no início do ano mas acabei não usando e também não pretendo
-                    usar. Interessados, me chamem no chat!
+                <h1 class="product-title" id="product-title">Produto</h1>
+                <p class="price" id="product-price">R$ 0,00</p>
+                <p class="description" id="product-description">
+                    Descrição do produto será carregada aqui.
                 </p>
-
                 <div class="schedule-grid">
                     <div class="column">
                         <label>Local</label>

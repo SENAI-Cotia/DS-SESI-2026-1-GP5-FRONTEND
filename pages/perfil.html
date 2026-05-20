@@ -5,30 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETROOC</title>
-    <link rel="icon" href="/assets/icons/logo-etrooc-infinito.png" type="image/png">
+    <link rel="icon" href="../assets/icons/logo-etrooc-infinito.png" type="image/png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/perfil.css">
+    <link rel="stylesheet" href="../styles/perfil.css">
+    <link rel="stylesheet" href="../styles/navbar.css">
 </head>
 
 <body>
-
-    <header>
+    <header class="navbar">
         <div class="logo">
-            <img src="/assets/icons/logo icon etrooc.svg" alt="">
+            <a href="inicio.html"><img src="../assets/icons/logo icon etrooc.svg" alt=""></a>
         </div>
-
         <nav>
-            <a href="#">Início</a>
-            <a href="#">Comunidade</a>
+            <ul>
+                <li><a href="inicio.html">INÍCIO</a></li>
+                <li><a href="#">COMUNIDADE</a></li>
+            </ul>
         </nav>
-
-        <div class="header-icons">
-            <span class="plus-btn">+</span>
-            <i class="fa-regular fa-user"></i>
-            <i class="fa-solid fa-bell"></i>
+        <div class="icons">
+            <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
+            <a href="#"><img src="../assets/img/sino.png" alt="Notificações"></a>
         </div>
+        <a class="user-info" href="perfil.html">
+            <div class="avatar" id="profile-avatar">U</div>
+            <div class="user-meta">
+                <span class="user-name" id="profile-name-display">Usuário</span>
+                <span class="user-curso" id="profile-curso-display"></span>
+            </div>
+        </a>
     </header>
 
     <div class="main-wrapper">
@@ -36,12 +42,12 @@
         <div class="sidebar">
             <div class="profile-box">
                 <div class="avatar-container">
-                    M
+                    <div id="sidebar-avatar">U</div>
                     <i class="fa-solid fa-pen edit-pen-avatar"></i>
                 </div>
                 <div>
                     <p>Meu perfil</p>
-                    <h3>Mafalda</h3>
+                    <h3 id="sidebar-firstname">Usuário</h3>
                 </div>
             </div>
 
@@ -60,37 +66,37 @@
 
                 <div class="field">
                     <label>Nome</label>
-                    <input type="text" value="mafalda" disabled>
+                    <input type="text" id="profile-name" value="mafalda" disabled>
                     <i class="fa-solid fa-pen edit-icon"></i>
                 </div>
 
                 <div class="field">
                     <label>Sobrenome</label>
-                    <input type="text" value="Augusto" disabled>
+                    <input type="text" id="profile-lastname" value="Augusto" disabled>
                     <i class="fa-solid fa-pen edit-icon"></i>
                 </div>
 
                 <div class="field">
                     <label>Celular</label>
-                    <input type="text" value="(11) *****-1733" disabled>
+                    <input type="text" id="profile-phone" value="(11) *****-1733" disabled>
                     <i class="fa-solid fa-pen edit-icon"></i>
                 </div>
 
                 <div class="field">
                     <label>Email</label>
-                    <input type="text" value="pi************1208@gmail.com" disabled>
+                    <input type="text" id="profile-email" value="pi************1208@gmail.com" disabled>
                     <i class="fa-solid fa-pen edit-icon"></i>
                 </div>
 
                 <div class="field">
                     <label>Número de identidade</label>
-                    <input type="text" value="123-456-789-01" disabled>
+                    <input type="text" id="profile-id" value="123-456-789-01" disabled>
                     <i class="fa-solid fa-pen edit-icon"></i>
                 </div>
 
                 <div class="field">
                     <label>Data de nascimento</label>
-                    <input type="text" value="05/12/2008" disabled>
+                    <input type="text" id="profile-birthdate" value="05/12/2008" disabled>
                     <i class="fa-solid fa-pen edit-icon"></i>
                 </div>
 
@@ -105,14 +111,21 @@
 
                 <div class="field">
                     <label>RM</label>
-                    <input type="text" value="112233">
+                    <input type="text" id="profile-rm" value="112233" disabled>
                     <i class="fa-solid fa-pen edit-icon"></i>
                 </div>
 
             </div>
         </div>
 
-        <script src="/script/perfil.js"></script>
+        <div class="history-card">
+            <h2>Produtos vendidos</h2>
+            <div id="sold-products" class="sold-products">
+                <p>Carregando produtos...</p>
+            </div>
+        </div>
+
+        <script src="../script/perfil.js"></script>
 </body>
 
 </html>
