@@ -2,7 +2,7 @@
 // Lê dados do localStorage (preenchido futuramente pelo fluxo de login)
 // TODO: quando o login for integrado, salvar userId/userName/userCurso no localStorage
 
-const API_BASE = 'http://10.92.199.12:3000'; // mantido para uso futuro
+const API_BASE = 'http://10.92.199.29:3000'; // mantido para uso futuro
 
 function loadNavbar() {
     const userName = localStorage.getItem('userName') || 'Usuário';

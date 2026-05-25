@@ -12,21 +12,19 @@ function escapeHtml(str) {
 
 async function loadItensAVenda() {
     const container = document.getElementById('itens-container');
-    const userId = localStorage.getItem('userId');
 
-    if (!userId) {
-        container.innerHTML = '<p class="msg-vazia">Faça login para ver seus itens à venda.</p>';
-        return;
-    }
+    // TODO: restaurar filtro por userId quando o login estiver implementado
+    // const userId = localStorage.getItem('userId');
+    // if (!userId) { ... }
 
     try {
-        const res = await fetch(`${API_BASE}/produtos/vendidos/${userId}`);
+        const res = await fetch(`${API_BASE}/produtos`);
         if (!res.ok) throw new Error('Erro ao buscar itens');
         const produtos = await res.json();
         renderItens(produtos);
     } catch (err) {
         console.error(err);
-        container.innerHTML = '<p class="msg-vazia">Não foi possível carregar seus itens. Tente novamente mais tarde.</p>';
+        container.innerHTML = '<p class="msg-vazia">Não foi possível carregar os itens. Tente novamente mais tarde.</p>';
     }
 }
 
