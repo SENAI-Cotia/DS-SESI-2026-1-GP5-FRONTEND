@@ -184,3 +184,34 @@
             display: block;
             margin: 5px 0;
         }
+        /* sidebar links */
+        .nav-item {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+        }
+
+        .history-card {
+            width: 320px;
+            background: white;
+            border-radius: 25px;
+            padding: 30px 25px;
+            box-shadow: -20px 20px 20px 20px rgba(0,0,0,0.2);
+        }
+
+        .history-card h2 {
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .sold-product-card {
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+
+        .sold-product-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
