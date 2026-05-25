@@ -1,4 +1,6 @@
-// inicio.js
+// comunidade.js
+// Exibe produtos de usuários do mesmo curso do usuário logado.
+// Se não houver curso no localStorage (ex: em testes), mostra todos.
 
 function escapeHtml(str) {
     return String(str || '')
@@ -7,24 +9,6 @@ function escapeHtml(str) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
-}
-
-function loadNavbarInicio() {
-    const userName = localStorage.getItem('userName') || 'Usuário';
-    const userCurso = localStorage.getItem('userCurso') || '';
-    const firstName = userName.split(' ')[0] || 'Usuário';
-
-    const nameEl = document.getElementById('nav-user-name');
-    const cursoEl = document.getElementById('nav-user-curso');
-    const avatarEl = document.getElementById('nav-avatar');
-    const welcomeEl = document.getElementById('welcomeText');
-    const welcomeCursoEl = document.getElementById('welcomeCurso');
-
-    if (nameEl) nameEl.textContent = userName;
-    if (cursoEl) cursoEl.textContent = userCurso;
-    if (avatarEl) avatarEl.textContent = firstName.charAt(0).toUpperCase();
-    if (welcomeEl) welcomeEl.textContent = `Bem-vindo, ${userName}`;
-    if (welcomeCursoEl) welcomeCursoEl.textContent = userCurso;
 }
 
 function timeAgo(dateStr) {
@@ -40,12 +24,38 @@ function timeAgo(dateStr) {
     return `Há ${weeks} semana${weeks > 1 ? 's' : ''}`;
 }
 
-function renderProdutos(produtos) {
+function loadNavbarComunidade() {
+    const userName = localStorage.getItem('userName') || 'Usuário';
+    const userCurso = localStorage.getItem('userCurso') || '';
+    const firstName = userName.split(' ')[0] || 'Usuário';
+
+    const nameEl = document.getElementById('nav-user-name');
+    const cursoEl = document.getElementById('nav-user-curso');
+    const avatarEl = document.getElementById('nav-avatar');
+
+    if (nameEl) nameEl.textContent = userName;
+    if (cursoEl) cursoEl.textContent = userCurso;
+    if (avatarEl) avatarEl.textContent = firstName.charAt(0).toUpperCase();
+
+    // Título dinâmico da seção
+    const cursoTitle = document.getElementById('curso-title');
+    if (cursoTitle) {
+        cursoTitle.textContent = userCurso
+            ? `Produtos do curso: ${userCurso}`
+            : 'Todos os produtos da comunidade';
+    }
+}
+
+function renderProdutosComunidade(produtos) {
     const container = document.getElementById('cards-container');
     container.innerHTML = '';
 
     if (!produtos || produtos.length === 0) {
-        container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Nenhum produto disponível no momento.</p>';
+        container.innerHTML = `
+            <div style="text-align:center;padding:60px;color:#666;">
+                <p style="font-size:18px;">Nenhum produto encontrado para seu curso.</p>
+                <p style="margin-top:8px;font-size:14px;">Que tal <a href="criarprod.html" style="color:#f43170;">publicar o primeiro</a>?</p>
+            </div>`;
         return;
     }
 
@@ -79,15 +89,26 @@ function renderProdutos(produtos) {
     });
 }
 
-async function loadProdutos() {
+async function loadComunidade() {
     const container = document.getElementById('cards-container');
-    container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Carregando produtos...</p>';
+    container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Carregando produtos da comunidade...</p>';
+
+    const userCurso = localStorage.getItem('userCurso') || '';
 
     try {
         const res = await fetch(`${API_BASE}/produtos`);
         if (!res.ok) throw new Error('Erro ao buscar produtos');
-        const produtos = await res.json();
-        renderProdutos(produtos);
+        const todos = await res.json();
+
+        // Filtra pelo curso do usuário; se não houver curso (testes), mostra tudo
+        const filtrados = userCurso
+            ? todos.filter(p => {
+                const cursoProduto = p.user?.curso || p.curso || '';
+                return cursoProduto.toLowerCase() === userCurso.toLowerCase();
+              })
+            : todos;
+
+        renderProdutosComunidade(filtrados);
     } catch (err) {
         console.error(err);
         container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Não foi possível carregar os produtos. Verifique sua conexão.</p>';
@@ -95,8 +116,8 @@ async function loadProdutos() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadNavbarInicio();
-    loadProdutos();
+    loadNavbarComunidade();
+    loadComunidade();
 
     const busca = document.getElementById('txtBusca');
     if (busca) {

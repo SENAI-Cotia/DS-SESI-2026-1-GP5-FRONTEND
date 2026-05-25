@@ -18,7 +18,7 @@
         <nav>
             <ul>
                 <li><a href="inicio.html">INÍCIO</a></li>
-                <li><a href="comunidade.html">COMUNIDADE</a></li>
+                <li><a href="comunidade.html" class="active">COMUNIDADE</a></li>
             </ul>
         </nav>
         <div class="nav-right">
@@ -41,18 +41,18 @@
 
     <div class="welcome-panel">
         <div class="welcome-inner">
-            <h2 id="welcomeText">Bem-vindo!</h2>
-            <p id="welcomeCurso"></p>
+            <h2 id="curso-title">Comunidade</h2>
+            <p>Veja o que os alunos do seu curso estão vendendo.</p>
         </div>
     </div>
 
     <div id="divBusca">
-        <input type="text" id="txtBusca" placeholder="Buscar...">
+        <input type="text" id="txtBusca" placeholder="Buscar na comunidade...">
         <span class="lupa"><img src="../assets/icons/search.svg" alt="Buscar"></span>
     </div>
 
     <div class="cards-container" id="cards-container">
-        <!-- Produtos carregados via API -->
+        <!-- Produtos do mesmo curso carregados via API -->
     </div>
 
     <footer>
@@ -66,7 +66,7 @@
     </footer>
 
     <script src="../script/navbar.js"></script>
-    <script src="../script/inicio.js"></script>
+    <script src="../script/comunidade.js"></script>
 </body>
 
 </html>
