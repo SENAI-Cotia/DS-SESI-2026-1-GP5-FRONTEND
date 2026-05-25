@@ -11,10 +11,9 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <header class="navbar">
+        <header class="navbar">
         <div class="logo">
-            <a href="inicio.html"><img src="../assets/img/etrooc.png" alt="etrooc"></a>
+            <a href="inicio.html"><img src="../assets/icons/logo icon etrooc.svg" alt="ETROOC"></a>
         </div>
         <nav>
             <ul>
@@ -22,101 +21,101 @@
                 <li><a href="#">COMUNIDADE</a></li>
             </ul>
         </nav>
-        <div class="icons">
-            <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
-            <a href="#"><img src="../assets/img/sino.png" alt="Notificações"></a>
-        </div>
-        <a class="user-info" href="perfil.html">
-            <div class="avatar">U</div>
-            <div class="user-meta">
-                <span class="user-name">Usuário</span>
-                <span class="user-curso"></span>
+        <div class="nav-right">
+            <div class="icons">
+                <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
+                <a href="#"><img src="../assets/img/sino.png" alt="Notificações"></a>
             </div>
-        </a>
+            <div class="nav-divider"></div>
+            <a class="user-info" href="perfil.html">
+                <div class="avatar" id="nav-avatar">U</div>
+                <div class="user-meta">
+                    <span class="user-name" id="nav-user-name">Usuário</span>
+                    <span class="user-curso" id="nav-user-curso"></span>
+                </div>
+            </a>
+        </div>
     </header>
 
-<div class="banner">
-</div>
+    <div class="banner"></div>
 
-<div class="welcome-panel">
-    <div class="welcome-inner">
-        <h2 id="welcomeText">Bem-vindo!</h2>
-        <p id="welcomeCurso"></p>
-    </div>
-</div>
-
-<div id="divBusca">
-    <input type="text" id="txtBusca" placeholder="Buscar...">
-    <span class="lupa">🔍</span>
-</div>
-
-<div class="cards-container">
-
-    <div class="card">
-        <div class="card-header">
-            <h3>Sarah Livia</h3>
-            <p>Nutrição • Há 1 semana</p>
-        </div>
-        <div class="card-body">
-            <p>A sobremesa que você precisa aqui!!! 
-Estou vendendo bolos de pote pessoal! São todos bem recheados, uma delícia. Me chamem para mais informações!</p>
-        </div>
-        <div class="card-image">
-            <img src="../assets/img/bolo de pote.png " alt="bolo de pte">
-        </div>
-        <div class="card-footer">
-            <button>Ver mais</button>
+    <div class="welcome-panel">
+        <div class="welcome-inner">
+            <h2 id="welcomeText">Bem-vindo!</h2>
+            <p id="welcomeCurso"></p>
         </div>
     </div>
 
-
-    <div class="card">
-        <div class="card-header">
-            <h3>Daniel Rosa</h3>
-            <p>Marketing • há 8 horas</p>
-        </div>
-        <div class="card-body">
-            <p>Pessoal! Comprei um caderno inteligente no início do ano mas acabei não usando e também não pretendo
-                usar. Interessados, me chamem no chat!</p>
-        </div>
-        <div class="card-image">
-            <img src="../assets/img/caderno inteligente.png" alt="Caderno inteligente">
-        </div>
-        <div class="card-footer">
-            <button>Ver mais</button>
-        </div>
+    <div id="divBusca">
+        <input type="text" id="txtBusca" placeholder="Buscar...">
+        <span class="lupa">🔍</span>
     </div>
 
+    <!-- TODO: substituir cards estáticos por renderização via API -->
+    <!-- Exemplo: fetch(`${API_BASE}/produtos`).then(res => res.json()).then(renderProducts) -->
+    <div class="cards-container">
 
-    <div class="card">
-        <div class="card-header">
-            <h3>Clara Ribeiro</h3>
-            <p>Mecatrônica • Há 8 dias</p>
+        <div class="card">
+            <div class="card-header">
+                <h3>Sarah Livia</h3>
+                <p>Nutrição • Há 1 semana</p>
+            </div>
+            <div class="card-body">
+                <p>A sobremesa que você precisa aqui!!! Estou vendendo bolos de pote pessoal! São todos bem recheados, uma delícia. Me chamem para mais informações!</p>
+            </div>
+            <div class="card-image">
+                <img src="../assets/img/bolo de pote.png" alt="Bolo de pote">
+            </div>
+            <div class="card-footer">
+                <button>Ver mais</button>
+            </div>
         </div>
-        <div><img src="" alt=""></div>
-        <div class="card-body">
-            <p>A loja me enviou dois kits de EPI por engano!! 🤣🥰
-             Como aqui sou só eu no curso, vou vender o outro kit mais barato. Só me chamar! 😘</p>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Daniel Rosa</h3>
+                <p>Marketing • Há 8 horas</p>
+            </div>
+            <div class="card-body">
+                <p>Pessoal! Comprei um caderno inteligente no início do ano mas acabei não usando. Interessados, me chamem no chat!</p>
+            </div>
+            <div class="card-image">
+                <img src="../assets/img/caderno inteligente.png" alt="Caderno inteligente">
+            </div>
+            <div class="card-footer">
+                <button>Ver mais</button>
+            </div>
         </div>
-        <div class="card-image">
-            <img src="../assets/img/kits EPI.png" alt="EPi">
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Clara Ribeiro</h3>
+                <p>Mecatrônica • Há 8 dias</p>
+            </div>
+            <div class="card-body">
+                <p>A loja me enviou dois kits de EPI por engano!! Como aqui sou só eu no curso, vou vender o outro kit mais barato. Só me chamar!</p>
+            </div>
+            <div class="card-image">
+                <img src="../assets/img/kits EPI.png" alt="Kits EPI">
+            </div>
+            <div class="card-footer">
+                <button>Ver mais</button>
+            </div>
         </div>
-        <div class="card-footer">
-            <button>Ver mais</button>
-        </div>
+
     </div>
-</div>
 
-<footer>
-    <div class="footer-content">
-        <p>&copy; 2026 Sua Empresa. Todos os direitos reservados.</p>
-        <ul class="footer-links">
-            <li><a href="#">Política de Privacidade</a></li>
-            <li><a href="#">Contato</a></li>
-        </ul>
-    </div>
-</footer>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 ETROOC. Todos os direitos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="#">Política de Privacidade</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </div>
+    </footer>
 
+    <script src="../script/inicio.js"></script>
+</body>
 
-<script src="../script/inicio.js"></script>
 </html>

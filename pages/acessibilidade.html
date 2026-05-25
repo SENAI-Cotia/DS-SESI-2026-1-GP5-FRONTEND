@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/perfil.css">
+    <link rel="stylesheet" href="../styles/secao.css">
 </head>
 
 <body>
@@ -53,10 +54,10 @@
                 </div>
             </div>
 
-            <a href="perfil.html" class="nav-item active">
+            <a href="perfil.html" class="nav-item">
                 <i class="fa-solid fa-gear"></i> Configurações da minha conta
             </a>
-            <a href="acessibilidade.html" class="nav-item">
+            <a href="acessibilidade.html" class="nav-item active">
                 <i class="fa-solid fa-child"></i> Acessibilidade
             </a>
             <a href="ultimos-pedidos.html" class="nav-item">
@@ -71,68 +72,47 @@
         </div>
 
         <div class="info-card">
-            <h2>Informações da conta</h2>
+            <h2>Acessibilidade</h2>
+            <p class="secao-desc">Personalize a experiência de uso do ETROOC conforme suas necessidades.</p>
 
-            <div class="form-grid">
-
-                <div class="field">
-                    <label>Nome</label>
-                    <input type="text" id="profile-name" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
+            <div class="opcao-item">
+                <div class="opcao-texto">
+                    <strong>Tamanho do texto</strong>
+                    <span>Ajuste o tamanho da fonte exibida no aplicativo</span>
                 </div>
-
-                <div class="field">
-                    <label>Sobrenome</label>
-                    <input type="text" id="profile-lastname" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
+                <div class="toggle-grupo">
+                    <button class="btn-tamanho" data-size="small">P</button>
+                    <button class="btn-tamanho active" data-size="medium">M</button>
+                    <button class="btn-tamanho" data-size="large">G</button>
                 </div>
+            </div>
 
-                <div class="field">
-                    <label>Celular</label>
-                    <input type="text" id="profile-phone" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
+            <div class="opcao-item">
+                <div class="opcao-texto">
+                    <strong>Alto contraste</strong>
+                    <span>Aumenta o contraste para facilitar a leitura</span>
                 </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-contraste">
+                    <span class="slider"></span>
+                </label>
+            </div>
 
-                <div class="field">
-                    <label>Email</label>
-                    <input type="text" id="profile-email" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
+            <div class="opcao-item">
+                <div class="opcao-texto">
+                    <strong>Reduzir animações</strong>
+                    <span>Diminui ou remove animações da interface</span>
                 </div>
-
-                <div class="field">
-                    <label>Número de identidade</label>
-                    <input type="text" id="profile-id" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
-                </div>
-
-                <div class="field">
-                    <label>Data de nascimento</label>
-                    <input type="text" id="profile-birthdate" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
-                </div>
-
-                <div class="gender-box">
-                    <label>Gênero</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="g"> Masculino</label>
-                        <label><input type="radio" name="g"> Feminino</label>
-                        <label><input type="radio" name="g"> Prefiro não informar</label>
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label>RM</label>
-                    <input type="text" id="profile-rm" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
-                </div>
-
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-animacoes">
+                    <span class="slider"></span>
+                </label>
             </div>
         </div>
 
     </div>
 
     <script src="../script/navbar.js"></script>
-    <script src="../script/perfil.js"></script>
 </body>
 
 </html>

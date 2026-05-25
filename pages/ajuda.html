@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/perfil.css">
+    <link rel="stylesheet" href="../styles/secao.css">
 </head>
 
 <body>
@@ -53,7 +54,7 @@
                 </div>
             </div>
 
-            <a href="perfil.html" class="nav-item active">
+            <a href="perfil.html" class="nav-item">
                 <i class="fa-solid fa-gear"></i> Configurações da minha conta
             </a>
             <a href="acessibilidade.html" class="nav-item">
@@ -62,7 +63,7 @@
             <a href="ultimos-pedidos.html" class="nav-item">
                 <i class="fa-solid fa-arrow-rotate-left"></i> Últimos pedidos
             </a>
-            <a href="ajuda.html" class="nav-item">
+            <a href="ajuda.html" class="nav-item active">
                 <i class="fa-solid fa-circle-question"></i> Central de ajuda
             </a>
             <a href="itens-a-venda.html" class="nav-item" style="border-bottom:none;">
@@ -71,59 +72,49 @@
         </div>
 
         <div class="info-card">
-            <h2>Informações da conta</h2>
+            <h2>Central de Ajuda</h2>
+            <p class="secao-desc">Dúvidas frequentes sobre o ETROOC.</p>
 
-            <div class="form-grid">
+            <div class="faq-lista">
 
-                <div class="field">
-                    <label>Nome</label>
-                    <input type="text" id="profile-name" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
-                </div>
-
-                <div class="field">
-                    <label>Sobrenome</label>
-                    <input type="text" id="profile-lastname" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
-                </div>
-
-                <div class="field">
-                    <label>Celular</label>
-                    <input type="text" id="profile-phone" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
-                </div>
-
-                <div class="field">
-                    <label>Email</label>
-                    <input type="text" id="profile-email" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
-                </div>
-
-                <div class="field">
-                    <label>Número de identidade</label>
-                    <input type="text" id="profile-id" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
-                </div>
-
-                <div class="field">
-                    <label>Data de nascimento</label>
-                    <input type="text" id="profile-birthdate" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
-                </div>
-
-                <div class="gender-box">
-                    <label>Gênero</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="g"> Masculino</label>
-                        <label><input type="radio" name="g"> Feminino</label>
-                        <label><input type="radio" name="g"> Prefiro não informar</label>
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        Como publicar um item para venda?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        Clique no botão <strong>+</strong> na barra superior ou acesse diretamente a página "Criar produto". Preencha o nome, descrição, preço e imagem do item.
                     </div>
                 </div>
 
-                <div class="field">
-                    <label>RM</label>
-                    <input type="text" id="profile-rm" disabled>
-                    <i class="fa-solid fa-pen edit-icon"></i>
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        Como entro em contato com um vendedor?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        Na página do produto, selecione o local e o horário disponíveis e clique em <strong>Enviar</strong>. O vendedor receberá sua proposta de encontro.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        Como edito meus dados de perfil?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        Vá em <strong>Configurações da minha conta</strong> no menu lateral. Clique no ícone de lápis ao lado do campo desejado, edite e pressione <strong>Enter</strong> ou clique fora para salvar.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-pergunta">
+                        Onde vejo os produtos que estou vendendo?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-resposta">
+                        Acesse <strong>Itens à venda</strong> no menu lateral do seu perfil.
+                    </div>
                 </div>
 
             </div>
@@ -132,7 +123,7 @@
     </div>
 
     <script src="../script/navbar.js"></script>
-    <script src="../script/perfil.js"></script>
+    <script src="../script/ajuda.js"></script>
 </body>
 
 </html>
