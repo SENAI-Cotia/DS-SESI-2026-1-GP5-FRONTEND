@@ -202,12 +202,59 @@ document.getElementById('add-horario-btn').addEventListener('click', () => {
     }
 });
 
-function publicar() {
+const API_BASE = 'http://10.92.199.12:3000';
+
+async function publicar() {
     const nome = document.getElementById('nome').value.trim();
     if (!nome) return alert("Por favor, preencha o nome do produto!");
     if (uploadedImages.length === 0) return alert("Adicione pelo menos uma imagem!");
 
-    alert(`✅ Produto "${nome}" publicado com sucesso!\n\nLocais: ${locais.length}/6\nHorários: ${horarios.length}/6`);
+    // Obter userId do localStorage ou pedir ao usuário
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+        userId = prompt('Insira seu userId (número) para publicar o produto:');
+        if (!userId) return alert('Publicação cancelada: userId obrigatório.');
+    }
+
+    // Construir payload
+    const precoStr = document.getElementById('preco').value.replace(/\./g, '').replace(',', '.');
+    const preco = parseFloat(precoStr) || 0;
+
+    const descricao = document.getElementById('descricao').value.trim();
+
+    const payload = {
+        name: nome,
+        categoria: "Geral",
+        preco: preco,
+        condicao: "Usado",
+        imagem: uploadedImages[0],
+        descricao: descricao,
+        disponibilidade: true,
+        atacado: false,
+        userId: Number(userId)
+    };
+
+    try {
+        const res = await fetch(`${API_BASE}/produtos`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+            const err = await res.json().catch(() => null);
+            return alert('Erro ao publicar produto: ' + (err?.error || res.statusText));
+        }
+
+        const data = await res.json();
+        alert('✅ ' + (data.message || 'Produto publicado com sucesso!'));
+        // Redireciona para início para ver o produto listado
+        window.location.href = '/pages/inicio.html';
+
+    } catch (error) {
+        console.error(error);
+        alert('Erro de rede ao publicar produto. Verifique a conexão e tente novamente.');
+    }
 }
 
 document.getElementById('preco').addEventListener('input', function (e) {

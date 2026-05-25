@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETROOC</title>
-    <link rel="icon" href="/assets/icons/logo-etrooc-infinito.png" type="image/png">
-    <link rel="stylesheet" href="/styles/navbar.css">    <link rel="stylesheet" href="/styles/inicio.css">
+    <link rel="icon" href="../assets/icons/logo-etrooc-infinito.png" type="image/png">
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/inicio.css">
 </head>
 
 <body>
     <!-- Navbar -->
     <header class="navbar">
         <div class="logo">
-            <a href="inicio.html"><img src="/assets/img/etrooc.png" alt="etrooc"></a>
+            <a href="inicio.html"><img src="../assets/img/etrooc.png" alt="etrooc"></a>
         </div>
         <nav>
             <ul>
@@ -22,16 +23,26 @@
             </ul>
         </nav>
         <div class="icons">
-            <a href="criarprod.html"><img src="/assets/img/sinaldemais.png" alt="Adicionar"></a>
-            <a href="#"><img src="/assets/img/sino.png" alt="Notificações"></a>
-            <a href="perfil.html"><img src="/assets/img/pessoa.png" alt="Perfil"></a>
+            <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
+            <a href="#"><img src="../assets/img/sino.png" alt="Notificações"></a>
         </div>
+        <a class="user-info" href="perfil.html">
+            <div class="avatar">U</div>
+            <div class="user-meta">
+                <span class="user-name">Usuário</span>
+                <span class="user-curso"></span>
+            </div>
+        </a>
     </header>
 
-
-</body>
-
 <div class="banner">
+</div>
+
+<div class="welcome-panel">
+    <div class="welcome-inner">
+        <h2 id="welcomeText">Bem-vindo!</h2>
+        <p id="welcomeCurso"></p>
+    </div>
 </div>
 
 <div id="divBusca">
@@ -51,7 +62,7 @@
 Estou vendendo bolos de pote pessoal! São todos bem recheados, uma delícia. Me chamem para mais informações!</p>
         </div>
         <div class="card-image">
-            <img src="/assets/img/bolo de pote.png " alt="bolo de pte">
+            <img src="../assets/img/bolo de pote.png " alt="bolo de pte">
         </div>
         <div class="card-footer">
             <button>Ver mais</button>
@@ -69,7 +80,7 @@ Estou vendendo bolos de pote pessoal! São todos bem recheados, uma delícia. Me
                 usar. Interessados, me chamem no chat!</p>
         </div>
         <div class="card-image">
-            <img src="/assets/img/caderno inteligente.png" alt="Caderno inteligente">
+            <img src="../assets/img/caderno inteligente.png" alt="Caderno inteligente">
         </div>
         <div class="card-footer">
             <button>Ver mais</button>
@@ -88,7 +99,7 @@ Estou vendendo bolos de pote pessoal! São todos bem recheados, uma delícia. Me
              Como aqui sou só eu no curso, vou vender o outro kit mais barato. Só me chamar! 😘</p>
         </div>
         <div class="card-image">
-            <img src="/assets/img/kits EPI.png" alt="EPi">
+            <img src="../assets/img/kits EPI.png" alt="EPi">
         </div>
         <div class="card-footer">
             <button>Ver mais</button>
@@ -107,4 +118,5 @@ Estou vendendo bolos de pote pessoal! São todos bem recheados, uma delícia. Me
 </footer>
 
 
+<script src="../script/inicio.js"></script>
 </html>
