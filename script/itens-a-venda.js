@@ -1,7 +1,7 @@
 // itens-a-venda.js — Produtos do usuário logado
 // API_BASE vem de navbar.js
 
-console.log(API_BASE);
+console.log(window.API_BASE);
 
 function escapeHtml(str) {
     return String(str || '')
@@ -15,7 +15,7 @@ function escapeHtml(str) {
 async function excluirProduto(id) {
     if (!confirm('Tem certeza que deseja excluir este produto?')) return;
     try {
-        const res = await fetch(`${API_BASE}/produtos/${id}`, { method: 'DELETE' });
+        const res = await fetch(`${window.API_BASE}/produtos/${id}`, { method: 'DELETE' });
         if (!res.ok) throw new Error('Erro ao excluir');
         // Remove o card da tela sem recarregar
         const card = document.querySelector(`.item-card[data-id="${id}"]`);
@@ -34,7 +34,7 @@ async function loadItensAVenda() {
     // if (!userId) { ... }
 
     try {
-        const res = await fetch(`${API_BASE}/produtos`);
+        const res = await fetch(`${window.API_BASE}/produtos`);
         if (!res.ok) throw new Error('Erro ao buscar itens');
         const produtos = await res.json();
         renderItens(produtos);

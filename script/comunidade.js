@@ -1,6 +1,6 @@
 // comunidade.js
 
-console.log(API_BASE);
+console.log(window.API_BASE);
 
 function escapeHtml(str) {
     return String(str || '')
@@ -103,7 +103,7 @@ async function loadComunidade() {
     container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;width:100%;">Carregando produtos...</p>';
 
     try {
-        const res = await fetch(`${API_BASE}/produtos`);
+        const res = await fetch(`${window.API_BASE}/produtos`);
         if (!res.ok) throw new Error('Erro ao buscar produtos');
         todosProdutos = await res.json();
 

@@ -1,6 +1,6 @@
 // produto.js — carrega produto da API pelo id da URL
 
-console.log(API_BASE);
+console.log(window.API_BASE);
 
 function escapeHtml(str) {
     return String(str || '')
@@ -68,7 +68,7 @@ async function loadProduto() {
     if (!id) return;
 
     try {
-        const res = await fetch(`${API_BASE}/produtos/${id}`);
+        const res = await fetch(`${window.API_BASE}/produtos/${id}`);
         if (!res.ok) throw new Error('Produto não encontrado');
         const p = await res.json();
 
