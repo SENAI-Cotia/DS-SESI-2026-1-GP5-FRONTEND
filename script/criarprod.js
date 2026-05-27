@@ -1,4 +1,4 @@
-import { API_BASE } from '../script/navbar';
+console.log(API_BASE);
 
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');

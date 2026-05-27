@@ -1,4 +1,4 @@
-import { API_BASE } from '../script/navbar';
+console.log(API_BASE);
 
 const senha = document.getElementById("senha");
 const confirmarSenha = document.getElementById("confirmar-senha");

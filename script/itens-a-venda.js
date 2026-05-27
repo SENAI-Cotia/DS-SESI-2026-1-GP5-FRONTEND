@@ -1,7 +1,7 @@
 // itens-a-venda.js — Produtos do usuário logado
 // API_BASE vem de navbar.js
 
-import { API_BASE } from '../script/navbar';
+console.log(API_BASE);
 
 function escapeHtml(str) {
     return String(str || '')

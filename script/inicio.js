@@ -1,6 +1,6 @@
 // inicio.js
 
-import { API_BASE } from '../script/navbar';
+console.log(API_BASE);
 
 function escapeHtml(str) {
     return String(str || '')

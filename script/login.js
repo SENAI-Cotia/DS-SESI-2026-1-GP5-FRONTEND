@@ -1,4 +1,4 @@
-import { API_BASE } from '../script/navbar';
+console.log(API_BASE);
 
 function showAlert(message) {
     alert(message);
