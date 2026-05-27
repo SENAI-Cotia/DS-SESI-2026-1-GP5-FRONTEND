@@ -1,8 +1,5 @@
 // itens-a-venda.js — Produtos do usuário logado
 // API_BASE vem de navbar.js
-
-console.log(window.API_BASE);
-
 function escapeHtml(str) {
     return String(str || '')
         .replace(/&/g, '&amp;')

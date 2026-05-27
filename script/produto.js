@@ -1,7 +1,5 @@
 // produto.js — carrega produto da API pelo id da URL
 
-console.log(window.API_BASE);
-
 function escapeHtml(str) {
     return String(str || '')
         .replace(/&/g, '&amp;')

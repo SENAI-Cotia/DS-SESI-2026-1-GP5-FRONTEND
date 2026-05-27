@@ -1,4 +1,3 @@
-console.log(API_BASE);
 
 function showAlert(message) {
     alert(message);

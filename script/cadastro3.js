@@ -1,5 +1,3 @@
-console.log(window.API_BASE);
-
 const senha = document.getElementById("senha");
 const confirmarSenha = document.getElementById("confirmar-senha");
 const mensagem = document.getElementById("mensagem-senha");

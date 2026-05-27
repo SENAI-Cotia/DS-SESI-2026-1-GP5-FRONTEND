@@ -1,5 +1,3 @@
-console.log(window.API_BASE);
-
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
 const thumbnails = document.querySelectorAll('.thumbnail');

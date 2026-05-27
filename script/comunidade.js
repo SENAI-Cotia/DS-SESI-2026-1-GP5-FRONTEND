@@ -1,6 +1,5 @@
 // comunidade.js
 
-console.log(window.API_BASE);
 
 function escapeHtml(str) {
     return String(str || '')
