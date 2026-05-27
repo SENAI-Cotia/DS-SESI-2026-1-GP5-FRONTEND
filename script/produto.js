@@ -1,7 +1,5 @@
 // produto.js — carrega produto da API pelo id da URL
 
-import { API_BASE } from '../script/navbar';
-
 function escapeHtml(str) {
     return String(str || '')
         .replace(/&/g, '&amp;')
@@ -68,7 +66,7 @@ async function loadProduto() {
     if (!id) return;
 
     try {
-        const res = await fetch(`${API_BASE}/produtos/${id}`);
+        const res = await fetch(`${window.API_BASE}/produtos/${id}`);
         if (!res.ok) throw new Error('Produto não encontrado');
         const p = await res.json();
 

@@ -1,5 +1,3 @@
-import { API_BASE } from '../script/navbar';
-
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
 const thumbnails = document.querySelectorAll('.thumbnail');
@@ -253,7 +251,7 @@ async function publicar() {
 
 
     try {
-        const response = await fetch(`${API_BASE}/produtos`, {
+        const response = await fetch(`${window.API_BASE}/produtos`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)

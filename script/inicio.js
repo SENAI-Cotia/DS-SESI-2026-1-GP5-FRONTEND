@@ -1,7 +1,5 @@
 // inicio.js
 
-import { API_BASE } from '../script/navbar';
-
 function escapeHtml(str) {
     return String(str || '')
         .replace(/&/g, '&amp;')
@@ -88,7 +86,7 @@ async function loadProdutos() {
     container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Carregando produtos...</p>';
 
     try {
-        const res = await fetch(`${API_BASE}/produtos`);
+        const res = await fetch(`${window.API_BASE}/produtos`);
         if (!res.ok) throw new Error('Erro ao buscar produtos');
         const produtos = await res.json();
         renderProdutos(produtos);

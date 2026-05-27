@@ -1,5 +1,3 @@
-import { API_BASE } from '../script/navbar';
-
 const senha = document.getElementById("senha");
 const confirmarSenha = document.getElementById("confirmar-senha");
 const mensagem = document.getElementById("mensagem-senha");
@@ -166,7 +164,7 @@ async function enviarCadastro() {
     };
 
     try {
-        const response = await fetch(`${API_BASE}/cadastro`, {
+        const response = await fetch(`${window.API_BASE}/cadastro`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -203,7 +201,7 @@ async function enviarCadastro() {
         window.location.href = 'cadastro4.html';
     } catch (error) {
         console.error('Erro de rede no cadastro:', error);
-        alert(`Erro de rede ao concluir cadastro: ${error.message}. Verifique se o backend está rodando em ${API_BASE}.`);
+        alert(`Erro de rede ao concluir cadastro: ${error.message}. Verifique se o backend está rodando em ${window.API_BASE}.`);
     }
 }
 
