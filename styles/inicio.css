@@ -90,7 +90,7 @@ html, body {
 
 
 .banner {
-    background-image: url('/assets/img/banner.png');
+    background-image: url('../assets/img/banner.png');
     background-size: cover; 
     background-position: center; 
     height: 500px; 

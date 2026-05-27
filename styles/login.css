@@ -11,7 +11,7 @@ input :hover {
 }
 
 body {
-    background-image: url(/assets/backgrounds/img-bg-login.png);
+    background-image: url(../assets/backgrounds/img-bg-login.png);
     background-position: center;
     height: 97vh;
     Width: 99%;

@@ -1,0 +1,67 @@
+/* comunidade.css */
+
+.comunidade-layout {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    gap: 0;
+}
+
+/* Sidebar de cursos */
+.sidebar-cursos {
+    width: 220px;
+    flex-shrink: 0;
+    padding: 24px 16px;
+    background: #fff;
+    border-right: 1px solid #eee;
+    min-height: 60vh;
+    position: sticky;
+    top: 70px; /* altura da navbar */
+}
+
+.sidebar-cursos h3 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #aaa;
+    margin-bottom: 14px;
+    padding-left: 4px;
+}
+
+.curso-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: 2px;
+}
+
+.curso-btn:hover {
+    background: #f7f7f7;
+    color: #222;
+}
+
+.curso-btn.ativo {
+    background: #f43170;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Cards ficam ao lado da sidebar */
+.comunidade-layout .cards-container {
+    flex: 1;
+    margin: 0;
+    padding: 20px 20px 0;
+    justify-content: flex-start;
+    gap: 30px;
+}

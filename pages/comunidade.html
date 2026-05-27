@@ -8,6 +8,8 @@
     <link rel="icon" href="../assets/icons/logo-etrooc-infinito.png" type="image/png">
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/inicio.css">
+    <link rel="stylesheet" href="../styles/comunidade.css">
+    <link rel="stylesheet" href="../styles/dark-mode.css">
 </head>
 
 <body>
@@ -24,7 +26,7 @@
         <div class="nav-right">
             <div class="icons">
                 <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
-                <a href="#"><img src="../assets/img/sino.png" alt="Notificações"></a>
+                <a href="#"><img src="../assets/icons/sino.svg" alt="Notificações" class="sino-header"></a>
             </div>
             <div class="nav-divider"></div>
             <a class="user-info" href="perfil.html">
@@ -51,8 +53,26 @@
         <span class="lupa"><img src="../assets/icons/search.svg" alt="Buscar"></span>
     </div>
 
-    <div class="cards-container" id="cards-container">
-        <!-- Produtos do mesmo curso carregados via API -->
+    <div class="comunidade-layout">
+
+        <!-- Sidebar de filtro por cursos -->
+        <aside class="sidebar-cursos">
+            <h3>CURSOS</h3>
+            <button class="curso-btn ativo" data-curso="">Todos</button>
+            <button class="curso-btn" data-curso="Enfermagem">Enfermagem</button>
+            <button class="curso-btn" data-curso="Desenvolvimento de Sistemas">Desenvolvimento de Sistemas</button>
+            <button class="curso-btn" data-curso="Eletromecânica">Eletromecânica</button>
+            <button class="curso-btn" data-curso="Publicidade e Propaganda">Publicidade e Propaganda</button>
+            <button class="curso-btn" data-curso="Administração">Administração</button>
+            <button class="curso-btn" data-curso="Marketing">Marketing</button>
+            <button class="curso-btn" data-curso="Nutrição">Nutrição</button>
+        </aside>
+
+        <!-- Grid de cards -->
+        <div class="cards-container" id="cards-container">
+            <!-- Produtos carregados via API -->
+        </div>
+
     </div>
 
     <footer>

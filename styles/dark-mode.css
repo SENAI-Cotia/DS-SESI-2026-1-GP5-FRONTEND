@@ -1,0 +1,315 @@
+html.dark-mode {
+    --bg-page: #121212;
+    --bg-surface: #151414;
+    --bg-surface-2: #2a2a2a;
+    --text-primary: #f0f0f0;
+    --text-secondary: #aaaaaa;
+    --text-muted: #777777;
+    --border-color: #333333;
+    --accent: #f43170;
+    --accent-dark: #d43768;
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* ── Base ── */
+html.dark-mode body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+}
+
+/* ── Navbar ── */
+html.dark-mode .navbar {
+    background-color: var(--bg-surface);
+    box-shadow: 0 2px 6px var(--shadow);
+}
+
+html.dark-mode .navbar nav a {
+    color: var(--text-primary);
+}
+
+html.dark-mode .navbar nav a:hover {
+    color: var(--accent);
+}
+
+html.dark-mode .user-info .user-name {
+    color: var(--text-primary);
+}
+
+html.dark-mode .user-info .user-curso {
+    color: var(--text-muted);
+}
+
+html.dark-mode .nav-divider {
+    background: var(--border-color);
+}
+
+/* ── Cards (início e comunidade) ── */
+html.dark-mode .card {
+    background-color: var(--bg-surface);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+html.dark-mode .card-header {
+    border-bottom-color: var(--border-color);
+}
+
+html.dark-mode .card-header h3 {
+    color: var(--text-primary);
+}
+
+html.dark-mode .card-header p {
+    color: var(--text-secondary);
+}
+
+html.dark-mode .card-body {
+    color: var(--text-primary);
+}
+
+html.dark-mode .card-image {
+    background-color: var(--bg-surface-2);
+}
+
+html.dark-mode .card-footer button {
+    background-color: var(--accent);
+}
+
+html.dark-mode .card-footer button:hover {
+    background-color: var(--accent-dark);
+}
+
+/* ── Barra de busca ── */
+html.dark-mode #divBusca {
+    background: var(--accent);
+}
+
+html.dark-mode #txtBusca {
+    color: #fff;
+}
+
+/* ── Welcome panel ── */
+html.dark-mode .welcome-panel {
+    background: var(--bg-surface);
+    box-shadow: 0 2px 6px var(--shadow);
+}
+
+html.dark-mode #welcomeText,
+html.dark-mode #curso-title {
+    color: var(--text-primary);
+}
+
+html.dark-mode #welcomeCurso {
+    color: var(--text-secondary);
+}
+
+/* ── Banner (mantém imagem, apenas overlay) ── */
+html.dark-mode .banner {
+    filter: brightness(0.7);
+}
+
+/* ── Footer ── */
+html.dark-mode footer {
+    background-color: var(--accent-dark);
+}
+
+/* ── Itens à venda ── */
+html.dark-mode .item-card {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+html.dark-mode .item-card:hover {
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+html.dark-mode .item-img {
+    background: var(--bg-surface-2);
+}
+
+html.dark-mode .item-name {
+    color: var(--text-primary);
+}
+
+html.dark-mode .item-desc {
+    color: var(--text-secondary);
+}
+
+html.dark-mode .item-price {
+    color: var(--accent);
+}
+
+html.dark-mode .btn-excluir,
+html.dark-mode .btn-editar {
+    filter: brightness(0.9);
+}
+
+/* ── Sidebar (perfil, acessibilidade) ── */
+html.dark-mode .sidebar {
+    background: var(--bg-surface);
+    border-right-color: var(--border-color);
+}
+
+html.dark-mode .profile-box {
+    border-bottom-color: var(--border-color);
+}
+
+html.dark-mode .profile-box p {
+    color: var(--text-secondary);
+}
+
+html.dark-mode .profile-box h3 {
+    color: var(--text-primary);
+}
+
+html.dark-mode .nav-item {
+    color: var(--text-primary);
+}
+
+html.dark-mode .nav-item:hover {
+    background: var(--bg-surface-2);
+}
+
+html.dark-mode .nav-item.active {
+    background: var(--bg-surface-2);
+    color: var(--accent);
+}
+
+/* ── Info card (acessibilidade, ajuda) ── */
+html.dark-mode .info-card {
+    background: var(--bg-surface);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+html.dark-mode .info-card h2 {
+    color: var(--text-primary);
+}
+
+html.dark-mode .secao-desc {
+    color: var(--text-muted);
+}
+
+html.dark-mode .opcao-item {
+    border-bottom-color: var(--border-color);
+}
+
+html.dark-mode .opcao-texto strong {
+    color: var(--text-primary);
+}
+
+html.dark-mode .opcao-texto span {
+    color: var(--text-muted);
+}
+
+html.dark-mode .btn-tamanho {
+    background: var(--bg-surface-2);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+html.dark-mode .btn-tamanho.active,
+html.dark-mode .btn-tamanho:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ── Produto ── */
+html.dark-mode .container,
+html.dark-mode main {
+    background-color: var(--bg-page);
+}
+
+html.dark-mode .product-title {
+    color: var(--text-primary);
+}
+
+html.dark-mode .description {
+    color: var(--text-secondary);
+}
+
+html.dark-mode .tag {
+    background: var(--bg-surface-2);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+html.dark-mode .main-img-card {
+    background: var(--bg-surface);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* ── Sidebar de cursos (comunidade) ── */
+html.dark-mode .sidebar-cursos {
+    background: var(--bg-surface);
+    border-right-color: var(--border-color);
+}
+
+html.dark-mode .sidebar-cursos h3 {
+    color: var(--text-secondary);
+}
+
+html.dark-mode .curso-btn {
+    color: var(--text-primary);
+    background: transparent;
+}
+
+html.dark-mode .curso-btn:hover {
+    background: var(--bg-surface-2);
+}
+
+html.dark-mode .curso-btn.ativo {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* ── Formulários (cadastro, criar produto) ── */
+html.dark-mode input,
+html.dark-mode select,
+html.dark-mode textarea {
+    background: var(--bg-surface-2);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+html.dark-mode input::placeholder {
+    color: var(--text-muted);
+}
+
+html.dark-mode label {
+    color: var(--text-secondary);
+}
+
+html.dark-mode #sidebar-avatar {
+    color: black
+}
+
+html.dark-mode .edit-pen-avatar {
+    color: var(--accent);
+}
+
+html.dark-mode .logo a img {
+    content: url('../assets/icons/logo-etrooc-darkmode.svg');
+    width: 190px;
+    height: auto;
+}
+
+html.dark-mode .sino-header {
+    content: url('../assets/icons/sino-dark.svg');
+}
+
+html.dark-mode .condicao-slider-box{
+    background-color: var(--bg-surface);
+    border-color: var(--accent)
+}
+
+html.dark-mode .list-box {
+    background-color: var(--bg-surface-2);
+    border-color: var(--accent-dark);
+}
+
+html.dark-mode .list-box h3 {
+    color: #f43170;
+    border: none
+}
+
+html.dark-mode .add-btn {
+    background-color: var(--bg-surface-2);
+}
