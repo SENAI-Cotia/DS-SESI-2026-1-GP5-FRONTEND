@@ -1,6 +1,8 @@
 // itens-a-venda.js — Produtos do usuário logado
 // API_BASE vem de navbar.js
 
+import { API_BASE } from '../script/navbar';
+
 function escapeHtml(str) {
     return String(str || '')
         .replace(/&/g, '&amp;')
@@ -8,6 +10,20 @@ function escapeHtml(str) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
+}
+
+async function excluirProduto(id) {
+    if (!confirm('Tem certeza que deseja excluir este produto?')) return;
+    try {
+        const res = await fetch(`${API_BASE}/produtos/${id}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error('Erro ao excluir');
+        // Remove o card da tela sem recarregar
+        const card = document.querySelector(`.item-card[data-id="${id}"]`);
+        if (card) card.remove();
+    } catch (err) {
+        console.error(err);
+        alert('Não foi possível excluir o produto. Tente novamente.');
+    }
 }
 
 async function loadItensAVenda() {
@@ -46,13 +62,14 @@ function renderItens(produtos) {
     produtos.forEach(produto => {
         const card = document.createElement('div');
         card.className = 'item-card';
+        card.dataset.id = produto.id;
 
-        const imagem = produto.imagem || '../assets/img/default.png';
+        const imagem = produto.imagem || '../assets/img/etrooc.png';
         const preco = Number(produto.preco || 0).toFixed(2).replace('.', ',');
 
         card.innerHTML = `
             <div class="item-img">
-                <img src="${escapeHtml(imagem)}" alt="${escapeHtml(produto.name || 'Produto')}">
+                <img src="${escapeHtml(imagem)}" alt="${escapeHtml(produto.name || 'Produto')}" onerror="this.src='../assets/img/etrooc.png'">
             </div>
             <div class="item-info">
                 <strong class="item-name">${escapeHtml(produto.name || 'Produto')}</strong>
@@ -60,7 +77,12 @@ function renderItens(produtos) {
                 <span class="item-price">R$ ${preco}</span>
             </div>
             <div class="item-actions">
-                <a href="produto.html?id=${produto.id}" class="btn-ver">Ver</a>
+                <a href="editarprod.html?id=${produto.id}" class="btn-editar">
+                    <img src="../assets/icons/edit-pen.svg" alt="Editar"> Editar
+                </a>
+                <button class="btn-excluir" onclick="excluirProduto(${produto.id})">
+                    <img src="../assets/icons/trash.svg" alt="Excluir"> Excluir
+                </button>
             </div>
         `;
 
@@ -68,4 +90,5 @@ function renderItens(produtos) {
     });
 }
 
+window.excluirProduto = excluirProduto;
 document.addEventListener('DOMContentLoaded', loadItensAVenda);

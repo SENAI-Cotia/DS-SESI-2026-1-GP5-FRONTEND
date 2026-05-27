@@ -1,6 +1,6 @@
 // comunidade.js
-// Exibe produtos de usuários do mesmo curso do usuário logado.
-// Se não houver curso no localStorage (ex: em testes), mostra todos.
+
+import { API_BASE } from '../script/navbar';
 
 function escapeHtml(str) {
     return String(str || '')
@@ -24,36 +24,17 @@ function timeAgo(dateStr) {
     return `Há ${weeks} semana${weeks > 1 ? 's' : ''}`;
 }
 
-function loadNavbarComunidade() {
-    const userName = localStorage.getItem('userName') || 'Usuário';
-    const userCurso = localStorage.getItem('userCurso') || '';
-    const firstName = userName.split(' ')[0] || 'Usuário';
+let todosProdutos = [];
+let cursoFiltrado = ''; // '' = todos
 
-    const nameEl = document.getElementById('nav-user-name');
-    const cursoEl = document.getElementById('nav-user-curso');
-    const avatarEl = document.getElementById('nav-avatar');
-
-    if (nameEl) nameEl.textContent = userName;
-    if (cursoEl) cursoEl.textContent = userCurso;
-    if (avatarEl) avatarEl.textContent = firstName.charAt(0).toUpperCase();
-
-    // Título dinâmico da seção
-    const cursoTitle = document.getElementById('curso-title');
-    if (cursoTitle) {
-        cursoTitle.textContent = userCurso
-            ? `Produtos do curso: ${userCurso}`
-            : 'Todos os produtos da comunidade';
-    }
-}
-
-function renderProdutosComunidade(produtos) {
+function renderProdutos(produtos) {
     const container = document.getElementById('cards-container');
     container.innerHTML = '';
 
     if (!produtos || produtos.length === 0) {
         container.innerHTML = `
-            <div style="text-align:center;padding:60px;color:#666;">
-                <p style="font-size:18px;">Nenhum produto encontrado para seu curso.</p>
+            <div style="text-align:center;padding:60px;color:#666;width:100%;">
+                <p style="font-size:18px;">Nenhum produto encontrado para este curso.</p>
                 <p style="margin-top:8px;font-size:14px;">Que tal <a href="criarprod.html" style="color:#f43170;">publicar o primeiro</a>?</p>
             </div>`;
         return;
@@ -62,13 +43,17 @@ function renderProdutosComunidade(produtos) {
     produtos.forEach(produto => {
         const imagem = produto.imagem || '../assets/img/etrooc.png';
         const preco = Number(produto.preco || 0).toFixed(2).replace('.', ',');
-        const vendedor = produto.user?.name || produto.user?.name || 'Vendedor';
-        const curso = produto.user?.curso || produto.curso || '';
-        const tempo = timeAgo(produto.createdAt || produto.criadoEm);
+        const vendedor = produto.user?.name || 'Vendedor';
+        const curso = produto.user?.curso || '';
+        const tempo = timeAgo(produto.createdAt);
         const subtitulo = [curso, tempo].filter(Boolean).join(' • ');
 
         const card = document.createElement('div');
         card.className = 'card';
+        // Card inteiro clicável leva à página do produto
+        card.style.cursor = 'pointer';
+        card.onclick = () => window.location.href = `produto.html?id=${produto.id}`;
+
         card.innerHTML = `
             <div class="card-header">
                 <h3>${escapeHtml(vendedor)}</h3>
@@ -82,50 +67,89 @@ function renderProdutosComunidade(produtos) {
             </div>
             <div class="card-footer">
                 <span style="font-weight:bold;color:#f43170;margin-right:10px;">R$ ${preco}</span>
-                <button onclick="window.location.href='produto.html?id=${produto.id}'">Ver mais</button>
+                <button onclick="event.stopPropagation(); window.location.href='produto.html?id=${produto.id}'">Ver mais</button>
             </div>
         `;
         container.appendChild(card);
     });
 }
 
+function aplicarFiltro() {
+    const q = (document.getElementById('txtBusca')?.value || '').toLowerCase();
+    let filtrados = cursoFiltrado
+        ? todosProdutos.filter(p => (p.user?.curso || '').toLowerCase() === cursoFiltrado.toLowerCase())
+        : todosProdutos;
+
+    if (q) {
+        filtrados = filtrados.filter(p =>
+            (p.name || '').toLowerCase().includes(q) ||
+            (p.descricao || '').toLowerCase().includes(q) ||
+            (p.user?.name || '').toLowerCase().includes(q)
+        );
+    }
+    renderProdutos(filtrados);
+}
+
+function atualizarTitulo() {
+    const cursoTitle = document.getElementById('curso-title');
+    if (!cursoTitle) return;
+    cursoTitle.textContent = cursoFiltrado
+        ? `Produtos: ${cursoFiltrado}`
+        : 'Todos os produtos da comunidade';
+}
+
 async function loadComunidade() {
     const container = document.getElementById('cards-container');
-    container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Carregando produtos da comunidade...</p>';
-
-    const userCurso = localStorage.getItem('userCurso') || '';
+    container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;width:100%;">Carregando produtos...</p>';
 
     try {
         const res = await fetch(`${API_BASE}/produtos`);
         if (!res.ok) throw new Error('Erro ao buscar produtos');
-        const todos = await res.json();
+        todosProdutos = await res.json();
 
-        // Filtra pelo curso do usuário; se não houver curso (testes), mostra tudo
-        const filtrados = userCurso
-            ? todos.filter(p => {
-                const cursoProduto = p.user?.curso || p.curso || '';
-                return cursoProduto.toLowerCase() === userCurso.toLowerCase();
-              })
-            : todos;
+        // Pré-selecionar curso do usuário logado se existir
+        const userCurso = localStorage.getItem('userCurso') || '';
+        if (userCurso) {
+            cursoFiltrado = userCurso;
+            document.querySelectorAll('.curso-btn').forEach(btn => {
+                btn.classList.toggle('ativo', btn.dataset.curso === userCurso);
+            });
+            atualizarTitulo();
+        }
 
-        renderProdutosComunidade(filtrados);
+        aplicarFiltro();
     } catch (err) {
         console.error(err);
-        container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Não foi possível carregar os produtos. Verifique sua conexão.</p>';
+        container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;width:100%;">Não foi possível carregar os produtos. Verifique sua conexão.</p>';
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadNavbarComunidade();
-    loadComunidade();
+    // Navbar
+    const userName = localStorage.getItem('userName') || 'Usuário';
+    const userCurso = localStorage.getItem('userCurso') || '';
+    const firstName = userName.split(' ')[0];
+    const nameEl = document.getElementById('nav-user-name');
+    const cursoEl = document.getElementById('nav-user-curso');
+    const avatarEl = document.getElementById('nav-avatar');
+    if (nameEl) nameEl.textContent = userName;
+    if (cursoEl) cursoEl.textContent = userCurso;
+    if (avatarEl) avatarEl.textContent = firstName.charAt(0).toUpperCase();
 
-    const busca = document.getElementById('txtBusca');
-    if (busca) {
-        busca.addEventListener('input', (e) => {
-            const q = e.target.value.toLowerCase();
-            document.querySelectorAll('.card').forEach(card => {
-                card.style.display = card.innerText.toLowerCase().includes(q) ? '' : 'none';
-            });
+    // Sidebar: clique nos botões de curso
+    document.querySelectorAll('.curso-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.curso-btn').forEach(b => b.classList.remove('ativo'));
+            btn.classList.add('ativo');
+            cursoFiltrado = btn.dataset.curso;
+            atualizarTitulo();
+            aplicarFiltro();
         });
-    }
+    });
+
+    // Busca por texto
+    const busca = document.getElementById('txtBusca');
+    if (busca) busca.addEventListener('input', aplicarFiltro);
+
+    loadComunidade();
 });

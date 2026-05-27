@@ -15,12 +15,13 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
         rel="stylesheet">
     <script src="../script/produto.js"></script>
+    <link rel="stylesheet" href="../styles/dark-mode.css">
 </head>
 
 <body>
 
     <!-- Navbar -->
-        <header class="navbar">
+    <header class="navbar">
         <div class="logo">
             <a href="inicio.html"><img src="../assets/icons/logo icon etrooc.svg" alt="ETROOC"></a>
         </div>
@@ -33,7 +34,7 @@
         <div class="nav-right">
             <div class="icons">
                 <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
-                <a href="#"><img src="../assets/img/sino.png" alt="Notificações"></a>
+                <a href="#"><img src="../assets/icons/sino.svg" alt="Notificações" class="sino-header"></a>
             </div>
             <div class="nav-divider"></div>
             <a class="user-info" href="perfil.html">
@@ -57,7 +58,8 @@
 
                     <!-- Modal -->
                     <div id="modal" class="modal">
-                        <span class="fechar" onclick="fecharImagem()"><img src="../assets/icons/icon-x.svg" alt="x"></span>
+                        <span class="fechar" onclick="fecharImagem()"><img src="../assets/icons/icon-x.svg"
+                                alt="x"></span>
 
                         <img id="modal-image" src="../assets/img/caderna-2.png" alt="Imagem ampliada" class="img">
                     </div>
@@ -68,7 +70,8 @@
                 <div class="user-info">
                     <img src="../assets/img/avatar-1.png" alt="Avatar" class="avatar">
                     <div>
-                        <strong id="seller-name">Usuário</strong> <span class="time" id="seller-time">Há 1 dia</span><br>
+                        <strong id="seller-name">Usuário</strong> <span class="time" id="seller-time">Há 1
+                            dia</span><br>
                         <span class="dept" id="seller-dept">curso</span>
                     </div>
                 </div>
@@ -79,27 +82,26 @@
                     Descrição do produto será carregada aqui.
                 </p>
                 <div class="schedule-grid">
+
                     <div class="column">
+
                         <label>Local</label>
-                        <div class="tag list-item">Pátio 1 </div>
-                        <div class="tag list-item">Secretaria </div>
-                        <div class="tag list-item">Laboratório </div>
-                        <div class="tag list-item">Quadra </div>
-                        <div class="tag list-item">Refeitório </div>
-                        <div class="tag list-item">Pátio 2 </div>
+
+                        <div id="locais-container"></div>
+
                     </div>
+
                     <div class="column">
+
                         <label>Horário</label>
-                        <div class="tag list-item">7h15 </div>
-                        <div class="tag list-item">8h00 </div>
-                        <div class="tag list-item">11h30 </div>
-                        <div class="tag list-item">14h20 </div>
-                        <div class="tag list-item">15h15 </div>
-                        
+
+                        <div id="horarios-container"></div>
+
                     </div>
+
                 </div>
 
-                <button class="btn-entregue">ENVIAR<span ></span></button>
+                <button class="btn-entregue">ENVIAR<span></span></button>
             </div>
         </section>
     </main>

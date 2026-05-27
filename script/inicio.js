@@ -1,5 +1,7 @@
 // inicio.js
 
+import { API_BASE } from '../script/navbar';
+
 function escapeHtml(str) {
     return String(str || '')
         .replace(/&/g, '&amp;')
@@ -59,6 +61,8 @@ function renderProdutos(produtos) {
 
         const card = document.createElement('div');
         card.className = 'card';
+        card.style.cursor = 'pointer';
+        card.onclick = () => window.location.href = `produto.html?id=${produto.id}`;
         card.innerHTML = `
             <div class="card-header">
                 <h3>${escapeHtml(vendedor)}</h3>
@@ -72,7 +76,7 @@ function renderProdutos(produtos) {
             </div>
             <div class="card-footer">
                 <span style="font-weight:bold;color:#f43170;margin-right:10px;">R$ ${preco}</span>
-                <button onclick="window.location.href='produto.html?id=${produto.id}'">Ver mais</button>
+                <button onclick="event.stopPropagation(); window.location.href='produto.html?id=${produto.id}'">Ver mais</button>
             </div>
         `;
         container.appendChild(card);

@@ -1,9 +1,3 @@
-// perfil.js — Configurações da conta
-// Dados lidos do localStorage (preenchido futuramente pelo login)
-// TODO: quando login for integrado, chamar API para PUT ao editar campos
-// const API_BASE = 'http://10.92.199.12:3000';
-// Exemplo de update futuro:
-// await fetch(`${API_BASE}/usuarios/${userId}`, { method: 'PUT', ... });
 
 function setupInteractions() {
     document.querySelectorAll('.edit-icon').forEach(icon => {

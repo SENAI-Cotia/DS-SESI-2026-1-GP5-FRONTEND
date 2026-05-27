@@ -134,3 +134,40 @@
 .empty-state p {
     margin-bottom: 20px;
 }
+
+/* Botões editar e excluir */
+.btn-editar {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.2s;
+    font-weight: 600;
+}
+.btn-editar img { width: 14px; height: 14px; }
+.btn-editar:hover { background: #e0e0e0; }
+
+.btn-excluir {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #fff0f3;
+    color: #d43768;
+    border: 1px solid #f5c0ce;
+    padding: 8px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.2s, border-color 0.2s;
+}
+.btn-excluir img { width: 14px; height: 14px; }
+.btn-excluir:hover { background: #ffe0e8; border-color: #d43768; }

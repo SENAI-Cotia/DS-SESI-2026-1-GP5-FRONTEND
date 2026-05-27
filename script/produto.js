@@ -1,23 +1,22 @@
-// produto.js
-// TODO: integrar com API para buscar detalhes do produto pelo id da URL
-// const API_BASE = 'http://10.92.199.12:3000';
-// Exemplo de chamada futura:
-// const id = new URLSearchParams(window.location.search).get('id');
-// const res = await fetch(`${API_BASE}/produtos/${id}`);
-// const produto = await res.json();
-// renderProduct(produto);
-//
-// Para enviar interesse futuramente:
-// await fetch(`${API_BASE}/interesse`, { method: 'POST', body: JSON.stringify({ userId, produtoId, local, horario }) });
+// produto.js — carrega produto da API pelo id da URL
+
+import { API_BASE } from '../script/navbar';
+
+function escapeHtml(str) {
+    return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
 
 function toggleTag(tag, tags) {
     if (tag.classList.contains('active')) {
-        tag.classList.remove('active');
-        tag.classList.remove('pink');
+        tag.classList.remove('active', 'pink');
     } else {
-        tags.forEach(t => { t.classList.remove('active'); t.classList.remove('pink'); });
-        tag.classList.add('active');
-        tag.classList.add('pink');
+        tags.forEach(t => t.classList.remove('active', 'pink'));
+        tag.classList.add('active', 'pink');
     }
     checkSelection();
 }
@@ -38,22 +37,17 @@ function abrirImagem() {
     const modal = document.getElementById('modal');
     if (modal) modal.style.display = 'block';
 }
-
 function fecharImagem() {
     const modal = document.getElementById('modal');
     if (modal) modal.style.display = 'none';
 }
-
 window.abrirImagem = abrirImagem;
 window.fecharImagem = fecharImagem;
 
 function registrarEventos() {
-    const columns = document.querySelectorAll('.column');
-    columns.forEach(column => {
+    document.querySelectorAll('.column').forEach(column => {
         const tags = column.querySelectorAll('.tag:not(.center)');
-        tags.forEach(tag => {
-            tag.addEventListener('click', () => toggleTag(tag, tags));
-        });
+        tags.forEach(tag => tag.addEventListener('click', () => toggleTag(tag, tags)));
     });
 
     const btnEntregue = document.querySelector('.btn-entregue');
@@ -61,7 +55,6 @@ function registrarEventos() {
         btnEntregue.addEventListener('click', () => {
             const selected = document.querySelectorAll('.tag.active');
             if (selected.length === 2) {
-                // TODO: chamar API de interesse aqui
                 alert('Interesse registrado! (integração com API em breve)');
             } else {
                 alert('Por favor, selecione um Local e um Horário primeiro.');
@@ -70,4 +63,51 @@ function registrarEventos() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', registrarEventos);
+async function loadProduto() {
+    const id = new URLSearchParams(window.location.search).get('id');
+    if (!id) return;
+
+    try {
+        const res = await fetch(`${API_BASE}/produtos/${id}`);
+        if (!res.ok) throw new Error('Produto não encontrado');
+        const p = await res.json();
+
+        // Imagem principal
+        const mainImg = document.getElementById('product-main-image');
+        if (mainImg && p.imagem) {
+            mainImg.src = p.imagem;
+            mainImg.onerror = () => { mainImg.src = '../assets/img/etrooc.png'; };
+        }
+
+        // Thumbnail do modal
+        const thumbImg = document.querySelector('#gallery-thumbnails .miniatura');
+        const modalImg = document.getElementById('modal-image');
+        if (thumbImg && p.imagem) thumbImg.src = p.imagem;
+        if (modalImg && p.imagem) modalImg.src = p.imagem;
+
+        // Informações do produto
+        const titleEl = document.getElementById('product-title');
+        const priceEl = document.getElementById('product-price');
+        const descEl  = document.getElementById('product-description');
+        if (titleEl) titleEl.textContent = p.name || 'Produto';
+        if (priceEl) priceEl.textContent = `R$ ${Number(p.preco || 0).toFixed(2).replace('.', ',')}`;
+        if (descEl)  descEl.textContent  = p.descricao || '';
+
+        // Informações do vendedor
+        const sellerName = document.getElementById('seller-name');
+        const sellerDept = document.getElementById('seller-dept');
+        if (sellerName && p.user) sellerName.textContent = p.user.name || 'Vendedor';
+        if (sellerDept && p.user) sellerDept.textContent = p.user.curso || '';
+
+        // Título da página
+        document.title = `ETROOC — ${escapeHtml(p.name || 'Produto')}`;
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadProduto();
+    registrarEventos();
+});

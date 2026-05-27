@@ -1,48 +1,80 @@
-// ==================== ELEMENTOS ====================
+import { API_BASE } from '../script/navbar';
+
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
 const thumbnails = document.querySelectorAll('.thumbnail');
+const publicarBtn = document.getElementById('publicar-btn');
 
-// Arrays com apenas 1 item inicial
 let uploadedImages = [];
 let currentMainIndex = 0;
-let locais = ["Pátio 1"];           
-let horarios = ["7h15"];          
+let locais = [];
+let horarios = [];
 
 const MAX_ITEMS = 6;
+const MAX_IMAGES = 6;
 
+// =========================
+// UTIL
+// =========================
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
 
+// =========================
+// UPLOAD
+// =========================
 uploadArea.addEventListener('click', () => fileInput.click());
-fileInput.addEventListener('change', (e) => e.target.files.length > 0 && handleImage(e.target.files[0]));
+
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        handleImage(e.target.files[0]);
+        e.target.value = ''; // permite reenviar o mesmo arquivo
+    }
+});
 
 uploadArea.addEventListener('dragover', (e) => {
     e.preventDefault();
     uploadArea.style.borderColor = '#e91e63';
 });
-uploadArea.addEventListener('dragleave', () => uploadArea.style.borderColor = '#ddd');
+
+uploadArea.addEventListener('dragleave', () => {
+    uploadArea.style.borderColor = '#ddd';
+});
+
 uploadArea.addEventListener('drop', (e) => {
     e.preventDefault();
     uploadArea.style.borderColor = '#ddd';
-    if (e.dataTransfer.files.length > 0) handleImage(e.dataTransfer.files[0]);
+    if (e.dataTransfer.files.length > 0) {
+        handleImage(e.dataTransfer.files[0]);
+    }
 });
 
 function handleImage(file) {
-    if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-            uploadedImages.unshift(ev.target.result);
-            currentMainIndex = 0;
-            renderAll();
-        };
-        reader.readAsDataURL(file);
+    if (!file.type.startsWith('image/')) {
+        alert('Arquivo inválido');
+        return;
     }
+    if (uploadedImages.length >= MAX_IMAGES) {
+        alert(`Máximo de ${MAX_IMAGES} imagens`);
+        return;
+    }
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+        uploadedImages.push(ev.target.result);
+        renderAll();
+    };
+    reader.readAsDataURL(file);
 }
 
 function renderAll() {
     renderMainImage();
     renderThumbnails();
 }
-
 
 function renderMainImage() {
     uploadArea.innerHTML = '';
@@ -61,8 +93,6 @@ function renderMainImage() {
 function renderThumbnails() {
     thumbnails.forEach((thumb, index) => {
         thumb.innerHTML = '';
-        thumb.style.cursor = 'pointer';
-
         if (uploadedImages[index]) {
             const img = document.createElement('img');
             img.src = uploadedImages[index];
@@ -70,199 +100,207 @@ function renderThumbnails() {
             img.style.height = '100%';
             img.style.objectFit = 'cover';
             thumb.appendChild(img);
-
-            thumb.onclick = () => {
+            thumb.onclick = (e) => {
+                e.stopPropagation();
                 currentMainIndex = index;
                 renderMainImage();
             };
-
-            const delBtn = document.createElement('button');
-            delBtn.className = 'delete-thumb-btn';
-            delBtn.innerHTML = '×';
-            delBtn.onclick = (e) => {
-                e.stopPropagation();
-                deleteImage(index);
-            };
-            thumb.appendChild(delBtn);
         } else {
             thumb.innerHTML = `<span>+</span>`;
-            thumb.onclick = () => fileInput.click();
+            thumb.onclick = (e) => {
+                e.stopPropagation();
+                fileInput.click();
+            };
         }
     });
 }
 
-function deleteImage(index) {
-    if (confirm("Excluir esta imagem?")) {
-        uploadedImages.splice(index, 1);
-        if (index < currentMainIndex) currentMainIndex--;
-        if (currentMainIndex >= uploadedImages.length) currentMainIndex = 0;
-        renderAll();
-    }
-}
-
-
-
+// =========================
+// LOCAIS
+// =========================
 function renderLocais() {
     const container = document.getElementById('locais-list');
     container.innerHTML = '';
-    
     locais.forEach((local, index) => {
-        const item = createListItem(local, index, 'local');
-        container.appendChild(item);
+        const div = document.createElement('div');
+        div.className = 'list-item';
+        div.innerHTML = `
+            <span>${escapeHtml(local)}</span>
+            <button type="button" class="remove-btn" data-index="${index}">×</button>
+        `;
+        div.querySelector('.remove-btn').addEventListener('click', () => {
+            locais.splice(index, 1);
+            renderLocais();
+        });
+        container.appendChild(div);
     });
 }
-
-function renderHorarios() {
-    const container = document.getElementById('horarios-list');
-    container.innerHTML = '';
-    
-    horarios.forEach((horario, index) => {
-        const item = createListItem(horario, index, 'horario');
-        container.appendChild(item);
-    });
-}
-
-function createListItem(text, index, type) {
-    const div = document.createElement('div');
-    div.className = 'list-item';
-    
-    div.innerHTML = `
-        <span class="editable">${text}</span>
-        <div class="actions">
-            <button class="edit-btn" title="Editar"><img src="/assets/icons/edit-pen.svg" alt="Editar"></button>
-            <button class="delete-btn" title="Excluir"><img src="/assets/icons/trash.svg" alt="Excluir"></button>
-        </div>
-    `;
-
-    div.querySelector('.edit-btn').addEventListener('click', () => editItem(div, index, type));
-    
-    div.querySelector('.delete-btn').addEventListener('click', () => {
-        if (confirm(`Excluir este ${type === 'local' ? 'local' : 'horário'}?`)) {
-            if (type === 'local') {
-                locais.splice(index, 1);
-                renderLocais();
-            } else {
-                horarios.splice(index, 1);
-                renderHorarios();
-            }
-        }
-    });
-
-    return div;
-}
-
-function editItem(itemElement, index, type) {
-    const span = itemElement.querySelector('.editable');
-    const oldText = span.textContent;
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.value = oldText;
-    input.className = 'edit-input';
-
-    itemElement.replaceChild(input, span);
-    input.focus();
-
-    function save() {
-        const newText = input.value.trim();
-        if (newText) {
-            if (type === 'local') locais[index] = newText;
-            else horarios[index] = newText;
-        }
-        if (type === 'local') renderLocais();
-        else renderHorarios();
-    }
-
-    input.addEventListener('blur', save);
-    input.addEventListener('keypress', (e) => e.key === 'Enter' && save());
-}
-
 
 document.getElementById('add-local-btn').addEventListener('click', () => {
     if (locais.length >= MAX_ITEMS) {
-        alert(`Você já atingiu o máximo de ${MAX_ITEMS} locais.`);
+        alert('Máximo de locais atingido');
         return;
     }
-    const novo = prompt("Digite o nome do novo local:");
-    if (novo && novo.trim()) {
-        locais.push(novo.trim());
-        renderLocais();
+    const novo = prompt('Digite o local');
+    if (!novo) return;
+    const valor = novo.trim();
+    if (!valor) return;
+    if (locais.includes(valor)) {
+        alert('Local já adicionado');
+        return;
     }
+    locais.push(valor);
+    renderLocais();
 });
+
+// =========================
+// HORÁRIOS
+// =========================
+function renderHorarios() {
+    const container = document.getElementById('horarios-list');
+    container.innerHTML = '';
+    horarios.forEach((horario, index) => {
+        const div = document.createElement('div');
+        div.className = 'list-item';
+        div.innerHTML = `
+            <span>${escapeHtml(horario)}</span>
+            <button type="button" class="remove-btn" data-index="${index}">×</button>
+        `;
+        div.querySelector('.remove-btn').addEventListener('click', () => {
+            horarios.splice(index, 1);
+            renderHorarios();
+        });
+        container.appendChild(div);
+    });
+}
 
 document.getElementById('add-horario-btn').addEventListener('click', () => {
     if (horarios.length >= MAX_ITEMS) {
-        alert(`Você já atingiu o máximo de ${MAX_ITEMS} horários.`);
+        alert('Máximo de horários atingido');
         return;
     }
-    const novo = prompt("Digite o novo horário (ex: 13h45):");
-    if (novo && novo.trim()) {
-        horarios.push(novo.trim());
-        renderHorarios();
+    const novo = prompt('Digite o horário');
+    if (!novo) return;
+    const valor = novo.trim();
+    if (!valor) return;
+    if (horarios.includes(valor)) {
+        alert('Horário já adicionado');
+        return;
     }
+    horarios.push(valor);
+    renderHorarios();
 });
 
-const API_BASE = 'http://10.92.199.12:3000';
-
+// =========================
+// PUBLICAR
+// =========================
 async function publicar() {
     const nome = document.getElementById('nome').value.trim();
-    if (!nome) return alert("Por favor, preencha o nome do produto!");
-    if (uploadedImages.length === 0) return alert("Adicione pelo menos uma imagem!");
+    const descricao = document.getElementById('descricao').value.trim();
+    const precoStr = document.getElementById('preco')
+        .value
+        .replace(/\./g, '')
+        .replace(',', '.');
+    const preco = parseFloat(precoStr);
 
-    // Obter userId do localStorage ou pedir ao usuário
-    let userId = localStorage.getItem('userId');
-    if (!userId) {
-        userId = prompt('Insira seu userId (número) para publicar o produto:');
-        if (!userId) return alert('Publicação cancelada: userId obrigatório.');
+    if (!nome) {
+        alert('Digite o nome');
+        return;
+    }
+    if (uploadedImages.length === 0) {
+        alert('Adicione uma imagem');
+        return;
+    }
+    if (isNaN(preco) || preco <= 0) {
+        alert('Digite um preço válido');
+        return;
     }
 
-    // Construir payload
-    const precoStr = document.getElementById('preco').value.replace(/\./g, '').replace(',', '.');
-    const preco = parseFloat(precoStr) || 0;
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+        alert('Usuário não autenticado');
+        return;
+    }
 
-    const descricao = document.getElementById('descricao').value.trim();
+    const condicaoEl = document.getElementById('condicao');
+    const condicao = parseInt(condicaoEl.value, 10);
+
+    if (!Number.isInteger(condicao) || condicao < 1 || condicao > 10) {
+        alert('Informe uma condição entre 1 e 10.');
+        condicaoEl.focus();
+        return;
+    }
 
     const payload = {
         name: nome,
-        categoria: "Geral",
-        preco: preco,
-        condicao: "Usado",
-        imagem: uploadedImages[0],
-        descricao: descricao,
+        preco,
+        condicao,
+        imagem: uploadedImages,
+        descricao,
         disponibilidade: true,
         atacado: false,
-        userId: Number(userId)
+        userId: Number(userId),
+        locais,
+        horarios
     };
 
+    if (publicarBtn) {
+        publicarBtn.disabled = true;
+        publicarBtn.dataset.originalText = publicarBtn.textContent;
+        publicarBtn.textContent = 'Publicando...';
+    }
+
+
+
     try {
-        const res = await fetch(`${API_BASE}/produtos`, {
+        const response = await fetch(`${API_BASE}/produtos`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
 
-        if (!res.ok) {
-            const err = await res.json().catch(() => null);
-            return alert('Erro ao publicar produto: ' + (err?.error || res.statusText));
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            throw new Error(data.error || `Erro HTTP ${response.status}`);
         }
 
-        const data = await res.json();
-        alert('✅ ' + (data.message || 'Produto publicado com sucesso!'));
-        // Redireciona para início para ver o produto listado
+        alert('Produto publicado');
         window.location.href = '/pages/inicio.html';
-
     } catch (error) {
         console.error(error);
-        alert('Erro de rede ao publicar produto. Verifique a conexão e tente novamente.');
+        alert(`Erro ao publicar produto: ${error.message}`);
+    } finally {
+        if (publicarBtn) {
+            publicarBtn.disabled = false;
+            publicarBtn.textContent = publicarBtn.dataset.originalText || 'Publicar';
+        }
     }
 }
 
+// Caso o botão exista no HTML com id="publicar-btn", liga o evento aqui
+if (publicarBtn) {
+    publicarBtn.addEventListener('click', publicar);
+}
+
+// Mantém disponível globalmente caso o HTML use onclick="publicar()"
+window.publicar = publicar;
+
+// =========================
+// PREÇO
+// =========================
 document.getElementById('preco').addEventListener('input', function (e) {
     let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 2) value = value.slice(0, -2) + ',' + value.slice(-2);
+    if (value.length === 0) {
+        e.target.value = '';
+        return;
+    }
+    value = value.padStart(3, '0');
+    value = value.slice(0, -2) + ',' + value.slice(-2);
+    // remove zeros à esquerda mantendo pelo menos "0,XX"
+    value = value.replace(/^0+(\d)/, '$1');
     e.target.value = value;
 });
-
 
 renderLocais();
 renderHorarios();

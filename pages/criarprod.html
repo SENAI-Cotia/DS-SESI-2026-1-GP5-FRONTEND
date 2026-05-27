@@ -8,13 +8,14 @@
     <link rel="icon" href="../assets/icons/logo-etrooc-infinito.png" type="image/png">
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/criarprod.css">
-
+    <link rel="stylesheet" href="../styles/dark-mode.css">
+    <script src="../script/acessibilidade.js"></script>
 </head>
 
 <body>
 
     <!-- Navbar -->
-        <header class="navbar">
+    <header class="navbar">
         <div class="logo">
             <a href="inicio.html"><img src="../assets/icons/logo icon etrooc.svg" alt="ETROOC"></a>
         </div>
@@ -27,7 +28,7 @@
         <div class="nav-right">
             <div class="icons">
                 <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
-                <a href="#"><img src="../assets/img/sino.png" alt="Notificações"></a>
+                <a href="#"><img src="../assets/icons/sino.svg" alt="Notificações" class="sino-header"></a>
             </div>
             <div class="nav-divider"></div>
             <a class="user-info" href="perfil.html">
@@ -41,21 +42,27 @@
     </header>
 
     <div class="container">
-     
+
         <div>
             <div class="image-upload" id="uploadArea">
                 <div class="upload-icon">↑</div>
                 <span>ADICIONAR IMAGEM</span>
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" multiple>
             </div>
 
             <div class="thumbnail-container">
+
                 <div class="thumbnail"></div>
                 <div class="thumbnail"></div>
+                <div class="thumbnail"></div>
+                <div class="thumbnail"></div>
+                <div class="thumbnail"></div>
+                <div class="thumbnail"></div>
+
             </div>
         </div>
 
-  
+
         <div class="form-section">
             <h1 class="form-header">NOVO PRODUTO</h1>
 
@@ -74,6 +81,23 @@
                 <textarea class="description" id="descricao" placeholder="Descreva o produto..."></textarea>
             </div>
 
+            <div class="condicao-wrapper">
+                <div class="condicao-header">
+                    <label class="condicao-label" for="condicao">Condição do produto</label>
+                    <span class="condicao-ajuda">1 = muito usado · 10 = novo</span>
+                </div>
+
+                <div class="condicao-slider-box">
+                    <input type="number" id="condicao" min="1" max="10" step="1" placeholder="0" required>
+                </div>
+
+                <div class="condicao-tags">
+                    <span class="condicao-tag-mau">1 - Muito usado</span>
+                    <span class="condicao-tag-bom">10 - Novo</span>
+                </div>
+            </div>
+
+
             <div class="two-columns">
 
                 <div class="list-box">
@@ -84,7 +108,7 @@
                     </button>
                 </div>
 
-                
+
                 <div class="list-box">
                     <h3>Horários de troca disponíveis</h3>
                     <div id="horarios-list"></div>
@@ -97,7 +121,7 @@
 
             </div>
 
-            <button class="publish-btn" onclick="publicar()">PUBLICAR</button>
+            <button class="publicar-btn" onclick="publicar()">PUBLICAR</button>
 
         </div>
 

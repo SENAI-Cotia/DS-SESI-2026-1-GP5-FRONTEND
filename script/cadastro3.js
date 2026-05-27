@@ -1,4 +1,5 @@
-const API_BASE = 'http://10.92.199.12:3000';
+import { API_BASE } from '../script/navbar';
+
 const senha = document.getElementById("senha");
 const confirmarSenha = document.getElementById("confirmar-senha");
 const mensagem = document.getElementById("mensagem-senha");

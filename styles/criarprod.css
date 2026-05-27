@@ -183,6 +183,7 @@ body {
   border-radius: 8px;
   font-size: 1rem;
   transition: border 0.3s;
+  font-family: "Inter";
 }
 
 .input-group input:focus,
@@ -234,7 +235,7 @@ body {
   font-weight: bold;
 }
 
-.publish-btn {
+.publicar-btn {
   background-color: #e91e63;
   color: white;
   border: none;
@@ -249,7 +250,7 @@ body {
   box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
 }
 
-.publish-btn:hover {
+.publicar-btn:hover {
   background-color: #c2185b;
   transform: translateY(-2px);
 }
@@ -317,93 +318,192 @@ textarea {
 
 /* Botões de Adicionar */
 .add-btn {
-    width: 100%;
-    margin-top: 12px;
-    padding: 12px 16px;
-    background-color: #f8f9fa;
-    border: 2px dashed #ddd;
-    border-radius: 8px;
-    color: #e91e63;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 16px;
+  background-color: #f8f9fa;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  color: #e91e63;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .add-btn:hover {
-    background-color: #fff;
-    border-color: #e91e63;
-    color: #c2185b;
+  background-color: #fff;
+  border-color: #e91e63;
+  color: #c2185b;
 }
 
 
 .actions {
-    display: flex;
-    gap: 6px;
+  display: flex;
+  gap: 6px;
 }
 
 /* Botão Editar */
 .edit-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 4px;
-    transition: all 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
 }
 
 .edit-btn:hover {
-    background-color: #f0f0f0;
-    color: #e91e63;
+  background-color: #f0f0f0;
+  color: #e91e63;
 }
 
 /* Botão Excluir */
 .delete-btn {
-    background: none;
-    border: none;
-    color: #e74c3c;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 6px 8px;
-    border-radius: 4px;
-    transition: all 0.2s;
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
 }
 
 .delete-btn:hover {
-    background-color: #ffebee;
-    color: #c0392b;
+  background-color: #ffebee;
+  color: #c0392b;
 }
 
 
 .edit-input {
-    flex: 1;
-    padding: 8px 12px;
-    border: 2px solid #e91e63;
-    border-radius: 6px;
-    font-size: 1rem;
-    outline: none;
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #e91e63;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
 }
 
 
 .list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
 }
 
 .editable {
-    flex: 1;
-    font-size: 1rem;
+  flex: 1;
+  font-size: 1rem;
 }
 
 /* Mensagem limite */
 .add-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ====== Condicao (1 a 10) ====== */
+.condicao-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.condicao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.condicao-label {
+  font-weight: 600;
+  color: #444;
+}
+
+.condicao-ajuda {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.condicao-slider-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px 20px;
+
+}
+
+#condicao {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #e91e6248;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #e91e63;
+  outline: none;
+  transition: all 0.3s;
+}
+
+#condicao::-webkit-outer-spin-button,
+#condicao::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#condicao:focus {
+  border-color: #c2185c38;
+  box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.2);
+}
+
+.condicao-tags {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #888;
+  padding: 0 4px;
+}
+
+.condicao-tag-mau {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.condicao-tag-bom {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+/* Barra de escala visual (opcional) */
+.condicao-scale {
+  display: flex;
+  gap: 4px;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #eee;
+}
+
+.condicao-scale-fill {
+  flex: 1;
+  transition: background 0.3s;
+}
+
+.condicao-scale-fill.active {
+  background: #e91e63;
+}
+
+.condicao-scale-fill.inactive {
+  background: #ddd;
 }
