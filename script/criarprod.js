@@ -9,7 +9,7 @@ let locais = [];
 let horarios = [];
 
 const MAX_ITEMS = 6;
-const MAX_IMAGES = 6;
+const MAX_IMAGES = 5; // backend valida máximo de 5 imagens
 
 // =========================
 // UTIL
@@ -229,17 +229,28 @@ async function publicar() {
         return;
     }
 
+    if (locais.length === 0) {
+        alert('Adicione pelo menos um local de troca');
+        return;
+    }
+
+    if (horarios.length === 0) {
+        alert('Adicione pelo menos um horário de troca');
+        return;
+    }
+
+    // Ajusta o payload para o formato esperado pelo backend
     const payload = {
         name: nome,
+        categoria: document.getElementById('categoria')?.value || 'Geral',
         preco,
-        condicao,
-        imagem: uploadedImages,
+        condicao: String(condicao), // backend espera string para condicao
+        imagem: uploadedImages.slice(0, MAX_IMAGES),
         descricao,
         disponibilidade: true,
-        atacado: false,
         userId: Number(userId),
-        locais,
-        horarios
+        local: locais,   // backend espera chave 'local'
+        horario: horarios // backend espera chave 'horario'
     };
 
     if (publicarBtn) {
@@ -251,6 +262,7 @@ async function publicar() {
 
 
     try {
+        console.log('Enviando payload:', { ...payload, imagem: `[${payload.imagem.length} imagens]` });
         const response = await fetch(`${window.API_BASE}/produtos`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -258,16 +270,17 @@ async function publicar() {
         });
 
         const data = await response.json().catch(() => ({}));
+        console.log('Resposta do servidor:', response.status, data);
 
         if (!response.ok) {
-            throw new Error(data.error || `Erro HTTP ${response.status}`);
+            throw new Error(data.error || data.message || `Erro HTTP ${response.status}`);
         }
 
-        alert('Produto publicado');
+        alert('Produto publicado com sucesso!');
         window.location.href = '/pages/inicio.html';
     } catch (error) {
-        console.error(error);
-        alert(`Erro ao publicar produto: ${error.message}`);
+        console.error('Erro ao publicar produto:', error);
+        alert(`Erro ao publicar: ${error.message}\n\nVerifique o console para mais detalhes.`);
     } finally {
         if (publicarBtn) {
             publicarBtn.disabled = false;

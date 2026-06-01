@@ -18,26 +18,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch(`${window.API_BASE}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
+                const response = await fetch(`${window.API_BASE}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
 
-            const data = await response.json();
-            if (!response.ok) {
-                return showAlert(data.error || 'Falha ao fazer login.');
-            }
+                if (response.status === 404) {
+                    // Backend de desenvolvimento não implementou /login
+                    showAlert('Login não disponível no backend de desenvolvimento. Use o cadastro.');
+                    window.location.href = '/pages/cadastro.html';
+                    return;
+                }
 
-            if (data.user?.id) {
-                localStorage.setItem('userId', String(data.user.id));
-            }
-            if (data.user?.email) {
-                localStorage.setItem('userEmail', data.user.email);
-            }
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) {
+                    return showAlert(data.error || 'Falha ao fazer login.');
+                }
 
-            showAlert('Login realizado com sucesso!');
-            window.location.href = '/pages/inicio.html';
+                if (data.user?.id) {
+                    localStorage.setItem('userId', String(data.user.id));
+                }
+                if (data.user?.email) {
+                    localStorage.setItem('userEmail', data.user.email);
+                }
+
+                showAlert('Login realizado com sucesso!');
+                window.location.href = '/pages/inicio.html';
         } catch (error) {
             console.error(error);
             showAlert('Erro de rede ao fazer login. Tente novamente.');

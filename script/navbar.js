@@ -1,8 +1,5 @@
-// navbar.js — compartilhado entre todas as páginas
-// Lê dados do localStorage (preenchido futuramente pelo fluxo de login)
-// TODO: quando o login for integrado, salvar userId/userName/userCurso no localStorage
-
-window.API_BASE = 'http://10.92.199.20:3000'; // mantido para uso futuro
+// Determina a base da API automaticamente em ambiente de desenvolvimento (localhost)
+window.API_BASE = window.__API_BASE__ || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:3000' : 'http://10.92.199.39:3000'); // mantido para uso futuro
 
 function loadNavbar() {
     const userName = localStorage.getItem('userName') || 'Usuário';

@@ -427,6 +427,92 @@ textarea {
   color: #444;
 }
 
+/* Linha com dois campos */
+.condicao-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+}
+
+/* Wrapper ocupa apenas sua coluna */
+.condicao-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.condicao-slider-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 14px 16px;
+    min-height: 52px;
+}
+
+/* Slider */
+#condicao {
+    flex: 1;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 6px;
+    background: #ddd;
+    border-radius: 999px;
+    outline: none;
+    border: none;
+    padding: 0;
+}
+
+/* Barra preenchida */
+#condicao::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background: #ddd;
+}
+
+/* Bolinha */
+#condicao::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #e91e63;
+    cursor: pointer;
+    margin-top: -6px;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(233, 30, 99, 0.3);
+}
+
+#condicao::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #e91e63;
+    border: none;
+    cursor: pointer;
+}
+
+/* Número ao lado */
+#condicaoValor {
+    min-width: 32px;
+    text-align: center;
+    font-weight: 700;
+    color: #e91e63;
+    font-size: 1rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .condicao-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 .condicao-ajuda {
   font-size: 0.8rem;
   color: #888;
@@ -446,12 +532,12 @@ textarea {
 #condicao {
   flex: 1;
   padding: 10px 14px;
-  border: 2px solid #e91e6248;
+  border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 1.2rem;
   font-weight: 700;
   text-align: center;
-  color: #e91e63;
+  color: #333;
   outline: none;
   transition: all 0.3s;
 }

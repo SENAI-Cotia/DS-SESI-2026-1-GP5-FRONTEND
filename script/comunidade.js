@@ -40,7 +40,7 @@ function renderProdutos(produtos) {
     }
 
     produtos.forEach(produto => {
-        const imagem = produto.imagem || '../assets/img/etrooc.png';
+        const imagem = Array.isArray(produto.imagem) ? produto.imagem[0] : (produto.imagem || '../assets/img/etrooc.png');
         const preco = Number(produto.preco || 0).toFixed(2).replace('.', ',');
         const vendedor = produto.user?.name || 'Vendedor';
         const curso = produto.user?.curso || '';

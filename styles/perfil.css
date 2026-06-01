@@ -184,6 +184,28 @@
             display: block;
             margin: 5px 0;
         }
+
+        .save-actions {
+            margin-top: 30px;
+            grid-column: span 2;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .save-btn {
+            padding: 14px 26px;
+            border: none;
+            border-radius: 12px;
+            background-color: var(--pink-bg);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .save-btn:hover {
+            background-color: #b92d5c;
+        }
         /* sidebar links */
         .nav-item {
             text-decoration: none;

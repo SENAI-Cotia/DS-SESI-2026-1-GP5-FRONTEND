@@ -41,8 +41,7 @@ body {
 }
 
 .main-img-card {
-    background-color: #ffb366;
-    /* Laranja do fundo na imagem */
+    background-color: transparent;
     padding: 20px;
     border-radius: 10px;
 }
