@@ -13,6 +13,14 @@ function escapeHtml(str) {
         .replace(/'/g, '&#039;');
 }
 
+function getUserInitial(nomeCompleto) {
+    if (!nomeCompleto) return '?';
+
+    const primeiroNome = nomeCompleto.trim().split(' ')[0];
+
+    return primeiroNome.charAt(0).toUpperCase();
+}
+
 function renderLocaisHorarios(locaisArray, horariosArray) {
     const locaisContainer = document.getElementById('locais-container');
     const horariosContainer = document.getElementById('horarios-container');
@@ -70,7 +78,7 @@ function checkSelection() {
     const btnEntregue = document.querySelector('.btn-entregue');
     const hasLocalSelected = document.querySelector('.local-tag.active') !== null;
     const hasHorarioSelected = document.querySelector('.horario-tag.active') !== null;
-    
+
     if (hasLocalSelected && hasHorarioSelected) {
         btnEntregue.classList.add('ready');
         btnEntregue.style.boxShadow = '0 4px 15px rgba(214, 71, 107, 0.4)';
@@ -172,35 +180,75 @@ async function loadProduto() {
         }
 
         // Thumbnail do modal
-        const thumbImg = document.querySelector('#gallery-thumbnails .miniatura');
+        const gallery = document.getElementById('gallery-thumbnails');
         const modalImg = document.getElementById('modal-image');
-        if (thumbImg && p.imagem) {
-            const imgSrc = Array.isArray(p.imagem) ? p.imagem[0] : p.imagem;
-            thumbImg.src = imgSrc;
-        }
-        if (modalImg && p.imagem) {
-            const imgSrc = Array.isArray(p.imagem) ? p.imagem[0] : p.imagem;
-            modalImg.src = imgSrc;
+
+        if (gallery && p.imagem) {
+
+            const imagens = Array.isArray(p.imagem)
+                ? p.imagem
+                : [p.imagem];
+
+            gallery.innerHTML = '';
+
+            imagens.forEach((imgSrc, index) => {
+
+                const thumb = document.createElement('img');
+
+                thumb.src = imgSrc;
+                thumb.className = 'miniatura';
+                thumb.alt = `Thumb ${index + 1}`;
+
+                thumb.addEventListener('click', () => {
+
+                    if (mainImg) {
+                        mainImg.src = imgSrc;
+                    }
+
+                    if (modalImg) {
+                        modalImg.src = imgSrc;
+                    }
+
+                    abrirImagem();
+                });
+
+                gallery.appendChild(thumb);
+            });
         }
 
         // Informações do produto
         const titleEl = document.getElementById('product-title');
         const priceEl = document.getElementById('product-price');
-        const descEl  = document.getElementById('product-description');
+        const descEl = document.getElementById('product-description');
         if (titleEl) titleEl.textContent = p.name || 'Produto';
         if (priceEl) priceEl.textContent = `R$ ${Number(p.preco || 0).toFixed(2).replace('.', ',')}`;
-        if (descEl)  descEl.textContent  = p.descricao || '';
+        if (descEl) descEl.textContent = p.descricao || '';
 
         // Informações do vendedor
         const sellerName = document.getElementById('seller-name');
         const sellerDept = document.getElementById('seller-dept');
-        if (sellerName && p.user) sellerName.textContent = p.user.name || 'Vendedor';
-        if (sellerDept && p.user) sellerDept.textContent = p.user.curso || '';
+        const sellerAvatar = document.getElementById('sidebar-avatar-product-owner');
+
+        if (p.user) {
+
+            if (sellerName) {
+                sellerName.textContent = p.user.name || 'Vendedor';
+            }
+
+            if (sellerDept) {
+                sellerDept.textContent = p.user.curso || '';
+            }
+
+            if (sellerAvatar) {
+                sellerAvatar.textContent = getUserInitial(p.user.name);
+            }
+
+        }
 
         // Renderizar locais e horários: tenta extrair do produto ou fazer fetch adicional
         let locaisArray = [];
         let horariosArray = [];
-        
+
         // Se o backend retornar dados diretos (local/horario com strings JSON)
         if (p.local) {
             locaisArray = typeof p.local === 'string' ? JSON.parse(p.local) : p.local;
@@ -208,7 +256,7 @@ async function loadProduto() {
         if (p.horario) {
             horariosArray = typeof p.horario === 'string' ? JSON.parse(p.horario) : p.horario;
         }
-        
+
         // Se não tiver dados diretos, tenta buscar de forma alternativa (fallback)
         if (locaisArray.length === 0 || horariosArray.length === 0) {
             try {
@@ -229,11 +277,8 @@ async function loadProduto() {
                 console.warn('Falha ao buscar dados alternativos de local/horario:', altErr);
             }
         }
-        
-        renderLocaisHorarios(locaisArray, horariosArray);
 
-        // Título da página
-        document.title = `ETROOC — ${escapeHtml(p.name || 'Produto')}`;
+        renderLocaisHorarios(locaisArray, horariosArray);
 
     } catch (err) {
         console.error(err);

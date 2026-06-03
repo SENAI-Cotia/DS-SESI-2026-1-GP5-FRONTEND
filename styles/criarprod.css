@@ -22,6 +22,30 @@ body {
   gap: 40px;
 }
 
+.thumbnail {
+    position: relative;
+}
+
+.thumb-remove {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 50%;
+    background: #d43768;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    transition: .2s;
+    z-index: 10;
+}
+
+.thumbnail:hover .thumb-remove {
+    opacity: 1;
+}
+
 
 .image-upload {
   background-color: #f1f1f1;
@@ -435,14 +459,6 @@ textarea {
     width: 100%;
 }
 
-/* Wrapper ocupa apenas sua coluna */
-.condicao-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-}
-
 .condicao-slider-box {
     display: flex;
     align-items: center;
@@ -592,4 +608,20 @@ textarea {
 
 .condicao-scale-fill.inactive {
   background: #ddd;
+}
+
+.input-group select {
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.3s;
+    font-family: 'Inter', Arial, sans-serif;
+    background: white;
+    cursor: pointer;
+    appearance: auto;
+}
+.input-group select:focus {
+    outline: none;
+    border-color: #e91e63;
 }

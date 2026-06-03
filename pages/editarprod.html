@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETROOC — Editar Produto</title>
+    <link rel="icon" href="../assets/icons/logo-etrooc-infinito.png" type="image/png">
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/criarprod.css">
+    <link rel="stylesheet" href="../styles/dark-mode.css">
+    <style>
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 8px;
+        }
+        .status-bar label { font-weight: 600; color: #444; }
+        .status-badge {
+            font-size: 13px; font-weight: 600; padding: 4px 14px;
+            border-radius: 20px; cursor: default;
+        }
+        .status-badge.disponivel { background: #d1f0e0; color: #1a7a4a; }
+        .status-badge.vendido { background: #fee2e2; color: #b91c1c; }
+        .btn-status {
+            margin-left: auto;
+            padding: 8px 20px; border-radius: 20px; border: none;
+            font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+        }
+        .btn-marcar-vendido { background: #fee2e2; color: #b91c1c; }
+        .btn-marcar-vendido:hover { background: #fecaca; }
+        .btn-reativar { background: #d1f0e0; color: #1a7a4a; }
+        .btn-reativar:hover { background: #bbf7d0; }
+        .acesso-negado {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; padding: 80px 20px; text-align: center;
+        }
+        .acesso-negado h2 { color: #d43768; margin-bottom: 12px; }
+        .acesso-negado p { color: #666; margin-bottom: 20px; }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="inicio.html"><img src="../assets/icons/logo icon etrooc.svg" alt="ETROOC"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="inicio.html">INÍCIO</a></li>
+                <li><a href="comunidade.html">COMUNIDADE</a></li>
+            </ul>
+        </nav>
+        <div class="nav-right">
+            <div class="icons">
+                <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
+                <a href="interesses-recebidos.html"><img src="../assets/icons/sino.svg" alt="Notificações" class="sino-header"></a>
+            </div>
+            <div class="nav-divider"></div>
+            <a class="user-info" href="perfil.html">
+                <div class="avatar" id="nav-avatar">U</div>
+                <div class="user-meta">
+                    <span class="user-name" id="nav-user-name">Usuário</span>
+                    <span class="user-curso" id="nav-user-curso"></span>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <div class="container" id="edit-container">
+        <p style="text-align:center;padding:60px;color:#888;">Carregando produto...</p>
+    </div>
+
+    <script src="../script/navbar.js"></script>
+    <script src="../script/editarprod.js"></script>
+</body>
+
+</html>

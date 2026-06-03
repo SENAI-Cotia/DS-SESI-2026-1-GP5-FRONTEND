@@ -77,6 +77,21 @@
 
         }
 
+        .logout-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .logout-btn:hover {
+            opacity: .9;
+        }
+
         .sidebar {
             width: 320px;
             background: white;
@@ -137,6 +152,7 @@
             border-radius: 35px;
             padding: 50px;
             box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.2);
+            width: 1000px;
         }
 
         .form-grid {
@@ -206,6 +222,7 @@
         .save-btn:hover {
             background-color: #b92d5c;
         }
+
         /* sidebar links */
         .nav-item {
             text-decoration: none;
@@ -218,7 +235,7 @@
             background: white;
             border-radius: 25px;
             padding: 30px 25px;
-            box-shadow: -20px 20px 20px 20px rgba(0,0,0,0.2);
+            box-shadow: -20px 20px 20px 20px rgba(0, 0, 0, 0.2);
         }
 
         .history-card h2 {
