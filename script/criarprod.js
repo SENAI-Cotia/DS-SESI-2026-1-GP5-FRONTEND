@@ -9,7 +9,7 @@ let locais = [];
 let horarios = [];
 
 const MAX_ITEMS = 6;
-const MAX_IMAGES = 5; // backend valida máximo de 5 imagens
+const MAX_IMAGES = 5;
 
 // =========================
 // UTIL
@@ -26,41 +26,33 @@ function escapeHtml(str) {
 // =========================
 // UPLOAD
 // =========================
-uploadArea.addEventListener('click', () => fileInput.click());
+if (uploadArea) uploadArea.addEventListener('click', () => fileInput.click());
 
-fileInput.addEventListener('change', (e) => {
+if (fileInput) fileInput.addEventListener('change', (e) => {
     if (e.target.files.length > 0) {
         handleImage(e.target.files[0]);
-        e.target.value = ''; // permite reenviar o mesmo arquivo
+        e.target.value = '';
     }
 });
 
-uploadArea.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadArea.style.borderColor = '#e91e63';
-});
-
-uploadArea.addEventListener('dragleave', () => {
-    uploadArea.style.borderColor = '#ddd';
-});
-
-uploadArea.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadArea.style.borderColor = '#ddd';
-    if (e.dataTransfer.files.length > 0) {
-        handleImage(e.dataTransfer.files[0]);
-    }
-});
+if (uploadArea) {
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.style.borderColor = '#e91e63';
+    });
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.style.borderColor = '#ddd';
+    });
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.style.borderColor = '#ddd';
+        if (e.dataTransfer.files.length > 0) handleImage(e.dataTransfer.files[0]);
+    });
+}
 
 function handleImage(file) {
-    if (!file.type.startsWith('image/')) {
-        alert('Arquivo inválido');
-        return;
-    }
-    if (uploadedImages.length >= MAX_IMAGES) {
-        alert(`Máximo de ${MAX_IMAGES} imagens`);
-        return;
-    }
+    if (!file.type.startsWith('image/')) { alert('Arquivo inválido'); return; }
+    if (uploadedImages.length >= MAX_IMAGES) { alert(`Máximo de ${MAX_IMAGES} imagens`); return; }
     const reader = new FileReader();
     reader.onload = (ev) => {
         uploadedImages.push(ev.target.result);
@@ -69,18 +61,13 @@ function handleImage(file) {
     reader.readAsDataURL(file);
 }
 
-function renderAll() {
-    renderMainImage();
-    renderThumbnails();
-}
+function renderAll() { renderMainImage(); renderThumbnails(); }
 
 function renderMainImage() {
+    if (!uploadArea) return;
     uploadArea.innerHTML = '';
     if (uploadedImages.length === 0) {
-        uploadArea.innerHTML = `
-            <div class="upload-icon">↑</div>
-            <span>ADICIONAR IMAGEM</span>
-        `;
+        uploadArea.innerHTML = `<div class="upload-icon">↑</div><span>ADICIONAR IMAGEM</span>`;
         return;
     }
     const img = document.createElement('img');
@@ -94,21 +81,12 @@ function renderThumbnails() {
         if (uploadedImages[index]) {
             const img = document.createElement('img');
             img.src = uploadedImages[index];
-            img.style.width = '100%';
-            img.style.height = '100%';
-            img.style.objectFit = 'cover';
+            img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
             thumb.appendChild(img);
-            thumb.onclick = (e) => {
-                e.stopPropagation();
-                currentMainIndex = index;
-                renderMainImage();
-            };
+            thumb.onclick = (e) => { e.stopPropagation(); currentMainIndex = index; renderMainImage(); };
         } else {
             thumb.innerHTML = `<span>+</span>`;
-            thumb.onclick = (e) => {
-                e.stopPropagation();
-                fileInput.click();
-            };
+            thumb.onclick = (e) => { e.stopPropagation(); fileInput.click(); };
         }
     });
 }
@@ -118,35 +96,25 @@ function renderThumbnails() {
 // =========================
 function renderLocais() {
     const container = document.getElementById('locais-list');
+    if (!container) return;
     container.innerHTML = '';
     locais.forEach((local, index) => {
         const div = document.createElement('div');
         div.className = 'list-item';
-        div.innerHTML = `
-            <span>${escapeHtml(local)}</span>
-            <button type="button" class="remove-btn" data-index="${index}">×</button>
-        `;
-        div.querySelector('.remove-btn').addEventListener('click', () => {
-            locais.splice(index, 1);
-            renderLocais();
-        });
+        div.innerHTML = `<span>${escapeHtml(local)}</span><button type="button" class="remove-btn" data-index="${index}">×</button>`;
+        div.querySelector('.remove-btn').addEventListener('click', () => { locais.splice(index, 1); renderLocais(); });
         container.appendChild(div);
     });
 }
 
-document.getElementById('add-local-btn').addEventListener('click', () => {
-    if (locais.length >= MAX_ITEMS) {
-        alert('Máximo de locais atingido');
-        return;
-    }
+const addLocalBtn = document.getElementById('add-local-btn');
+if (addLocalBtn) addLocalBtn.addEventListener('click', () => {
+    if (locais.length >= MAX_ITEMS) { alert('Máximo de locais atingido'); return; }
     const novo = prompt('Digite o local');
     if (!novo) return;
     const valor = novo.trim();
     if (!valor) return;
-    if (locais.includes(valor)) {
-        alert('Local já adicionado');
-        return;
-    }
+    if (locais.includes(valor)) { alert('Local já adicionado'); return; }
     locais.push(valor);
     renderLocais();
 });
@@ -156,35 +124,25 @@ document.getElementById('add-local-btn').addEventListener('click', () => {
 // =========================
 function renderHorarios() {
     const container = document.getElementById('horarios-list');
+    if (!container) return;
     container.innerHTML = '';
     horarios.forEach((horario, index) => {
         const div = document.createElement('div');
         div.className = 'list-item';
-        div.innerHTML = `
-            <span>${escapeHtml(horario)}</span>
-            <button type="button" class="remove-btn" data-index="${index}">×</button>
-        `;
-        div.querySelector('.remove-btn').addEventListener('click', () => {
-            horarios.splice(index, 1);
-            renderHorarios();
-        });
+        div.innerHTML = `<span>${escapeHtml(horario)}</span><button type="button" class="remove-btn" data-index="${index}">×</button>`;
+        div.querySelector('.remove-btn').addEventListener('click', () => { horarios.splice(index, 1); renderHorarios(); });
         container.appendChild(div);
     });
 }
 
-document.getElementById('add-horario-btn').addEventListener('click', () => {
-    if (horarios.length >= MAX_ITEMS) {
-        alert('Máximo de horários atingido');
-        return;
-    }
+const addHorarioBtn = document.getElementById('add-horario-btn');
+if (addHorarioBtn) addHorarioBtn.addEventListener('click', () => {
+    if (horarios.length >= MAX_ITEMS) { alert('Máximo de horários atingido'); return; }
     const novo = prompt('Digite o horário');
     if (!novo) return;
     const valor = novo.trim();
     if (!valor) return;
-    if (horarios.includes(valor)) {
-        alert('Horário já adicionado');
-        return;
-    }
+    if (horarios.includes(valor)) { alert('Horário já adicionado'); return; }
     horarios.push(valor);
     renderHorarios();
 });
@@ -193,64 +151,43 @@ document.getElementById('add-horario-btn').addEventListener('click', () => {
 // PUBLICAR
 // =========================
 async function publicar() {
-    const nome = document.getElementById('nome').value.trim();
-    const descricao = document.getElementById('descricao').value.trim();
-    const precoStr = document.getElementById('preco')
-        .value
-        .replace(/\./g, '')
-        .replace(',', '.');
+    const nomeEl = document.getElementById('nome');
+    const descricaoEl = document.getElementById('descricao');
+    const precoEl = document.getElementById('preco');
+    const condicaoEl = document.getElementById('condicao');
+
+    const nome = nomeEl?.value.trim() || '';
+    const descricao = descricaoEl?.value.trim() || '';
+    const precoStr = (precoEl?.value || '').replace(/\./g, '').replace(',', '.');
     const preco = parseFloat(precoStr);
 
-    if (!nome) {
-        alert('Digite o nome');
-        return;
-    }
-    if (uploadedImages.length === 0) {
-        alert('Adicione uma imagem');
-        return;
-    }
-    if (isNaN(preco) || preco <= 0) {
-        alert('Digite um preço válido');
-        return;
-    }
+    if (!nome) { alert('Digite o nome'); return; }
+    if (uploadedImages.length === 0) { alert('Adicione uma imagem'); return; }
+    if (isNaN(preco) || preco <= 0) { alert('Digite um preço válido'); return; }
 
     const userId = localStorage.getItem('userId');
-    if (!userId) {
-        alert('Usuário não autenticado');
-        return;
-    }
+    if (!userId) { alert('Usuário não autenticado. Faça login primeiro.'); window.location.href = 'login.html'; return; }
 
-    const condicaoEl = document.getElementById('condicao');
-    const condicao = parseInt(condicaoEl.value, 10);
-
+    const condicao = parseInt(condicaoEl?.value || '5', 10);
     if (!Number.isInteger(condicao) || condicao < 1 || condicao > 10) {
         alert('Informe uma condição entre 1 e 10.');
-        condicaoEl.focus();
+        condicaoEl?.focus();
         return;
     }
 
-    if (locais.length === 0) {
-        alert('Adicione pelo menos um local de troca');
-        return;
-    }
+    if (locais.length === 0) { alert('Adicione pelo menos um local de troca'); return; }
+    if (horarios.length === 0) { alert('Adicione pelo menos um horário de troca'); return; }
 
-    if (horarios.length === 0) {
-        alert('Adicione pelo menos um horário de troca');
-        return;
-    }
-
-    // Ajusta o payload para o formato esperado pelo backend
     const payload = {
         name: nome,
-        categoria: document.getElementById('categoria')?.value || 'Geral',
         preco,
-        condicao: String(condicao), // backend espera string para condicao
+        condicao: condicao,
         imagem: uploadedImages.slice(0, MAX_IMAGES),
         descricao,
         disponibilidade: true,
         userId: Number(userId),
-        local: locais,   // backend espera chave 'local'
-        horario: horarios // backend espera chave 'horario'
+        local: locais,
+        horario: horarios,
     };
 
     if (publicarBtn) {
@@ -259,59 +196,64 @@ async function publicar() {
         publicarBtn.textContent = 'Publicando...';
     }
 
-
-
     try {
-        console.log('Enviando payload:', { ...payload, imagem: `[${payload.imagem.length} imagens]` });
         const response = await fetch(`${window.API_BASE}/produtos`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
         });
 
         const data = await response.json().catch(() => ({}));
-        console.log('Resposta do servidor:', response.status, data);
 
         if (!response.ok) {
             throw new Error(data.error || data.message || `Erro HTTP ${response.status}`);
         }
 
         alert('Produto publicado com sucesso!');
-        window.location.href = '/pages/inicio.html';
+        window.location.href = 'itens-a-venda.html';
     } catch (error) {
         console.error('Erro ao publicar produto:', error);
-        alert(`Erro ao publicar: ${error.message}\n\nVerifique o console para mais detalhes.`);
+        alert(`Erro ao publicar: ${error.message}`);
     } finally {
         if (publicarBtn) {
             publicarBtn.disabled = false;
-            publicarBtn.textContent = publicarBtn.dataset.originalText || 'Publicar';
+            publicarBtn.textContent = publicarBtn.dataset.originalText || 'PUBLICAR';
         }
     }
 }
 
-// Caso o botão exista no HTML com id="publicar-btn", liga o evento aqui
-if (publicarBtn) {
-    publicarBtn.addEventListener('click', publicar);
-}
-
-// Mantém disponível globalmente caso o HTML use onclick="publicar()"
+if (publicarBtn) publicarBtn.addEventListener('click', publicar);
 window.publicar = publicar;
 
 // =========================
-// PREÇO
+// PREÇO — máscara
 // =========================
-document.getElementById('preco').addEventListener('input', function (e) {
+const precoInput = document.getElementById('preco');
+if (precoInput) precoInput.addEventListener('input', function (e) {
     let value = e.target.value.replace(/\D/g, '');
-    if (value.length === 0) {
-        e.target.value = '';
-        return;
-    }
+    if (value.length === 0) { e.target.value = ''; return; }
     value = value.padStart(3, '0');
     value = value.slice(0, -2) + ',' + value.slice(-2);
-    // remove zeros à esquerda mantendo pelo menos "0,XX"
     value = value.replace(/^0+(\d)/, '$1');
     e.target.value = value;
 });
 
-renderLocais();
-renderHorarios();
+// =========================
+// SLIDER condição
+// =========================
+const condicaoSlider = document.getElementById('condicao');
+const condicaoValor = document.getElementById('condicaoValor');
+if (condicaoSlider && condicaoValor) {
+    condicaoValor.textContent = condicaoSlider.value;
+    condicaoSlider.addEventListener('input', () => {
+        condicaoValor.textContent = condicaoSlider.value;
+    });
+}
+
+// =========================
+// INIT
+// =========================
+document.addEventListener('DOMContentLoaded', () => {
+    renderLocais();
+    renderHorarios();
+});

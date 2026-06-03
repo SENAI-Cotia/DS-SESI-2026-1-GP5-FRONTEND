@@ -1,4 +1,3 @@
-
 function showAlert(message) {
     alert(message);
 }
@@ -18,33 +17,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-                const response = await fetch(`${window.API_BASE}/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
+            const response = await fetch(`${window.API_BASE}/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
 
-                if (response.status === 404) {
-                    // Backend de desenvolvimento não implementou /login
-                    showAlert('Login não disponível no backend de desenvolvimento. Use o cadastro.');
-                    window.location.href = '/pages/cadastro.html';
-                    return;
-                }
+            const data = await response.json().catch(() => ({}));
 
-                const data = await response.json().catch(() => ({}));
-                if (!response.ok) {
-                    return showAlert(data.error || 'Falha ao fazer login.');
-                }
+            if (!response.ok) {
+                return showAlert(data.error || 'Email ou senha incorretos.');
+            }
 
-                if (data.user?.id) {
-                    localStorage.setItem('userId', String(data.user.id));
-                }
-                if (data.user?.email) {
-                    localStorage.setItem('userEmail', data.user.email);
-                }
+            // Salva dados do usuário no localStorage para uso em toda a aplicação
+            if (data.user) {
+                localStorage.setItem('userId', String(data.user.id));
+                localStorage.setItem('userEmail', data.user.email);
+                localStorage.setItem('userName', data.user.name);
+                if (data.user.rm) localStorage.setItem('userRm', String(data.user.rm));
+                if (data.user.curso) localStorage.setItem('userCurso', data.user.curso);
+                if (data.user.telNumero) localStorage.setItem('userTel', data.user.telNumero);
+                if (data.user.funcao) localStorage.setItem('userFuncao', data.user.funcao);
+            }
 
-                showAlert('Login realizado com sucesso!');
-                window.location.href = '/pages/inicio.html';
+            showAlert('Login realizado com sucesso!');
+            window.location.href = '/pages/inicio.html';
         } catch (error) {
             console.error(error);
             showAlert('Erro de rede ao fazer login. Tente novamente.');

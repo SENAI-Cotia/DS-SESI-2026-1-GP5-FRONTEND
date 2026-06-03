@@ -340,3 +340,17 @@ body {
     border-color: #D14D6D;     /* Borda da mesma cor do fundo */
     font-weight: 500;
 }
+
+#sidebar-avatar-product-owner {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e91e63;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}

@@ -35,7 +35,7 @@
         <div class="nav-right">
             <div class="icons">
                 <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
-                <a href="#"><img src="../assets/icons/sino.svg" alt="Notificações" class="sino-header"></a>
+                <a href="interesses-recebidos.html"><img src="../assets/icons/sino.svg" alt="Notificações" class="sino-header"></a>
             </div>
             <div class="nav-divider"></div>
             <a class="user-info" href="perfil.html">
@@ -54,22 +54,22 @@
                 <div class="main-img-card">
                     <img id="product-main-image" src="../assets/img/etrooc.png" alt="Produto">
                 </div>
-                <div class="thumbnails" id="gallery-thumbnails">
-                    <img src="../assets/img/caderna-2.png" alt="Thumb-2" class="miniatura" onclick="abrirImagem()">
+                <div class="thumbnails" id="gallery-thumbnails"></div>
 
-                    <!-- Modal -->
-                    <div id="modal" class="modal">
-                        <span class="fechar" onclick="fecharImagem()"><img src="../assets/icons/icon-x.svg"
-                                alt="x"></span>
+                <div id="modal" class="modal">
+                    <span class="fechar" onclick="fecharImagem()">
+                        <img src="../assets/icons/icon-x.svg" alt="x">
+                    </span>
 
-                        <img id="modal-image" src="../assets/img/caderna-2.png" alt="Imagem ampliada" class="img">
-                    </div>
+                    <img id="modal-image" src="" alt="Imagem ampliada" class="img">
                 </div>
             </div>
 
             <div class="product-details">
                 <div class="user-info">
-                    <img src="../assets/img/avatar-1.png" alt="Avatar" class="avatar">
+                    <div class="avatar-container">
+                        <div id="sidebar-avatar-product-owner"></div>
+                    </div>
                     <div>
                         <strong id="seller-name">Usuário</strong> <span class="time" id="seller-time">Há 1
                             dia</span><br>
@@ -118,9 +118,11 @@
             font-size: 14px;
             transition: all 0.3s ease;
         }
+
         .tag:hover {
             background-color: #e8e8e8;
         }
+
         .tag.active {
             background-color: #f43170;
             color: white;

@@ -75,7 +75,7 @@ body {
     color: #fff;
     border: none;
     padding: 15px;
-    width: 200px;
+    width: 40px;
 
     border-radius: 30px;
     text-align: center;
@@ -108,6 +108,7 @@ h2 {
     text-decoration: none;
     color: #99C3FF;
 }
+
 .logoIcon {
     height: 20px;
     margin-left: 5px;
@@ -179,25 +180,51 @@ h2 {
 
 
 .regras-senha {
-  margin: 10px 0;
-  padding-left: 20px;
-  font-size: 14px;
-  color: #555;
+    margin: 10px 0;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #555;
 }
 
 .regras-senha li {
-  margin-bottom: 5px;
-  color: #b22;
+    margin-bottom: 5px;
+    color: #b22;
 }
 
 .regras-senha li.valid {
-  color: #008000;
+    color: #008000;
 }
 
 #mensagem-senha {
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: bold;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 
+.password-wrapper input {
+    width: 100%;
+    padding-right: 48px;
+}
+
+.toggle-senha {
+    position: absolute;
+    right: -40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.toggle-senha:hover {
+    color: #e91e63;
+}

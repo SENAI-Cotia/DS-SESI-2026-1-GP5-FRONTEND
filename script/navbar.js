@@ -1,5 +1,5 @@
 // Determina a base da API automaticamente em ambiente de desenvolvimento (localhost)
-window.API_BASE = window.__API_BASE__ || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:3000' : 'http://10.92.199.39:3000'); // mantido para uso futuro
+window.API_BASE = window.__API_BASE__ || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:3000' : 'http://10.92.199.16:3000'); // mantido para uso futuro
 
 function loadNavbar() {
     const userName = localStorage.getItem('userName') || 'Usuário';

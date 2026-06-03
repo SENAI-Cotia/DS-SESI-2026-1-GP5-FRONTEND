@@ -11,7 +11,7 @@ function checkLogin() {
 function showLoginRequired() {
     const mainWrapper = document.querySelector('.main-wrapper');
     if (!mainWrapper) return;
-    
+
     mainWrapper.innerHTML = `
         <div class="login-required-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; text-align: center; padding: 20px;">
             <h2 style="font-size: 24px; margin-bottom: 20px;">Acesso Restrito</h2>
@@ -31,7 +31,8 @@ async function saveUserProfile(userId, profile) {
         email: profile.email,
         telNumero: profile.telefone,
         curso: localStorage.getItem('userCurso') || '',
-        rm: profile.rm ? Number(profile.rm) : null
+        rm: profile.rm ? Number(profile.rm) : null,
+        curso: profile.curso || '',
     };
 
     persistProfileLocally(profile);
@@ -64,10 +65,12 @@ async function saveUserProfile(userId, profile) {
 
 function persistProfileLocally(profile) {
     const fullName = `${profile.nome} ${profile.sobrenome}`.trim();
+
     localStorage.setItem('userName', fullName);
     localStorage.setItem('userEmail', profile.email || '');
     localStorage.setItem('userTelefone', profile.telefone || '');
     localStorage.setItem('userRM', profile.rm || '');
+    localStorage.setItem('userCurso', profile.curso || '');
 }
 
 async function fetchUserProfile(userId) {
@@ -92,12 +95,16 @@ function populateProfileFields(profile) {
     const email = profile.email || '';
     const tel = profile.telNumero || '';
     const rm = profile.rm != null ? String(profile.rm) : '';
+    const curso = profile.curso || '';
+
+
 
     const setField = (id, val) => {
         const el = document.getElementById(id);
         if (el) el.value = val;
     };
 
+    setField('profile-curso', curso);
     setField('profile-name', nome);
     setField('profile-lastname', sobrenome);
     setField('profile-email', email);
@@ -111,7 +118,7 @@ function updateNavbarAndSidebar(fullName) {
     const navAvatar = document.getElementById('nav-avatar');
     const sidebarAvatar = document.getElementById('sidebar-avatar');
     const firstName = fullName.split(' ')[0] || 'Usuário';
-    
+
     if (navName) navName.textContent = fullName;
     if (sidebarFirst) sidebarFirst.textContent = firstName;
     if (navAvatar) navAvatar.textContent = firstName.charAt(0).toUpperCase();
@@ -124,16 +131,32 @@ function getProfileDataFromForm() {
     const email = document.getElementById('profile-email')?.value || '';
     const telefone = document.getElementById('profile-phone')?.value || '';
     const rm = document.getElementById('profile-rm')?.value || '';
+    const curso = document.getElementById("profile-curso").value;
 
-    return { nome, sobrenome, email, telefone, rm };
+    return { nome, sobrenome, email, telefone, rm, curso };
 }
 
 function setupInteractions() {
     const userId = localStorage.getItem('userId');
-    
+
+    const logoutBtn = document.getElementById('logout-btn');
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.href = 'login.html';
+        });
+    }
+
     document.querySelectorAll('.edit-icon').forEach(icon => {
         icon.addEventListener('click', () => {
-            const input = icon.parentElement.querySelector('input');
+            const field = icon.parentElement.querySelector('input, select');
+            if (!field) return;
+
+            field.disabled = false;
+            field.focus();
+
             if (!input) return;
             input.disabled = false;
             input.focus();
@@ -147,6 +170,15 @@ function setupInteractions() {
         });
         input.addEventListener('blur', () => {
             input.disabled = true;
+            const profile = getProfileDataFromForm();
+            saveUserProfile(userId, profile);
+        });
+    });
+
+    document.querySelectorAll('.field select').forEach(select => {
+        select.addEventListener('change', () => {
+            select.disabled = true;
+
             const profile = getProfileDataFromForm();
             saveUserProfile(userId, profile);
         });
@@ -188,6 +220,8 @@ async function loadUserProfile() {
     const tel = localStorage.getItem('userTelefone') || '';
     const rm = localStorage.getItem('userRM') || '';
 
+    const curso = localStorage.getItem('userCurso') || '';
+
     const setField = (id, val) => {
         const el = document.getElementById(id);
         if (el) el.value = val;
@@ -198,6 +232,7 @@ async function loadUserProfile() {
     setField('profile-email', email);
     setField('profile-phone', tel);
     setField('profile-rm', rm);
+    setField('profile-curso', curso);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

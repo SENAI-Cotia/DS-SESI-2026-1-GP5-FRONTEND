@@ -10,6 +10,14 @@ function escapeHtml(str) {
         .replace(/'/g, '&#039;');
 }
 
+function getUserInitial(nomeCompleto) {
+    if (!nomeCompleto) return '?';
+
+    const primeiroNome = nomeCompleto.trim().split(' ')[0];
+
+    return primeiroNome.charAt(0).toUpperCase();
+}
+
 function timeAgo(dateStr) {
     if (!dateStr) return '';
     const diff = Date.now() - new Date(dateStr).getTime();
@@ -43,6 +51,7 @@ function renderProdutos(produtos) {
         const imagem = Array.isArray(produto.imagem) ? produto.imagem[0] : (produto.imagem || '../assets/img/etrooc.png');
         const preco = Number(produto.preco || 0).toFixed(2).replace('.', ',');
         const vendedor = produto.user?.name || 'Vendedor';
+        const inicialVendedor = getUserInitial(vendedor);
         const curso = produto.user?.curso || '';
         const tempo = timeAgo(produto.createdAt);
         const subtitulo = [curso, tempo].filter(Boolean).join(' • ');
@@ -55,8 +64,18 @@ function renderProdutos(produtos) {
 
         card.innerHTML = `
             <div class="card-header">
-                <h3>${escapeHtml(vendedor)}</h3>
-                <p>${escapeHtml(subtitulo)}</p>
+                <div class="card-user">
+
+                    <div class="card-avatar">
+                        ${inicialVendedor}
+                    </div>
+
+                    <div class="card-user-info">
+                        <h3>${escapeHtml(vendedor)}</h3>
+                        <p>${escapeHtml(subtitulo)}</p>
+                    </div>
+
+                </div>
             </div>
             <div class="card-body">
                 <p>${escapeHtml(produto.descricao || produto.name || '')}</p>
@@ -104,7 +123,9 @@ async function loadComunidade() {
     try {
         const res = await fetch(`${window.API_BASE}/produtos`);
         if (!res.ok) throw new Error('Erro ao buscar produtos');
-        todosProdutos = await res.json();
+        todosProdutos = (await res.json()).filter(
+            produto => produto.disponibilidade === true
+        );
 
         // Pré-selecionar curso do usuário logado se existir
         const userCurso = localStorage.getItem('userCurso') || '';

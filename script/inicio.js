@@ -9,6 +9,14 @@ function escapeHtml(str) {
         .replace(/'/g, '&#039;');
 }
 
+function getUserInitial(nomeCompleto) {
+    if (!nomeCompleto) return '?';
+
+    const primeiroNome = nomeCompleto.trim().split(' ')[0];
+
+    return primeiroNome.charAt(0).toUpperCase();
+}
+
 function loadNavbarInicio() {
     const userName = localStorage.getItem('userName') || 'Usuário';
     const userCurso = localStorage.getItem('userCurso') || '';
@@ -50,10 +58,18 @@ function renderProdutos(produtos) {
     }
 
     produtos.forEach(produto => {
+        
+        if (!produto.disponibilidade) {
+            return;
+        }
+
         const imagem = Array.isArray(produto.imagem) ? produto.imagem[0] : (produto.imagem || '../assets/img/etrooc.png');
         const preco = Number(produto.preco || 0).toFixed(2).replace('.', ',');
         const vendedor = produto.user?.name || produto.user?.name || 'Vendedor';
+        const inicialVendedor = getUserInitial(vendedor);
+        console.log(produto.user);
         const curso = produto.user?.curso || produto.curso || '';
+        console.log(produto.user);
         const tempo = timeAgo(produto.createdAt || produto.criadoEm);
         const subtitulo = [curso, tempo].filter(Boolean).join(' • ');
 
@@ -63,11 +79,22 @@ function renderProdutos(produtos) {
         card.onclick = () => window.location.href = `produto.html?id=${produto.id}`;
         card.innerHTML = `
             <div class="card-header">
-                <h3>${escapeHtml(vendedor)}</h3>
-                <p>${escapeHtml(subtitulo)}</p>
+                <div class="card-user">
+
+                    <div class="card-avatar">
+                        ${inicialVendedor}
+                    </div>
+
+                    <div class="card-user-info">
+                        <h5>${escapeHtml(vendedor)}</h5>
+                        <p>${escapeHtml(subtitulo)}</p>
+                    </div>
+
+                </div>
             </div>
             <div class="card-body">
-                <p>${escapeHtml(produto.descricao || produto.name || '')}</p>
+                <h2>${escapeHtml(produto.name)}</h2>
+                <p>${escapeHtml(produto.descricao)}</p>
             </div>
             <div class="card-image">
                 <img src="${escapeHtml(imagem)}" alt="${escapeHtml(produto.name || 'Produto')}" onerror="this.src='../assets/img/etrooc.png'">
@@ -89,7 +116,12 @@ async function loadProdutos() {
         const res = await fetch(`${window.API_BASE}/produtos`);
         if (!res.ok) throw new Error('Erro ao buscar produtos');
         const produtos = await res.json();
-        renderProdutos(produtos);
+
+        const produtosDisponiveis = produtos.filter(
+            produto => produto.disponibilidade === true
+        );
+
+        renderProdutos(produtosDisponiveis);
     } catch (err) {
         console.error(err);
         container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Não foi possível carregar os produtos. Verifique sua conexão.</p>';
