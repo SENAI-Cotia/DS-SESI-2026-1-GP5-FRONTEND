@@ -81,20 +81,25 @@
                 <textarea class="description" id="descricao" placeholder="Descreva o produto..."></textarea>
             </div>
 
-            <div class="condicao-wrapper">
-                <div class="condicao-header">
-                    <label class="condicao-label" for="condicao">Condição do produto</label>
-                    <span class="condicao-ajuda">1 = muito usado · 10 = novo</span>
+            <div class="condicao-row">
+
+                <div class="condicao-wrapper">
+                    <div class="condicao-header">
+                        <label class="condicao-label" for="condicao">Condição do produto</label>
+                        <span class="condicao-ajuda">1 = muito usado · 10 = novo</span>
+                    </div>
+
+                    <div class="condicao-slider-box">
+                        <input type="range" id="condicao" min="1" max="10" required>
+                        <span id="condicaoValor"></span>
+                    </div>
                 </div>
 
-                <div class="condicao-slider-box">
-                    <input type="number" id="condicao" min="1" max="10" step="1" placeholder="0" required>
+                <div class="input-group">
+                    <label for="quantidade">Categorias</label>
+                    <input type="text" id="quantidade">
                 </div>
 
-                <div class="condicao-tags">
-                    <span class="condicao-tag-mau">1 - Muito usado</span>
-                    <span class="condicao-tag-bom">10 - Novo</span>
-                </div>
             </div>
 
 
@@ -121,7 +126,7 @@
 
             </div>
 
-            <button class="publicar-btn" onclick="publicar()">PUBLICAR</button>
+            <button class="publicar-btn" id="publicar-btn" onclick="publicar()">PUBLICAR</button>
 
         </div>
 

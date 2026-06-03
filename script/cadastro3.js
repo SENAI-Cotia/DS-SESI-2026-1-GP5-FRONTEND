@@ -183,9 +183,11 @@ async function enviarCadastro() {
             return alert(message);
         }
 
-        localStorage.setItem('userId', String(data.id));
-        localStorage.setItem('userEmail', data.email);
-        localStorage.setItem('userName', data.name);
+        // Backend returns { message: '...', user: { ... } }
+        const userObj = (data && data.user) ? data.user : data;
+        localStorage.setItem('userId', String(userObj.id));
+        localStorage.setItem('userEmail', userObj.email);
+        localStorage.setItem('userName', userObj.name);
         [
             'cadastro_email',
             'cadastro_cpf',
