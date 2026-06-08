@@ -80,13 +80,15 @@ function renderPedidos(pedidos) {
         card.className = 'pedido-card';
         card.dataset.id = pedido.id;
 
+        const isVendido = pedido.produto?.disponibilidade === false;
+
         card.innerHTML = `
             <div class="pedido-img">
                 <img src="${escapeHtml(imagem)}" alt="${escapeHtml(pedido.produto?.name || 'Produto')}"
                      onerror="this.src='../assets/img/etrooc.png'">
             </div>
             <div class="pedido-info">
-                <strong>${escapeHtml(pedido.produto?.name || 'Produto')}</strong>
+                <strong>${escapeHtml(pedido.produto?.name || 'Produto')}${isVendido ? ' <span style="font-size:11px;background:#e74c3c;color:#fff;padding:2px 8px;border-radius:10px;vertical-align:middle;">Vendido</span>' : ''}</strong>
                 <span>R$ ${preco} · ${timeAgo(pedido.createdAt)}</span>
                 <span>Vendedor: ${escapeHtml(pedido.vendedor?.name || '-')} · ${escapeHtml(pedido.vendedor?.email || '')}</span>
                 <span>Local: ${escapeHtml(locais)}</span>
@@ -110,9 +112,10 @@ async function loadUltimosPedidos() {
 
     if (!userId) {
         container.innerHTML = `
-            <div style="text-align:center;padding:40px;">
-                <p>Você precisa estar conectado para ver seus pedidos.</p>
-                <a href="login.html" style="color:#d43768;font-weight:600;">Fazer Login</a>
+            <div class="empty-state">
+                <i class="fa-solid fa-lock"></i>
+                <p>Você precisa estar conectado para ver seus ultimos pedidos.</p>
+                <a href="login.html" class="btn-novo-item">Fazer Login</a>
             </div>`;
         return;
     }

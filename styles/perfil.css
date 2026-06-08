@@ -254,3 +254,9 @@
             font-weight: 600;
             margin-bottom: 4px;
         }
+        /* Wrapper externo para suportar centralização do aviso de login */
+        .main-wrapperr {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+        }

@@ -12,6 +12,38 @@ const MAX_ITEMS = 6;
 const MAX_IMAGES = 5;
 
 // =========================
+// LOGIN CHECK
+// =========================
+const TRASH_SVG = `<svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 2V16C15 16.5 14.5 17 14 17H9H4C3.5 17 3 16.5 3 16V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 1H11M7 6V13M11 6V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+function checkLoginCriar() {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+        showLoginRequiredCriar();
+        return false;
+    }
+    return true;
+}
+
+function showLoginRequiredCriar() {
+    const container = document.querySelector('.container');
+    if (!container) return;
+    container.innerHTML = `
+        <div class="login-required-container" style="grid-column:1/-1; display:flex; align-items:center; justify-content:center; min-height:calc(100vh - 80px); width:100%; padding:20px; box-sizing:border-box;">
+            <div style="background:rgba(255,255,255,0.92); border-radius:20px; box-shadow:0 8px 32px rgba(0,0,0,0.15); padding:48px 40px; max-width:440px; width:100%; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px;">
+                <i class="fa-solid fa-lock" style="font-size:48px; color:#d43768; margin-bottom:8px;"></i>
+                <h2 style="font-size:24px; color:#222; margin:0;">Acesso Restrito</h2>
+                <p style="font-size:16px; color:#666; margin:0;">Você precisa estar conectado para criar um produto.</p>
+                <div style="display:flex; gap:16px; margin-top:12px; flex-wrap:wrap; justify-content:center;">
+                    <a href="login.html" style="padding:12px 32px; background-color:#d43768; color:white; text-decoration:none; border-radius:8px; font-weight:700; font-size:15px;">Fazer Login</a>
+                    <a href="cadastro.html" style="padding:12px 32px; background-color:#555; color:white; text-decoration:none; border-radius:8px; font-weight:700; font-size:15px;">Cadastro</a>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// =========================
 // UTIL
 // =========================
 function escapeHtml(str) {
@@ -72,23 +104,58 @@ function renderMainImage() {
     }
     const img = document.createElement('img');
     img.src = uploadedImages[currentMainIndex];
+    img.style.cssText = 'width:100%;height:100%;object-fit:contain;padding:15px;';
     uploadArea.appendChild(img);
 }
 
 function renderThumbnails() {
-    thumbnails.forEach((thumb, index) => {
-        thumb.innerHTML = '';
-        if (uploadedImages[index]) {
+    const container = document.querySelector('.thumbnail-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    for (let i = 0; i < MAX_IMAGES; i++) {
+        const thumb = document.createElement('div');
+        thumb.className = 'thumbnail';
+
+        if (uploadedImages[i]) {
+            thumb.style.position = 'relative';
+
             const img = document.createElement('img');
-            img.src = uploadedImages[index];
+            img.src = uploadedImages[i];
             img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
             thumb.appendChild(img);
-            thumb.onclick = (e) => { e.stopPropagation(); currentMainIndex = index; renderMainImage(); };
+
+            // Botão excluir imagem
+            const removeBtn = document.createElement('button');
+            removeBtn.innerHTML = '×';
+            removeBtn.className = 'thumb-remove';
+            removeBtn.title = 'Remover imagem';
+            removeBtn.type = 'button';
+            removeBtn.style.cssText = `
+                position:absolute;top:4px;right:4px;width:22px;height:22px;
+                border:none;border-radius:50%;background:#d43768;color:#fff;
+                cursor:pointer;opacity:0;transition:.2s;z-index:2;font-size:14px;
+                display:flex;align-items:center;justify-content:center;line-height:1;
+            `;
+            removeBtn.onclick = (e) => {
+                e.stopPropagation();
+                uploadedImages.splice(i, 1);
+                if (currentMainIndex >= uploadedImages.length) {
+                    currentMainIndex = Math.max(0, uploadedImages.length - 1);
+                }
+                renderAll();
+            };
+            thumb.appendChild(removeBtn);
+            thumb.addEventListener('mouseenter', () => { removeBtn.style.opacity = '1'; });
+            thumb.addEventListener('mouseleave', () => { removeBtn.style.opacity = '0'; });
+            thumb.onclick = (e) => { e.stopPropagation(); currentMainIndex = i; renderMainImage(); };
         } else {
             thumb.innerHTML = `<span>+</span>`;
-            thumb.onclick = (e) => { e.stopPropagation(); fileInput.click(); };
+            thumb.onclick = (e) => { e.stopPropagation(); fileInput?.click(); };
         }
-    });
+
+        container.appendChild(thumb);
+    }
 }
 
 // =========================
@@ -101,7 +168,7 @@ function renderLocais() {
     locais.forEach((local, index) => {
         const div = document.createElement('div');
         div.className = 'list-item';
-        div.innerHTML = `<span>${escapeHtml(local)}</span><button type="button" class="remove-btn" data-index="${index}">×</button>`;
+        div.innerHTML = `<span>${escapeHtml(local)}</span><button type="button" class="remove-btn delete-btn" data-index="${index}" title="Remover local">${TRASH_SVG}</button>`;
         div.querySelector('.remove-btn').addEventListener('click', () => { locais.splice(index, 1); renderLocais(); });
         container.appendChild(div);
     });
@@ -129,7 +196,7 @@ function renderHorarios() {
     horarios.forEach((horario, index) => {
         const div = document.createElement('div');
         div.className = 'list-item';
-        div.innerHTML = `<span>${escapeHtml(horario)}</span><button type="button" class="remove-btn" data-index="${index}">×</button>`;
+        div.innerHTML = `<span>${escapeHtml(horario)}</span><button type="button" class="remove-btn delete-btn" data-index="${index}" title="Remover horário">${TRASH_SVG}</button>`;
         div.querySelector('.remove-btn').addEventListener('click', () => { horarios.splice(index, 1); renderHorarios(); });
         container.appendChild(div);
     });
@@ -254,6 +321,8 @@ if (condicaoSlider && condicaoValor) {
 // INIT
 // =========================
 document.addEventListener('DOMContentLoaded', () => {
+    if (!checkLoginCriar()) return;
     renderLocais();
     renderHorarios();
+    renderAll();
 });
