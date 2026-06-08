@@ -1,4 +1,5 @@
-// editarprod.js — edição de produto com validação de propriedade
+// Shared SVG icons
+const TRASH_SVG = `<svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 2V16C15 16.5 14.5 17 14 17H9H4C3.5 17 3 16.5 3 16V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 2H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 1H11M7 6V13M11 6V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 let produtoOriginal = null;
 let uploadedImages = [];
@@ -303,7 +304,7 @@ function renderLocais() {
     locais.forEach((local, i) => {
         const div = document.createElement('div');
         div.className = 'list-item';
-        div.innerHTML = `<span>${escapeHtml(local)}</span><button type="button" class="remove-btn">×</button>`;
+        div.innerHTML = `<span>${escapeHtml(local)}</span><button type="button" class="remove-btn delete-btn" title="Remover local">${TRASH_SVG}</button>`;
         div.querySelector('.remove-btn').onclick = () => { locais.splice(i, 1); renderLocais(); };
         c.appendChild(div);
     });
@@ -316,7 +317,7 @@ function renderHorarios() {
     horarios.forEach((h, i) => {
         const div = document.createElement('div');
         div.className = 'list-item';
-        div.innerHTML = `<span>${escapeHtml(h)}</span><button type="button" class="remove-btn">×</button>`;
+        div.innerHTML = `<span>${escapeHtml(h)}</span><button type="button" class="remove-btn delete-btn" title="Remover horário">${TRASH_SVG}</button>`;
         div.querySelector('.remove-btn').onclick = () => { horarios.splice(i, 1); renderHorarios(); };
         c.appendChild(div);
     });

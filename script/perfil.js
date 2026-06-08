@@ -9,18 +9,84 @@ function checkLogin() {
 }
 
 function showLoginRequired() {
-    const mainWrapper = document.querySelector('.main-wrapper');
-    if (!mainWrapper) return;
+    const outerWrapper = document.querySelector('.main-wrapperr') || document.querySelector('.main-wrapper');
+    if (!outerWrapper) return;
 
-    mainWrapper.innerHTML = `
-        <div class="login-required-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; text-align: center; padding: 20px;">
-            <h2 style="font-size: 24px; margin-bottom: 20px;">Acesso Restrito</h2>
-            <p style="font-size: 16px; margin-bottom: 30px; color: #666;">Você precisa estar conectado para acessar seu perfil.</p>
-            <div style="display: flex; gap: 15px;">
-                <a href="login.html" class="btn-login" style="padding: 12px 30px; background-color: #ff1493; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Fazer Login</a>
-                <a href="cadastro.html" class="btn-cadastro" style="padding: 12px 30px; background-color: #666; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Cadastro</a>
+    outerWrapper.innerHTML = `
+        <div class="login-required-container">
+            <div class="login-required-box">
+                <i class="fa-solid fa-lock" style="font-size:48px; color:#d43768; margin-bottom:16px;"></i>
+                <h2>Acesso Restrito</h2>
+                <p>Você precisa estar conectado para acessar seu perfil.</p>
+                <div class="login-required-actions">
+                    <a href="login.html" class="btn-login-req">Fazer Login</a>
+                    <a href="cadastro.html" class="btn-cadastro-req">Cadastro</a>
+                </div>
             </div>
         </div>
+        <style>
+            .login-required-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: calc(100vh - 80px);
+                width: 100%;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            .login-required-box {
+                background: rgba(255,255,255,0.92);
+                border-radius: 20px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+                padding: 48px 40px;
+                max-width: 440px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 12px;
+            }
+            .login-required-box h2 {
+                font-size: 24px;
+                color: #222;
+                margin: 0;
+            }
+            .login-required-box p {
+                font-size: 16px;
+                color: #666;
+                margin: 0;
+            }
+            .login-required-actions {
+                display: flex;
+                gap: 16px;
+                margin-top: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .btn-login-req {
+                padding: 12px 32px;
+                background-color: #d43768;
+                color: white;
+                text-decoration: none;
+                border-radius: 8px;
+                font-weight: 700;
+                font-size: 15px;
+                transition: opacity .2s;
+            }
+            .btn-login-req:hover { opacity: .85; }
+            .btn-cadastro-req {
+                padding: 12px 32px;
+                background-color: #555;
+                color: white;
+                text-decoration: none;
+                border-radius: 8px;
+                font-weight: 700;
+                font-size: 15px;
+                transition: opacity .2s;
+            }
+            .btn-cadastro-req:hover { opacity: .85; }
+        </style>
     `;
 }
 
@@ -157,10 +223,9 @@ function setupInteractions() {
             field.disabled = false;
             field.focus();
 
-            if (!input) return;
-            input.disabled = false;
-            input.focus();
-            input.setSelectionRange(input.value.length, input.value.length);
+            if (field.tagName === 'INPUT') {
+                field.setSelectionRange(field.value.length, field.value.length);
+            }
         });
     });
 

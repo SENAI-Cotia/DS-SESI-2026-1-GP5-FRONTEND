@@ -69,9 +69,10 @@ async function loadInteressesRecebidos() {
 
     if (!userId) {
         container.innerHTML = `
-            <div style="text-align:center;padding:40px;">
-                <p>Você precisa estar conectado.</p>
-                <a href="login.html" style="color:#d43768;font-weight:600;">Fazer Login</a>
+            <div class="empty-state">
+                <i class="fa-solid fa-lock"></i>
+                <p>Você precisa estar conectado para ver seus interesses recebidos.</p>
+                <a href="login.html" class="btn-novo-item">Fazer Login</a>
             </div>`;
         return;
     }

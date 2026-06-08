@@ -195,6 +195,10 @@ html.dark-mode .opcao-texto strong {
     color: var(--text-primary);
 }
 
+html.dark-mode .interesse-info strong {
+    color: var(black);
+}
+
 html.dark-mode .opcao-texto span {
     color: var(--text-muted);
 }

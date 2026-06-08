@@ -9,13 +9,6 @@
     <link rel="stylesheet" href="../styles/navbar.css">
     <link rel="stylesheet" href="../styles/produto.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
-        rel="stylesheet">
-    <script src="../script/navbar.js"></script>
-    <script src="../script/produto.js"></script>
     <link rel="stylesheet" href="../styles/dark-mode.css">
 </head>
 
@@ -82,6 +75,10 @@
                 <p class="description" id="product-description">
                     Descrição do produto será carregada aqui.
                 </p>
+                <div class="condicao-display" style="margin-bottom:12px;">
+                    <span class="condicao-produto" style="font-weight:600; color:#555;">Condição:</span>
+                    <p class="condicao" id="product-condition" style="display:inline; margin-left:6px; font-weight:700; font-size:16px;"></p>
+                </div>
                 <div class="schedule-grid">
 
                     <div class="column">
@@ -130,6 +127,8 @@
         }
     </style>
 
+    <script src="../script/navbar.js"></script>
+    <script src="../script/produto.js"></script>
 </body>
 
 </html>

@@ -224,6 +224,39 @@ async function loadProduto() {
         if (priceEl) priceEl.textContent = `R$ ${Number(p.preco || 0).toFixed(2).replace('.', ',')}`;
         if (descEl) descEl.textContent = p.descricao || '';
 
+        // Condição do produto
+        const conditionEl = document.getElementById('product-condition');
+        if (conditionEl) {
+            conditionEl.textContent = `${p.condicao != null ? p.condicao : 'N/A'}/10`;
+            if (p.condicao != null) {
+                if (p.condicao >= 6) {
+                    conditionEl.style.color = '#4CAF50';
+                } else if (p.condicao >= 3) {
+                    conditionEl.style.color = '#FF9800';
+                } else {
+                    conditionEl.style.color = '#F44336';
+                }
+            }
+        }
+
+        // Bloquear interesse em produto vendido
+        if (p.disponibilidade === false) {
+            const btnEntregue = document.querySelector('.btn-entregue');
+            if (btnEntregue) {
+                btnEntregue.disabled = true;
+                btnEntregue.textContent = 'PRODUTO VENDIDO';
+                btnEntregue.style.cssText += 'background:#aaa;cursor:not-allowed;opacity:0.7;';
+            }
+            // Exibir badge de vendido
+            const titleEl = document.getElementById('product-title');
+            if (titleEl) {
+                const badge = document.createElement('span');
+                badge.textContent = 'Vendido';
+                badge.style.cssText = 'font-size:13px;background:#e74c3c;color:#fff;padding:3px 10px;border-radius:12px;margin-left:10px;vertical-align:middle;';
+                titleEl.appendChild(badge);
+            }
+        }
+
         // Informações do vendedor
         const sellerName = document.getElementById('seller-name');
         const sellerDept = document.getElementById('seller-dept');
