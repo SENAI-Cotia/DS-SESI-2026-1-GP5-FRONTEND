@@ -11,7 +11,7 @@ input:hover {
 }
 
 body {
-    background-image: url(../assets/backgrounds/CADASTRO\ \(1\).png);
+    background-image: url(../assets/backgrounds/cadastro.png);
     background-position: center;
     height: 97vh;
     Width: 100%;
@@ -20,7 +20,7 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-
+    justify-content: center;
 }
 
 .container {
@@ -29,12 +29,9 @@ body {
     box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.2);
     border-radius: 60px;
     padding: 40px;
-    margin-left: 500px;
-    right: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 .login-card h2 {
@@ -94,20 +91,6 @@ h2 {
     user-select: none;
 }
 
-.circulo {
-    text-align: center;
-    margin-left: 510px;
-}
-
-.circulo p {
-    color: #fff;
-    font-size: 18px;
-}
-
-.circulo a {
-    text-decoration: none;
-    color: #99C3FF;
-}
 .logoIcon {
     height: 20px;
     margin-left: 5px;
@@ -177,15 +160,11 @@ h2 {
     background-color: #faecf0;
 }
 
-
-
-
-
 .group-cadastro select {
     cursor: pointer;
     appearance: none;
-    width: 100%;
-    padding: 12px;
+    width: 130px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 15px;

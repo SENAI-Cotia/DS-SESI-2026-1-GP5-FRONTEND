@@ -12,7 +12,7 @@ input :hover {
 }
 
 body {
-    background-image: url(../assets/backgrounds/CADASTRO\ \(1\).png);
+    background-image: url(../assets/backgrounds/cadastro.png);
     background-position: center;
     height: 97vh;
     Width: 100%;
@@ -21,7 +21,7 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-
+    justify-content: center;
 }
 
 .container {
@@ -30,12 +30,9 @@ body {
     box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.2);
     border-radius: 60px;
     padding: 40px;
-    margin-left: 500px;
-    right: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 .login-card h2 {
@@ -98,7 +95,6 @@ h2 {
 .circulo {
 
     text-align: center;
-    margin-left: 510px;
 
     & p {
         color: #fff;
@@ -179,4 +175,3 @@ h2 {
 .voltar button:hover {
     background-color: #faecf0;
 }
-

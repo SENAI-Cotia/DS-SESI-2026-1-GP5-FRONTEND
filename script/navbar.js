@@ -1,7 +1,9 @@
 // Determina a base da API automaticamente em ambiente de desenvolvimento (localhost)
-window.API_BASE = window.__API_BASE__ || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:3000' : 'http://10.92.199.16:3000'); // mantido para uso futuro
+window.API_BASE = window.__API_BASE__ || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:3000' : 'http://10.92.199.17:3000'); // mantido para uso futuro
 
-function loadNavbar() {
+import { buscarInteresses } from './interesses-recebidos.js';
+
+async function loadNavbar() {
     const userName = localStorage.getItem('userName') || 'Usuário';
     const userCurso = localStorage.getItem('userCurso') || '';
     const firstName = userName.split(' ')[0] || 'Usuário';
@@ -11,6 +13,22 @@ function loadNavbar() {
     const avatarEl = document.getElementById('nav-avatar');
     const sidebarAvatar = document.getElementById('sidebar-avatar');
     const sidebarFirst = document.getElementById('sidebar-firstname');
+    const sino = document.getElementById('sino-notificacao');
+    const userId = localStorage.getItem('userId'); 
+
+    let interesses = [];
+    if (userId) {
+        try {
+            interesses = await buscarInteresses(userId);
+        } catch (err) {
+            console.error("Não foi possível checar notificações no sino:", err);
+        }
+    }
+
+    if (interesses && interesses.length > 0 && sino) {
+        sino.src = '../assets/icons/sino-ativo.svg';
+        sino.classList.add('sino-ativo');
+    }
 
     if (nameEl) nameEl.textContent = userName;
     if (cursoEl) cursoEl.textContent = userCurso;

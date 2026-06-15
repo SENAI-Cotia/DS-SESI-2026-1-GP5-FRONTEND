@@ -38,7 +38,6 @@ function setStorageValue(key, value) {
     }
 }
 
-// Backwards-compatible alias used elsewhere in the scripts
 function getStoredValue(key) {
     return getStorageValue(key);
 }
@@ -152,7 +151,6 @@ async function enviarCadastro() {
         return;
     }
 
-    // Match Prisma User model: email, password, name, rm (Int), curso, funcao, telNumero
     const payload = {
         email: cadastro.email,
         password: senha.value,
@@ -237,36 +235,31 @@ document.addEventListener('DOMContentLoaded', loadCadastroStep3);
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.toggle-senha').forEach(btn => {
+
         btn.addEventListener('click', () => {
-            const targetId = btn.dataset.target;
-            const input = document.getElementById(targetId);
+            const input = document.getElementById(btn.dataset.target);
+
             if (!input) return;
-            const isHidden = input.type === 'password';
-            input.type = isHidden ? 'text' : 'password';
-            // Swap icon path to show strikethrough eye when visible
-            const path = btn.querySelector('path');
-            const circle = btn.querySelector('circle');
-            if (isHidden) {
-                // eye-off: add slash line
+
+            const eyeOpen = btn.querySelector('.eye-open');
+            const eyeClosed = btn.querySelector('.eye-closed');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+
+                eyeOpen.style.display = 'none';
+                eyeClosed.style.display = 'block';
+
                 btn.setAttribute('title', 'Ocultar senha');
-                if (path) path.setAttribute('d', 'M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24');
-                if (circle) circle.style.display = 'none';
-                // Add the diagonal slash
-                let line = btn.querySelector('line');
-                if (!line) {
-                    const svg = btn.querySelector('svg');
-                    line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line.setAttribute('x1', '1'); line.setAttribute('y1', '1');
-                    line.setAttribute('x2', '23'); line.setAttribute('y2', '23');
-                    svg.appendChild(line);
-                }
             } else {
+                input.type = 'password';
+
+                eyeOpen.style.display = 'block';
+                eyeClosed.style.display = 'none';
+
                 btn.setAttribute('title', 'Mostrar senha');
-                if (path) path.setAttribute('d', 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z');
-                if (circle) circle.style.display = '';
-                const line = btn.querySelector('line');
-                if (line) line.remove();
             }
         });
+
     });
 });

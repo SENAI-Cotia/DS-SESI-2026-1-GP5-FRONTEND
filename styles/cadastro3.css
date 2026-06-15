@@ -11,16 +11,16 @@ input:hover {
 }
 
 body {
-    background-image: url(../assets/backgrounds/CADASTRO\ \(1\).png);
+    background-image: url(../assets/backgrounds/cadastro.png);
     background-position: center;
     height: 97vh;
-    Width: 100%;
+    width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
     position: relative;
-
+    justify-content: center;
 }
 
 .container {
@@ -29,12 +29,9 @@ body {
     box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.2);
     border-radius: 60px;
     padding: 40px;
-    margin-left: 500px;
-    right: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 .login-card h2 {
@@ -43,9 +40,11 @@ body {
 }
 
 .login-card p {
+    margin-top: 10px;
     margin-bottom: 24px;
     color: #555;
     text-align: center;
+    font-size: 15px;
 }
 
 .login-card form {
@@ -59,74 +58,30 @@ body {
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
-    text-align: left;
     width: 100%;
 }
 
 .login-card input {
-    margin-bottom: 15px;
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.login-card button {
-    background-color: #ff4081;
-    color: #fff;
     border: none;
-    padding: 15px;
-    width: 40px;
-
-    border-radius: 30px;
-    text-align: center;
-    align-items: center;
-    vertical-align: middle;
-    align-content: center;
-    font-size: 16px;
-
+    border-bottom: 1px solid #00000093;
+    border-radius: 0px;
+    margin-bottom: 15px;
 }
 
-.login-card button:hover {
-    background-color: #e73370;
+.login-card input:focus {
+    border-bottom: 2px solid #00000093 !important;
+    outline: none;
 }
 
-h2 {
-    user-select: none;
-}
-
-.circulo {
-    text-align: center;
-    margin-left: 510px;
-}
-
-.circulo p {
-    color: #fff;
-    font-size: 18px;
-}
-
-.circulo a {
-    text-decoration: none;
-    color: #99C3FF;
-}
-
+/* LOGO */
 .logoIcon {
     height: 20px;
     margin-left: 5px;
 }
 
-.login-card input {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid #00000093;
-    border-radius: 0px;
-}
-
-.login-card input:focus {
-    border-bottom: 2px solid #00000093 !important;
-    border: none;
-    outline: none;
-}
-
+/* BARRA */
 .barraCad {
     display: block;
     margin: 0 auto 30px;
@@ -136,27 +91,22 @@ h2 {
 }
 
 .labelCad {
-    align-items: center;
     text-align: center;
     color: #e73370;
 }
 
-
-
+/* BOTÕES */
 .botoes {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     gap: 15px;
     width: 100%;
-    align-items: center;
     margin-top: 20px;
 }
 
 .voltar,
 .branco {
-    flex: 1 1 calc(50% - 7.5px);
-    min-width: 140px;
+    flex: 1;
 }
 
 .voltar button,
@@ -178,11 +128,25 @@ h2 {
     background-color: #faecf0;
 }
 
+.branco button {
+    background-color: #ff4081;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: 1px solid #e73370;
+    font-size: 16px;
+    cursor: pointer;
+}
 
+.branco button:hover {
+    background-color: #e73370;
+}
+
+/* REGRAS SENHA */
 .regras-senha {
     margin: 10px 0;
     padding-left: 20px;
-    font-size: 14px;
+    font-size: 12px;
     color: #555;
 }
 
@@ -197,34 +161,52 @@ h2 {
 
 #mensagem-senha {
     margin-top: 10px;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
 }
 
+/* PASSWORD WRAPPER (CORRETO) */
 .password-wrapper {
     position: relative;
-    display: flex;
-    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
 }
 
 .password-wrapper input {
     width: 100%;
-    padding-right: 48px;
+    padding-right: 45px;
+    margin-bottom: 0;
 }
 
+/* BOTÃO OLHO */
 .toggle-senha {
     position: absolute;
-    right: -40px;
-    background: none;
-    border: none;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: transparent !important;
+    border: none !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
     cursor: pointer;
-    color: #888;
-    padding: 4px;
+
     display: flex;
     align-items: center;
-    height: 40px;
+    justify-content: center;
+
+    color: #888 !important;
 }
 
 .toggle-senha:hover {
-    color: #e91e63;
+    color: #e73370 !important;
+}
+
+.toggle-senha svg {
+    width: 20px;
+    height: 20px;
 }

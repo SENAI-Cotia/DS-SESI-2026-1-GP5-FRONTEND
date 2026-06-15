@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../styles/dark-mode.css">
 </head>
 
-<body>
+<body class="pagina-perfil">
     <header class="navbar">
         <div class="logo">
             <a href="inicio.html"><img src="../assets/icons/logo icon etrooc.svg" alt="ETROOC"></a>
@@ -27,7 +27,7 @@
         <div class="nav-right">
             <div class="icons">
                 <a href="criarprod.html"><img src="../assets/img/sinaldemais.png" alt="Adicionar"></a>
-                <a href="interesses-recebidos.html"><img src="../assets/icons/sino.svg" alt="Notificações" class="sino-header"></a>
+                <a href="interesses-recebidos.html"><img src="../assets/icons/sino.svg" alt="Notificações" class="sino-header" id="sino-notificacao"></a>
             </div>
             <div class="nav-divider"></div>
             <a class="user-info" href="perfil.html">
@@ -48,7 +48,6 @@
                 <div class="profile-box">
                     <div class="avatar-container">
                         <div id="sidebar-avatar">U</div>
-                        <i class="fa-solid fa-pen edit-pen-avatar"></i>
                     </div>
                     <div>
                         <p>Meu perfil</p>
@@ -139,7 +138,7 @@
 
         </div>
 
-        <script src="../script/navbar.js"></script>
+        <script type="module" src="../script/navbar.js"></script>
         <script src="../script/perfil.js"></script>
 </body>
 

@@ -7,15 +7,10 @@
     <title>ETROOC</title>
     <link rel="icon" href="../assets/icons/logo-etrooc-infinito.png" type="image/png">
     <link rel="stylesheet" href="../styles/cadastro.css">
-    <script src="../script/navbar.js"></script>
+
 </head>
 
 <body class="fundo">
-
-    <section class="circulo">
-        <p>Já tem cadastro?</p>
-        <a href="login.html">Fazer login</a>
-    </section>
 
     <div class="container">
         <div class="login-card">
@@ -25,17 +20,17 @@
 
             <form>
                 <label for="email">E-mail</label>
-                <input type="text" id="email" name="email" placeholder="email">
+                <input type="text" id="email" name="email" placeholder="Email">
 
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf" placeholder="cpf">
+                <input type="text" id="cpf" name="cpf" placeholder="Cpf" maxlength="14">
 
                 <label for="rm">RM</label>
-                <input type="text" id="rm" name="rm" placeholder="registro de matrícula">
+                <input type="text" id="rm" name="rm" placeholder="Registro de matrícula">
 
                 <div class="botoes">
                     <div class="voltar">
-                    <button type="button">Voltar</button>
+                        <button type="button">Voltar</button>
                     </div>
 
                     <div class="branco">
@@ -47,6 +42,8 @@
         </div>
     </div>
 
+
+    <script type="module" src="../script/navbar.js"></script>
     <script src="../script/cadastro.js"></script>
 </body>
 

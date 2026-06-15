@@ -1,8 +1,5 @@
-// acessibilidade.js
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ── TAMANHO DO TEXTO ──────────────────────────────────────────
     const sizeMap = { small: '13px', medium: '16px', large: '20px' };
     const savedSize = localStorage.getItem('fontSize') || 'medium';
     document.documentElement.style.fontSize = sizeMap[savedSize];
@@ -20,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── MODO ESCURO ───────────────────────────────────────────────
     const toggleDark = document.getElementById('toggle-dark');
     const darkAtivo = localStorage.getItem('darkMode') === 'true';
     if (darkAtivo) {

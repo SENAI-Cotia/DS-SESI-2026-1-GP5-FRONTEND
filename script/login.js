@@ -47,4 +47,33 @@ document.addEventListener('DOMContentLoaded', () => {
             showAlert('Erro de rede ao fazer login. Tente novamente.');
         }
     });
+
+    const toggleBtns = document.querySelectorAll('.toggle-senha');
+
+    toggleBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.dataset.target;
+            const input = document.getElementById(targetId);
+
+            if (!input) return;
+
+            const eyeOpen = btn.querySelector('.eye-open');
+            const eyeClosed = btn.querySelector('.eye-closed');
+
+            const isHidden = input.type === 'password';
+
+            input.type = isHidden ? 'text' : 'password';
+
+            if (eyeOpen && eyeClosed) {
+                eyeOpen.style.display = isHidden ? 'none' : 'block';
+                eyeClosed.style.display = isHidden ? 'block' : 'none';
+            }
+
+            btn.setAttribute(
+                'title',
+                isHidden ? 'Ocultar senha' : 'Mostrar senha'
+            );
+        });
+    });
+
 });
