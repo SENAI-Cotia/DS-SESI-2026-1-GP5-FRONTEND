@@ -7,20 +7,17 @@
     box-sizing: border-box;
 }
 
-input:hover {
-    cursor: text;
-}
-
 body {
-    background-image: url(../assets/backgrounds/CADASTRO\ \(1\).png);
+    background-image: url(../assets/backgrounds/cadastro.png);
     background-position: center;
-    height: 97vh;
+    height: 100vh;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
+
     display: flex;
     align-items: center;
-    position: relative;
+    justify-content: center;
 }
 
 .container {
@@ -29,152 +26,75 @@ body {
     box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.2);
     border-radius: 60px;
     padding: 40px;
-    margin-left: 500px;
-    right: 30px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.login-card h2 {
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.login-card p {
-    margin-bottom: 24px;
-    color: #555;
-    text-align: center;
-}
-
-.info-resumo {
-    margin: 28px 0;
-    text-align: center;
-}
-
-.info-mensagem {
-    margin-top: 10px;
-    line-height: 1.75;
-}
-
-.login-card form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-}
-
-.login-card label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-    text-align: left;
-    width: 100%;
-}
-
-.info-resumo {
-    margin: 20px 0;
-    text-align: center;
-}
-
-.info-label {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.info-mensagem {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
-}
-
-.login-card input {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: none;
-    border-bottom: 1px solid #00000093;
-    border-radius: 0px;
-}
-
-.login-card input:focus {
-    border-bottom: 2px solid #00000093 !important;
-    border: none;
-    outline: none;
-}
-
-.login-card button {
-    background-color: #ff4081;
-    color: #fff;
-    border: none;
-    padding: 15px;
-    width: 200px;
-    border-radius: 30px;
-    text-align: center;
-    align-items: center;
-    vertical-align: middle;
-    align-content: center;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.login-card button:hover {
-    background-color: #e73370;
-}
-
-h2 {
-    user-select: none;
-}
-
-.circulo {
-    text-align: center;
-    margin-left: 510px;
-}
-
-.circulo p {
-    color: #fff;
-    font-size: 18px;
-}
-
-.circulo a {
-    text-decoration: none;
-    color: #99C3FF;
-}
-
-.logoIcon {
-    height: 20px;
-    margin-left: 5px;
-}
-
 .barraCad {
     display: block;
-    margin: 0 auto 30px;
+    margin: 0 auto 25px;
     max-width: 320px;
     width: 100%;
     height: auto;
 }
 
-.labelCad {
-    align-items: center;
+.login-card h1 {
     text-align: center;
-    color: #e73370;
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 6px;
 }
 
+.login-card h2 {
+    text-align: center;
+    font-size: 19px;
+    color: #e73370;
+    margin-bottom: 10px;
+}
+
+/* TEXTO BASE */
+.login-card p {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+/* BLOCO DE INFO (UX LIMPA E DISCRETA) */
+.info-resumo {
+    margin: 18px 0 25px;
+    padding: 16px;
+    text-align: center;
+}
+
+.info-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.info-mensagem {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* BOTÕES (mantendo padrão das outras etapas) */
 .botoes {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     gap: 15px;
     width: 100%;
-    align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .voltar,
 .branco {
-    flex: 1 1 calc(50% - 7.5px);
-    min-width: 140px;
+    flex: 1;
 }
 
 .voltar button,
@@ -182,30 +102,33 @@ h2 {
     width: 100%;
 }
 
+/* VOLTAR */
 .voltar button {
     background-color: white;
     color: #e73370;
-    padding: 12px 25px;
+    padding: 12px;
     border-radius: 30px;
     border: 1px solid #e73370;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .voltar button:hover {
     background-color: #faecf0;
 }
 
+/* PRINCIPAL */
 .branco button {
-    background-color: #ff4081;
+    background-color: #e73370;
     color: #fff;
-    padding: 12px 25px;
+    padding: 12px;
     border-radius: 30px;
-    border: none;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .branco button:hover {
-    background-color: #e73370;
+    background-color: #d92b66;
 }

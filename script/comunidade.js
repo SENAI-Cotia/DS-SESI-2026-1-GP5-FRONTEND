@@ -1,6 +1,3 @@
-// comunidade.js
-
-
 function escapeHtml(str) {
     return String(str || '')
         .replace(/&/g, '&amp;')

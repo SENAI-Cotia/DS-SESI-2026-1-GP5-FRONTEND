@@ -14,7 +14,7 @@
 .btn-novo-item {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
     background-color: #d43768;
     color: white;
     padding: 10px 20px;
@@ -23,6 +23,7 @@
     font-size: 14px;
     font-weight: 600;
     transition: background 0.2s;
+    margin: 10px;
 }
 
 .btn-novo-item:hover {
@@ -35,6 +36,7 @@
     gap: 16px;
 }
 
+/* ── Card padrão (produto ativo / à venda) ── */
 .item-card {
     display: flex;
     align-items: center;
@@ -44,12 +46,35 @@
     border-radius: 16px;
     padding: 16px 20px;
     transition: box-shadow 0.2s;
+    position: relative; /* necessário para o badge absoluto */
 }
 
 .item-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* ✅ NOVO — Card vendido: visual diferenciado */
+.item-card--vendido {
+    background: #f4f4f4;
+    border-color: #d9d9d9;
+    opacity: 0.75;
+}
+
+.item-card--vendido:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    opacity: 0.88;
+}
+
+.item-card--vendido .item-name {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.item-card--vendido .item-price {
+    color: #aaa;
+}
+
+/* ── Imagem do produto ── */
 .item-img {
     width: 80px;
     height: 80px;
@@ -60,6 +85,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative; /* âncora para o badge absoluto */
 }
 
 .item-img img {
@@ -68,6 +94,32 @@
     object-fit: cover;
 }
 
+/* ✅ NOVO — Badge "Vendido" sobreposto à imagem */
+.badge-vendido {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.badge-vendido i {
+    font-size: 11px;
+}
+
+/* ── Informações do produto ── */
 .item-info {
     flex: 1;
 }
@@ -94,6 +146,7 @@
     font-size: 15px;
 }
 
+/* ── Ações ── */
 .item-actions {
     display: flex;
     flex-direction: column;
@@ -117,6 +170,7 @@
     background: #b82d58;
 }
 
+/* ── Estados vazios ── */
 .msg-vazia,
 .empty-state {
     text-align: center;
@@ -135,7 +189,7 @@
     margin-bottom: 20px;
 }
 
-/* Botões editar e excluir */
+/* ── Botões de ação nos cards ── */
 .btn-editar {
     display: inline-flex;
     align-items: center;
@@ -213,24 +267,104 @@
 }
 
 .btn-vendido i {
-    width: 14px;
-    height: 14px;
+    font-size: 13px;
 }
 
-.status-vendido {
-    color: #dc2626;
-    font-weight: 900;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-left: 8px;
-}
-
+/* ✅ Botão "Reativar anúncio" — verde sólido para chamar atenção */
 .btn-reativar {
     background: #16a34a !important;
     color: #fff !important;
+    border-color: #16a34a !important;
 }
 
 .btn-reativar:hover {
     background: #15803d !important;
+    border-color: #15803d !important;
+}
+
+/* ── Cards de interesses (mantidos do original) ── */
+.interesse-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 18px 20px;
+    transition: box-shadow 0.2s;
+}
+
+.interesse-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.interesse-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #d43768;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.interesse-info {
+    flex: 1;
+}
+
+.interesse-info strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.interesse-info span {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.interesse-produto {
+    font-size: 13px;
+    font-weight: 600;
+    color: #d43768;
+    background: #fff0f3;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.interesse-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.badge-status {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background: #fff3cd;
+    color: #856404;
+}
+
+.interesse-detalhe {
+    font-size: 12px;
+    color: #888;
+    text-align: right;
+}
+
+.interesses-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }

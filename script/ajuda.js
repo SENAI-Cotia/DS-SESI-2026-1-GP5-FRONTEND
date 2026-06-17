@@ -1,4 +1,3 @@
-// ajuda.js — accordion do FAQ
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.faq-pergunta').forEach(btn => {
         btn.addEventListener('click', () => {

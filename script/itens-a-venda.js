@@ -36,7 +36,7 @@ async function marcarComoVendido(id, disponibilidadeAtual) {
     const novaDisponibilidade = !disponibilidadeAtual;
 
     const mensagem = disponibilidadeAtual
-        ? 'Marcar este produto como vendido? Ele não aparecerá mais no site.'
+        ? 'Marcar este produto como vendido? Ele não aparecerá mais na vitrine pública.'
         : 'Deseja colocar este produto novamente à venda?';
 
     if (!confirm(mensagem)) return;
@@ -44,12 +44,8 @@ async function marcarComoVendido(id, disponibilidadeAtual) {
     try {
         const res = await fetch(`${window.API_BASE}/produtos/${id}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                disponibilidade: novaDisponibilidade
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ disponibilidade: novaDisponibilidade })
         });
 
         if (!res.ok) throw new Error('Erro ao atualizar produto');
@@ -84,14 +80,13 @@ async function loadItensAVenda() {
     }
 
     try {
-        const res = await fetch(`${window.API_BASE}/produtos`);
+        // ✅ CORREÇÃO: usa /produtos/meus?userId=X — retorna TODOS os produtos
+        // do usuário (disponíveis e vendidos), ao contrário de GET /produtos
+        // que filtra apenas disponibilidade=true (vitrine pública).
+        const res = await fetch(`${window.API_BASE}/produtos/meus?userId=${userId}`);
         if (!res.ok) throw new Error('Erro ao buscar itens');
 
-        const produtos = await res.json();
-
-        const meusProdutos = produtos.filter(
-            p => Number(p.userId) === Number(userId)
-        );
+        const meusProdutos = await res.json();
 
         renderItens(meusProdutos);
 
@@ -118,9 +113,11 @@ function renderItens(produtos) {
     }
 
     produtos.forEach(produto => {
-
         const card = document.createElement('div');
-        card.className = 'item-card';
+        const vendido = !produto.disponibilidade;
+
+        // ✅ Adiciona classe visual para produtos vendidos
+        card.className = vendido ? 'item-card item-card--vendido' : 'item-card';
         card.dataset.id = produto.id;
 
         const imagem = Array.isArray(produto.imagem)
@@ -131,9 +128,10 @@ function renderItens(produtos) {
             .toFixed(2)
             .replace('.', ',');
 
-        const statusVendido = produto.disponibilidade
-            ? ''
-            : '<span class="status-vendido">(VENDIDO)</span>';
+        // Badge sobreposto à imagem, visível apenas quando vendido
+        const badgeVendido = vendido
+            ? '<span class="badge-vendido"><i class="fa-solid fa-tag"></i> Vendido</span>'
+            : '';
 
         card.innerHTML = `
             <div class="item-img">
@@ -142,38 +140,33 @@ function renderItens(produtos) {
                     alt="${escapeHtml(produto.name || 'Produto')}"
                     onerror="this.src='../assets/img/etrooc.png'"
                 >
+                ${badgeVendido}
             </div>
 
             <div class="item-info">
                 <strong class="item-name">
                     ${escapeHtml(produto.name || 'Produto')}
-                    ${statusVendido}
                 </strong>
-
                 <p class="item-desc">
                     ${escapeHtml(produto.descricao || '')}
                 </p>
-
                 <span class="item-price">
                     R$ ${preco}
                 </span>
             </div>
 
             <div class="item-actions">
-
                 <a href="editarprod.html?id=${produto.id}" class="btn-editar">
                     <img src="../assets/icons/edit-pen.svg" alt="Editar">
                     Editar
                 </a>
 
                 <button
-                    class="btn-vendido ${!produto.disponibilidade ? 'btn-reativar' : ''}"
+                    class="btn-vendido ${vendido ? 'btn-reativar' : ''}"
                     onclick="marcarComoVendido(${produto.id}, ${produto.disponibilidade})"
                 >
-                    <i class="fa-solid fa-check"></i>
-                    ${produto.disponibilidade
-                        ? 'Marcar como Vendido'
-                        : 'Desmarcar como Vendido'}
+                    <i class="fa-solid ${vendido ? 'fa-rotate-left' : 'fa-check'}"></i>
+                    ${vendido ? 'Reativar anúncio' : 'Marcar como Vendido'}
                 </button>
 
                 <button
@@ -183,7 +176,6 @@ function renderItens(produtos) {
                     <img src="../assets/icons/trash.svg" alt="Excluir">
                     Excluir
                 </button>
-
             </div>
         `;
 

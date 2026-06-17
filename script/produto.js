@@ -197,7 +197,7 @@ async function loadProduto() {
 
                 thumb.src = imgSrc;
                 thumb.className = 'miniatura';
-                thumb.alt = `Thumb ${index + 1}`;
+                thumb.alt = `Imagem n° ${index + 1}`;
 
                 thumb.addEventListener('click', () => {
 

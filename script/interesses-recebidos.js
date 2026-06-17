@@ -6,7 +6,7 @@ function escapeHtml(str) {
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+        .replace(/'/g, '&#39;');
 }
 
 function timeAgo(dateStr) {
@@ -26,11 +26,17 @@ function getInitial(name) {
 
 function renderInteresses(interesses) {
     const container = document.getElementById('interesses-container');
+    if (!container) return; // Evita erros se a navbar rodar isso em uma página sem o container
+    
     container.innerHTML = '';
+    const sino = document.getElementById('sino-notificacao');
 
     if (!interesses || interesses.length === 0) {
-        container.innerHTML = '<p class="msg-vazia">Nenhum interesse recebido ainda. <a href="criarprod.html" style="color:#d43768">Publique um produto</a>!</p>';
+        container.innerHTML = '<p class="msg-vazia">Nenhum interesse recebido ainda.</p>';
         return;
+    } else {
+        // muda src do sino para vermelho se houver interesses
+        if (sino) sino.src = '../assets/icons/sino-ativo.svg';
     }
 
     interesses.forEach(item => {
@@ -56,16 +62,44 @@ function renderInteresses(interesses) {
             <div class="interesse-meta">
                 <span class="badge-status">${escapeHtml(item.status || 'pendente')}</span>
                 <span class="interesse-detalhe">${timeAgo(item.createdAt)}</span>
-                <a href="produto.html?id=${item.produto?.id}" style="font-size:13px;color:#d43768;font-weight:600;">Ver produto</a>
+                <a href="editarprod.html?id=${item.produto?.id}" style="font-size:13px;color:#d43768;font-weight:600;">Ver produto</a>
             </div>
         `;
         container.appendChild(card);
     });
 }
 
+export async function buscarInteresses(userId) {
+    try {
+        const res = await fetch(`${window.API_BASE}/produtos/interesses/vendedor?userId=${userId}`);
+        if (!res.ok) throw new Error(`Erro ${res.status}`);
+
+        const interesses = await res.json();
+
+        // Executa a renderização normal da página de interesses (se o usuário estiver nela)
+        if (typeof renderInteresses === 'function') {
+            renderInteresses(interesses);
+        }
+
+        // RETORNA os dados para a navbar conseguir ler
+        return interesses;
+
+    } catch (err) {
+        console.error(err);
+        const container = document.getElementById('interesses-container');
+        if (container) {
+            container.innerHTML = '<p class="msg-vazia">Não foi possível carregar os interesses. Tente novamente.</p>';
+        }
+        return []; // Retorna uma lista vazia em caso de erro para não quebrar o código
+    }
+}
+
 async function loadInteressesRecebidos() {
     const container = document.getElementById('interesses-container');
     const userId = localStorage.getItem('userId');
+
+    // Se não estiver na página que tem o container de interesses, não faz nada
+    if (!container) return;
 
     if (!userId) {
         container.innerHTML = `
@@ -77,15 +111,8 @@ async function loadInteressesRecebidos() {
         return;
     }
 
-    try {
-        const res = await fetch(`${window.API_BASE}/produtos/interesses/vendedor?userId=${userId}`);
-        if (!res.ok) throw new Error(`Erro ${res.status}`);
-        const interesses = await res.json();
-        renderInteresses(interesses);
-    } catch (err) {
-        console.error(err);
-        container.innerHTML = '<p class="msg-vazia">Não foi possível carregar os interesses. Tente novamente.</p>';
-    }
+    // Chama a função que agora está no escopo global do arquivo
+    await buscarInteresses(userId);
 }
 
 document.addEventListener('DOMContentLoaded', loadInteressesRecebidos);
